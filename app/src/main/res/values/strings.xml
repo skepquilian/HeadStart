@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">HeadStart</string>
+    <string name="organisation_email">Organisation Email Address</string>
+    <string name="add_password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="login_button">Login</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="or">OR</string>
+    <string name="organization_name">Organization Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="register_btn">Register</string>
+    <string name="organisation_phone_number">Organisation Phone Number</string>
+    <string name="already_a_user_login">Already a User? Login</string>
+    <string name="supplier">Supplier</string>
+    <string name="customer">Customer</string>
+    <string name="logout">Logout</string>
+    <string name="reset_password">Reset</string>
+</resources>
