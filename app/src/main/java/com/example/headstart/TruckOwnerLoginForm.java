@@ -117,6 +117,9 @@ public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnCli
         });
     }
     public void onBackPressed() {
+
         super.onBackPressed();
+        startActivity(new Intent(TruckOwnerLoginForm.this,MainActivity.class));
+        finish();
     }
 }

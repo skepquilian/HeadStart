@@ -29,6 +29,7 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
     public TruckOwnerRegisterForm() {
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +59,7 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
 
     }
 
-    //Onclick Listener
+    //Onclick Listener for all fields with this property
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.appName || v.getId() == R.id.loginUser){
@@ -70,6 +71,7 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
         }
     }
 
+
     //Register User Function....
     private void registerUser() {
         String organizationName = editTextOrganizationName.getText().toString().trim();
@@ -78,19 +80,19 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
         String userPassword     = editTextPassword.getText().toString().trim();
         String passwordConfirm  = editTextPasswordConfirm.getText().toString().trim();
 
-        //Now we Need If Statements to validate these Inputs..Error Handling
+        //Now we Need If Statements to validate these Inputs..Check validation
         if (organizationName.isEmpty()){
             editTextOrganizationName.setError("Name is required");
             editTextOrganizationName.requestFocus();
             return;
 
         }
+        //Check if Email is Valid
         if (emailAddress.isEmpty()){
             editTextEmail.setError("Email Field Required");
             editTextEmail.requestFocus();
             return;
         }
-        //Check if Email is Valid
         if (!Patterns.EMAIL_ADDRESS.matcher(emailAddress).matches()){
             editTextEmail.setError("Please provide valid email");
             editTextEmail.requestFocus();
@@ -101,7 +103,7 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
             editTextPhone.requestFocus();
             return;
         }
-
+        //Password validation
         if (userPassword.isEmpty()){
             editTextPassword.setError("Provide password");
             editTextPassword.requestFocus();
@@ -122,7 +124,7 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
             editTextPassword.requestFocus();
         }
 
-        //set progress Bar to visible when
+        //set progress Bar to visible when register button is clicked
         progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(emailAddress,userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -132,8 +134,13 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
                     //Create Users info with these below
                     User user = new User(organizationName, emailAddress, phoneNumber);
 
+                    //take users info to firebase database
                     FirebaseDatabase.getInstance().getReference("Users")
+
+                            //then give the registered user an id using the below, make id correspond to user when registered
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+
+                            //check if user is registered successfully
                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -143,7 +150,7 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
                                 startActivity(new Intent(TruckOwnerRegisterForm.this, TruckOwnerLoginForm.class));
                                 Toast.makeText(TruckOwnerRegisterForm.this, "Registration successful...Login Now", Toast.LENGTH_LONG).show();
                             }else {
-                                Toast.makeText(TruckOwnerRegisterForm.this, "Registration Failed...Login Now", Toast.LENGTH_LONG).show();
+                                Toast.makeText(TruckOwnerRegisterForm.this, "Registration Failed. TRY AGAIN", Toast.LENGTH_LONG).show();
                             }
                             progressBar.setVisibility(View.GONE);
                         }
