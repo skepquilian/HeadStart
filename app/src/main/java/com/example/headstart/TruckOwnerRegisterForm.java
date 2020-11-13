@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -45,12 +46,15 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
         //EditText
         editTextOrganizationName = findViewById(R.id.organizationName);
         editTextEmail            = findViewById(R.id.emailAddress);
+
         editTextPhone            = findViewById(R.id.phoneNumber);
+        editTextPhone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+
         editTextPassword         = findViewById(R.id.userPassword);
         editTextPasswordConfirm  = findViewById(R.id.passwordConfirm);
 
         //register Button
-        Button btnRegister = findViewById(R.id.registerUser);
+        Button btnRegister = findViewById(R.id.registerButton);
         btnRegister.setOnClickListener(this);
 
         progressBar = findViewById(R.id.progressBar);
@@ -66,7 +70,7 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
             startActivity(new Intent(this, TruckOwnerLoginForm.class));
             return;
         }
-        if (v.getId() == R.id.registerUser){
+        if (v.getId() == R.id.registerButton){
             registerUser();
         }
     }
@@ -161,5 +165,12 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
                 }
             }
         });
+    }
+
+    //On back press to redirect to login page
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(TruckOwnerRegisterForm.this, TruckOwnerLoginForm.class));
     }
 }

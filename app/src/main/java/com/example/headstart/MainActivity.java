@@ -2,6 +2,7 @@ package com.example.headstart;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -38,19 +39,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }*/
     }
 
-
-    //On back press Dialog
+    @Override
     public void onBackPressed() {
-        new AlertDialog.Builder(this)
-                .setTitle("Exit?")
-                .setMessage("Are you sure you want to Exit ?")
-                .setNegativeButton(android.R.string.no,null)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
+                .setTitle("Quit Application")
+                .setCancelable(false)
+                .setMessage("Are your sure want to exit?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ActivityCompat.finishAffinity(MainActivity.this);
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        MainActivity.super.onBackPressed();
+
                     }
-                }).create().show();
+                });
+
+        builder.show();
+
     }
 
 }

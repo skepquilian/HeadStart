@@ -3,6 +3,7 @@ package com.example.headstart;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -83,5 +84,13 @@ public class ResetPassword extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(ResetPassword.this, "" +e.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    //On back press to redirect to login page
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(ResetPassword.this, TruckOwnerLoginForm.class));
+        finish();
     }
 }
