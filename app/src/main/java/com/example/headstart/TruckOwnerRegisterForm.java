@@ -20,7 +20,25 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.regex.Pattern;
+
 public class TruckOwnerRegisterForm extends AppCompatActivity implements View.OnClickListener {
+
+
+    //For password validation, before user can signup succesfully, user must provide
+    //password which contains the list below,
+    public static final Pattern PASSWORD_PATTERN
+            = Pattern.compile(
+                    //you can also changed some based on requirements
+                    "^" +
+                    "(?=.*[0-9])" +                 // at least 1 digit
+                    "(?=.*[a-z])" +                 // at least 1 lower case letter
+                    "(?=.*[A-Z])" +                 // at least 1 upper case letter
+                    "(?=.*[@#$%^&+=])" +            // at least 1 special character
+                    "(?=\\S+$)" +                   // no white spaces
+                    ".{8,}" +                       // at least 8 characters
+                    "$"                             //
+    );
 
     private EditText    editTextOrganizationName, editTextEmail,
                         editTextPhone, editTextPassword, editTextPasswordConfirm;
@@ -78,11 +96,11 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
 
     //Register User Function....
     private void registerUser() {
-        String organizationName = editTextOrganizationName.getText().toString().trim();
-        String emailAddress     = editTextEmail.getText().toString().trim();
-        String phoneNumber      = editTextPhone.getText().toString().trim();
-        String userPassword     = editTextPassword.getText().toString().trim();
-        String passwordConfirm  = editTextPasswordConfirm.getText().toString().trim();
+        final String organizationName = editTextOrganizationName.getText().toString().trim();
+        final String emailAddress     = editTextEmail.getText().toString().trim();
+        final String phoneNumber      = editTextPhone.getText().toString().trim();
+        String userPassword           = editTextPassword.getText().toString().trim();
+        String passwordConfirm        = editTextPasswordConfirm.getText().toString().trim();
 
         //Now we Need If Statements to validate these Inputs..Check validation
         if (organizationName.isEmpty()){
@@ -118,14 +136,14 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
             editTextPasswordConfirm.requestFocus();
             return;
         }
-        if (!userPassword.equals(passwordConfirm)){
-            editTextPassword.setError("Password did not match! Re-enter");
+        if (!PASSWORD_PATTERN.matcher(userPassword).matches()){
+            editTextPassword.setError("Password must contain at least 8 char(uppercase & lowercase, special Char, number)..eg.'@Example1'");
             editTextPassword.requestFocus();
             return;
         }
-        if (userPassword.length() < 8){
-            editTextPassword.setError("Password must be at least 8 characters");
-            editTextPassword.requestFocus();
+        if (!passwordConfirm.equals(userPassword)){
+            editTextPasswordConfirm.setError("Password did not match! Re-enter");
+            editTextPasswordConfirm.requestFocus();
         }
 
         //set progress Bar to visible when register button is clicked

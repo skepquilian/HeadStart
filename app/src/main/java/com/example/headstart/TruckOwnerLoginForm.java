@@ -18,11 +18,27 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.regex.Pattern;
+
 public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnClickListener{
+
+
+    public static final Pattern PASSWORD_PATTERN
+            = Pattern.compile(
+            "^" +
+                    "(?=.*[0-9])" +                 // at least 1 digit
+                    "(?=.*[a-z])" +                 // at least 1 lower case letter
+                    "(?=.*[A-Z])" +                 // at least 1 upper case letter
+                    "(?=.*[@#$%^&+=])" +            // at least 1 special character
+                    "(?=\\S+$)" +                   // no white spaces
+                    ".{8,}" +                       // at least 8 characters
+                    "$"                             //
+    );
 
     private EditText editTextEmail, editTextPassword;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
+
 
 
     @Override
@@ -35,7 +51,7 @@ public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnCli
         TextView textViewForgetPassword = findViewById(R.id.forgetPassword);
         textViewForgetPassword.setOnClickListener(this);
 
-        TextView textViewRegister = findViewById(R.id.registerUser);
+        TextView textViewRegister = findViewById(R.id.registerButton);
         textViewRegister.setOnClickListener(this);
 
         //EditText
@@ -63,7 +79,7 @@ public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnCli
             loginUser();
             return;
         }
-        if (v.getId() == R.id.registerUser) {
+        if (v.getId() == R.id.registerButton) {
             startActivity(new Intent(TruckOwnerLoginForm.this, TruckOwnerRegisterForm.class));
         }
 
@@ -93,9 +109,10 @@ public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnCli
             editTextPassword.requestFocus();
             return;
         }
-        if (userPassword.length() < 8){
-            editTextPassword.setError("Minimum characters must be 8");
+        if (!PASSWORD_PATTERN.matcher(userPassword).matches()){
+            editTextPassword.setError("Wrong Password'");
             editTextPassword.requestFocus();
+            return;
         }
 
         //Turn progress bar to visible when onclick Login btn..Progress to true when Login button is clicked

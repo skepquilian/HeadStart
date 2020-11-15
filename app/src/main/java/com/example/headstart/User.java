@@ -8,6 +8,7 @@ public class User {
 
     //1st constructor,
     public User() {
+
     }
 
     public User(String organisationName, String emailAddress, String phoneNumber){
