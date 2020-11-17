@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.regex.Pattern;
 
@@ -120,14 +121,17 @@ public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnCli
         mAuth.signInWithEmailAndPassword(emailAddress, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-
                 if(task.isSuccessful()){
-                    //Redirect user to Home activity if Login success
-                    startActivity(new Intent(TruckOwnerLoginForm.this, HomeActivity.class));
-                    //Show success message
-                    Toast.makeText(TruckOwnerLoginForm.this, "Login Successful", Toast.LENGTH_LONG).show();
+                    if (mAuth.getCurrentUser().isEmailVerified()){
+                        //Redirect user to Home activity if Login success
+                        startActivity(new Intent(TruckOwnerLoginForm.this, HomeActivity.class));
+                        //Show success message
+                        Toast.makeText(TruckOwnerLoginForm.this, "Login Successful", Toast.LENGTH_LONG).show();
+                    }else {
+                        Toast.makeText(TruckOwnerLoginForm.this, "Please VERIFY your account ", Toast.LENGTH_LONG).show();
+                    }
                 }else{
-                    Toast.makeText(TruckOwnerLoginForm.this, "Login Failed.  TRY AGAIN", Toast.LENGTH_LONG).show();
+                    Toast.makeText(TruckOwnerLoginForm.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
                 progressBar.setVisibility(View.GONE);
             }

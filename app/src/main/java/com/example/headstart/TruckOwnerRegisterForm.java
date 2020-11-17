@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
 public class TruckOwnerRegisterForm extends AppCompatActivity implements View.OnClickListener {
 
 
-    //For password validation, before user can signup succesfully, user must provide
+    //For password validation, before user can signup succesfully, user must provide strong password
     //password which contains the list below,
     public static final Pattern PASSWORD_PATTERN
             = Pattern.compile(
@@ -144,6 +144,7 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
         if (!passwordConfirm.equals(userPassword)){
             editTextPasswordConfirm.setError("Password did not match! Re-enter");
             editTextPasswordConfirm.requestFocus();
+            return;
         }
 
         //set progress Bar to visible when register button is clicked
@@ -154,23 +155,26 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
 
                 if (task.isSuccessful()){
                     //Create Users info with these below
-                    User user = new User(organizationName, emailAddress, phoneNumber);
+                    final User user = new User(organizationName, emailAddress, phoneNumber);
 
                     //take users info to firebase database
                     FirebaseDatabase.getInstance().getReference("Users")
 
                             //then give the registered user an id using the below, make id correspond to user when registered
-                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .child(mAuth.getCurrentUser().getUid())
 
-                            //check if user is registered successfully
-                            .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            //set name,email&password to the current user
+                            .setValue(user);
+
+                    //send email verification if user is registered successfully
+                    mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-
+                            //check if user is registered successfully
                             if (task.isSuccessful()){
-                                //Redirect to Login Page
+                                //Redirect to Login Page if registration is successful
                                 startActivity(new Intent(TruckOwnerRegisterForm.this, TruckOwnerLoginForm.class));
-                                Toast.makeText(TruckOwnerRegisterForm.this, "Registration successful...Login Now", Toast.LENGTH_LONG).show();
+                                Toast.makeText(TruckOwnerRegisterForm.this, "Account registered...VERIFY email Now", Toast.LENGTH_LONG).show();
                             }else {
                                 Toast.makeText(TruckOwnerRegisterForm.this, "Registration Failed. TRY AGAIN", Toast.LENGTH_LONG).show();
                             }
@@ -178,7 +182,7 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
                         }
                     });
                 }else {
-                    Toast.makeText(TruckOwnerRegisterForm.this, "Registration Failed. TRY AGAIN", Toast.LENGTH_LONG).show();
+                    Toast.makeText(TruckOwnerRegisterForm.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
                 }
             }
