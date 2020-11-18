@@ -18,7 +18,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.regex.Pattern;
 
@@ -44,6 +48,9 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
                         editTextPhone, editTextPassword, editTextPasswordConfirm;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
+    DatabaseReference reference;
+
+    long maxid = 1000;
 
     public TruckOwnerRegisterForm() {
     }
@@ -78,6 +85,19 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
         progressBar = findViewById(R.id.progressBar);
 
         mAuth = FirebaseAuth.getInstance();
+        reference = FirebaseDatabase.getInstance().getReference().child("Users");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists())
+                    maxid = (snapshot.getChildrenCount());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 
@@ -161,7 +181,7 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
                     FirebaseDatabase.getInstance().getReference("Users")
 
                             //then give the registered user an id using the below, make id correspond to user when registered
-                            .child(mAuth.getCurrentUser().getUid())
+                            .child(String.valueOf(maxid + 1))
 
                             //set name,email&password to the current user
                             .setValue(user);
