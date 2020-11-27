@@ -10,24 +10,23 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnLogout;
-    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        btnLogout  = findViewById(R.id.logoutBtn);
+        btnLogout = findViewById(R.id.logoutBtn);
         btnLogout.setOnClickListener(this);
     }
 
     //onclick listener
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.logoutBtn){
+        if (v.getId() == R.id.logoutBtn) {
             logoutUser();
         }
     }

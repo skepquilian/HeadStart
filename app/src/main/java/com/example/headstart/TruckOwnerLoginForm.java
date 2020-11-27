@@ -17,13 +17,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.regex.Pattern;
 
-public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnClickListener{
+public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnClickListener {
 
-
+    /**
+     * For password validation, before user can sign up successfully, user must provide strong password
+     * password which contains the list below,
+     **/
     public static final Pattern PASSWORD_PATTERN
             = Pattern.compile(
             "^" +
@@ -41,14 +43,13 @@ public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnCli
     private FirebaseAuth mAuth;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.truck_owner_login_activity);
 
         //TextView
-                        //forget password
+        //forget password
         TextView textViewForgetPassword = findViewById(R.id.forgetPassword);
         textViewForgetPassword.setOnClickListener(this);
 
@@ -56,8 +57,8 @@ public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnCli
         textViewRegister.setOnClickListener(this);
 
         //EditText
-        editTextEmail       = findViewById(R.id.emailAddress);
-        editTextPassword    = findViewById(R.id.userPassword);
+        editTextEmail = findViewById(R.id.emailAddress);
+        editTextPassword = findViewById(R.id.userPassword);
 
         //Login Button
         Button btnLogin = findViewById(R.id.loginButton);
@@ -72,7 +73,7 @@ public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnCli
     //On click listener
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.forgetPassword){
+        if (v.getId() == R.id.forgetPassword) {
             startActivity(new Intent(TruckOwnerLoginForm.this, ResetPassword.class));
             return;
         }
@@ -94,23 +95,23 @@ public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnCli
         String userPassword = editTextPassword.getText().toString().trim();
 
         //We Check for Validation and errors ....both email and password
-        if (emailAddress.isEmpty()){
+        if (emailAddress.isEmpty()) {
             editTextEmail.setError("Email is Required");
             editTextEmail.requestFocus();
             return;
         }
-        if (!Patterns.EMAIL_ADDRESS.matcher(emailAddress).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(emailAddress).matches()) {
             editTextEmail.setError("Enter a Valid Email");
             editTextEmail.requestFocus();
             return;
         }
         //For password
-        if (userPassword.isEmpty()){
+        if (userPassword.isEmpty()) {
             editTextPassword.setError("Please Enter Password");
             editTextPassword.requestFocus();
             return;
         }
-        if (!PASSWORD_PATTERN.matcher(userPassword).matches()){
+        if (!PASSWORD_PATTERN.matcher(userPassword).matches()) {
             editTextPassword.setError("Wrong Password'");
             editTextPassword.requestFocus();
             return;
@@ -121,16 +122,16 @@ public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnCli
         mAuth.signInWithEmailAndPassword(emailAddress, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    if (mAuth.getCurrentUser().isEmailVerified()){
+                if (task.isSuccessful()) {
+                    if (mAuth.getCurrentUser().isEmailVerified()) {
                         //Redirect user to Home activity if Login success
                         startActivity(new Intent(TruckOwnerLoginForm.this, HomeActivity.class));
                         //Show success message
                         Toast.makeText(TruckOwnerLoginForm.this, "Login Successful", Toast.LENGTH_LONG).show();
-                    }else {
+                    } else {
                         Toast.makeText(TruckOwnerLoginForm.this, "Please VERIFY your account ", Toast.LENGTH_LONG).show();
                     }
-                }else{
+                } else {
                     Toast.makeText(TruckOwnerLoginForm.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
                 progressBar.setVisibility(View.GONE);

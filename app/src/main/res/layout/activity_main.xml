@@ -7,6 +7,7 @@
     android:background="@color/appBackground"
     tools:context=".MainActivity">
 
+    <!-- Truck Owner Btn-->
     <Button
         android:id="@+id/supplierbtn"
         android:layout_width="180dp"
@@ -25,6 +26,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Customer Btn-->
     <Button
         android:id="@+id/customerbtn"
         android:layout_width="180dp"

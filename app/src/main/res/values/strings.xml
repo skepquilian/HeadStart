@@ -17,4 +17,14 @@
     <string name="customer">Customer</string>
     <string name="logout">Logout</string>
     <string name="reset_password">Reset</string>
+    <string name="home_menu">Home</string>
+    <string name="trucks_menu">Trucks</string>
+    <string name="map_menu">Map</string>
+    <string name="drivers_menu">Drivers</string>
+    <string name="settings_menu">Settings</string>
+    <string name="home_nav">Home</string>
+    <string name="truck_nav">Truck</string>
+    <string name="map_nav">map</string>
+    <string name="drivers_nav">Drivers</string>
+    <string name="settings_nav">Settings</string>
 </resources>

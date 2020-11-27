@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/appBackground"
-    tools:context=".TruckOwnerRegisterForm"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    tools:context=".TruckOwnerRegisterForm">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- Application Name/Logo-->
         <TextView
             android:id="@+id/appName"
             android:layout_width="wrap_content"
@@ -30,6 +31,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.055" />
 
+        <!-- Sign In TextView-->
         <TextView
             android:id="@+id/signUp"
             android:layout_width="wrap_content"
@@ -48,6 +50,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appName" />
 
+        <!-- Organization Name -->
         <EditText
             android:id="@+id/organizationName"
             android:layout_width="match_parent"
@@ -80,6 +83,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signUp" />
 
+        <!-- Email Address-->
         <EditText
             android:id="@+id/emailAddress"
             android:layout_width="match_parent"
@@ -108,6 +112,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/organizationName" />
 
+        <!-- Phone Number-->
         <EditText
             android:id="@+id/phoneNumber"
             android:layout_width="match_parent"
@@ -119,6 +124,8 @@
             android:drawableStart="@drawable/ic_phone"
             android:drawablePadding="10dp"
             android:ems="10"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:fontFamily="monospace"
             android:hint="@string/organisation_phone_number"
             android:inputType="phone"
@@ -127,8 +134,6 @@
             android:textAlignment="viewStart"
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/black"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
             android:textCursorDrawable="@android:color/black"
             android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/textLayoutPassword"
@@ -138,14 +143,15 @@
             app:layout_constraintTop_toBottomOf="@+id/emailAddress" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textLayoutPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textLayoutPassword"
             app:hintEnabled="false"
-            app:passwordToggleEnabled="true"
             app:layout_constraintBottom_toBottomOf="@+id/phoneNumber"
-            app:layout_constraintTop_toTopOf="@+id/textLayoutPassword2">
+            app:layout_constraintTop_toTopOf="@+id/textLayoutPassword2"
+            app:passwordToggleEnabled="true">
 
+            <!-- Password -->
             <EditText
                 android:id="@+id/userPassword"
                 android:layout_width="match_parent"
@@ -156,6 +162,8 @@
                 android:drawableStart="@drawable/ic_password"
                 android:drawablePadding="10dp"
                 android:ems="10"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:fontFamily="monospace"
                 android:hint="@string/add_password"
                 android:inputType="textPassword"
@@ -163,8 +171,6 @@
                 android:textAlignment="viewStart"
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
                 android:textCursorDrawable="@android:color/black"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -183,6 +189,7 @@
             app:passwordToggleEnabled="true"
             tools:layout_editor_absoluteX="0dp">
 
+            <!-- Password Confirm-->
             <EditText
                 android:id="@+id/passwordConfirm"
                 android:layout_width="match_parent"
@@ -211,6 +218,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Register Btn-->
         <Button
             android:id="@+id/registerButton"
             android:layout_width="wrap_content"
@@ -230,6 +238,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textLayoutPassword2" />
 
+        <!-- Already a User TextView-->
         <TextView
             android:id="@+id/loginUser"
             android:layout_width="wrap_content"

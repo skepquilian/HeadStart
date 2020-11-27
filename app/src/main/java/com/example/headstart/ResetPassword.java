@@ -42,7 +42,7 @@ public class ResetPassword extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.resetButton){
+        if (v.getId() == R.id.resetButton) {
             resetPassword();
         }
 
@@ -53,13 +53,13 @@ public class ResetPassword extends AppCompatActivity implements View.OnClickList
         String emailAddress = editTextEmailReset.getText().toString().trim();
 
         //Check validations
-        if (emailAddress.isEmpty()){
+        if (emailAddress.isEmpty()) {
             editTextEmailReset.setError("Email Field Required");
             editTextEmailReset.requestFocus();
             return;
         }
         //Check if Email is Valid
-        if (!Patterns.EMAIL_ADDRESS.matcher(emailAddress).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(emailAddress).matches()) {
             editTextEmailReset.setError("Please provide valid email");
             editTextEmailReset.requestFocus();
         }
@@ -70,10 +70,10 @@ public class ResetPassword extends AppCompatActivity implements View.OnClickList
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 //Check if Task is Successful
-                if (task.isSuccessful()){
-                    Toast.makeText(ResetPassword.this,"Password Request Sent....Check Email", Toast.LENGTH_LONG ).show();
-                }else {
-                    Toast.makeText(ResetPassword.this,"Password Request Failed....TRY AGAIN!!!", Toast.LENGTH_SHORT ).show();
+                if (task.isSuccessful()) {
+                    Toast.makeText(ResetPassword.this, "Password Request Sent....Check Email", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(ResetPassword.this, "Password Request Failed....TRY AGAIN!!!", Toast.LENGTH_SHORT).show();
                 }
                 progressBar.setVisibility(View.GONE);
             }
@@ -81,7 +81,7 @@ public class ResetPassword extends AppCompatActivity implements View.OnClickList
             @Override
             public void onFailure(@NonNull Exception e) {
                 //get and show proper error message
-                Toast.makeText(ResetPassword.this, "" +e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(ResetPassword.this, "" + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

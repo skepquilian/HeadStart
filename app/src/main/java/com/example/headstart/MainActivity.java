@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         //if user is a Truck owner and clicks supplier btn redirect to Login Page
-        if (v.getId() == R.id.supplierbtn){
+        if (v.getId() == R.id.supplierbtn) {
             startActivity(new Intent(this, TruckOwnerLoginForm.class));
         }
         // Or if user is customer then redirect to customer page....
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent());
         }*/
     }
+
 
     @Override
     public void onBackPressed() {
