@@ -28,24 +28,6 @@ import java.util.regex.Pattern;
 
 public class TruckOwnerRegisterForm extends AppCompatActivity implements View.OnClickListener {
 
-
-    /**
-     * For password validation, before user can sign up successfully, user must provide strong password
-     * password which contains the list below,
-     **/
-    public static final Pattern PASSWORD_PATTERN
-            = Pattern.compile(
-            //you can also changed some based on requirements
-            "^" +
-                    "(?=.*[0-9])" +                 // at least 1 digit
-                    "(?=.*[a-z])" +                 // at least 1 lower case letter
-                    "(?=.*[A-Z])" +                 // at least 1 upper case letter
-                    "(?=.*[@#$%^&+=])" +            // at least 1 special character
-                    "(?=\\S+$)" +                   // no white spaces
-                    ".{8,}" +                       // at least 8 characters
-                    "$"                             //
-    );
-
     private EditText editTextOrganizationName, editTextEmail,
             editTextPhone, editTextPassword, editTextPasswordConfirm;
     private ProgressBar progressBar;
@@ -107,9 +89,8 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
     public void onClick(View v) {
         if (v.getId() == R.id.appName || v.getId() == R.id.loginUser) {
             startActivity(new Intent(this, TruckOwnerLoginForm.class));
-            return;
         }
-        if (v.getId() == R.id.registerButton) {
+        else if (v.getId() == R.id.registerButton) {
             registerUser();
         }
     }
@@ -157,7 +138,7 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
             editTextPasswordConfirm.requestFocus();
             return;
         }
-        if (!PASSWORD_PATTERN.matcher(userPassword).matches()) {
+        if (!Utility.PASSWORD_PATTERN.matcher(userPassword).matches()) {
             editTextPassword.setError("Password must contain at least 8 char(uppercase & lowercase, special Char, number)..eg.'@Example1'");
             editTextPassword.requestFocus();
             return;

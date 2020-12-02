@@ -22,22 +22,6 @@ import java.util.regex.Pattern;
 
 public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnClickListener {
 
-    /**
-     * For password validation, before user can sign up successfully, user must provide strong password
-     * password which contains the list below,
-     **/
-    public static final Pattern PASSWORD_PATTERN
-            = Pattern.compile(
-            "^" +
-                    "(?=.*[0-9])" +                 // at least 1 digit
-                    "(?=.*[a-z])" +                 // at least 1 lower case letter
-                    "(?=.*[A-Z])" +                 // at least 1 upper case letter
-                    "(?=.*[@#$%^&+=])" +            // at least 1 special character
-                    "(?=\\S+$)" +                   // no white spaces
-                    ".{8,}" +                       // at least 8 characters
-                    "$"                             //
-    );
-
     private EditText editTextEmail, editTextPassword;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
@@ -75,13 +59,11 @@ public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         if (v.getId() == R.id.forgetPassword) {
             startActivity(new Intent(TruckOwnerLoginForm.this, ResetPassword.class));
-            return;
         }
-        if (v.getId() == R.id.loginButton) {
+        else if (v.getId() == R.id.loginButton) {
             loginUser();
-            return;
         }
-        if (v.getId() == R.id.registerButton) {
+        else if (v.getId() == R.id.registerButton) {
             startActivity(new Intent(TruckOwnerLoginForm.this, TruckOwnerRegisterForm.class));
         }
 
@@ -111,7 +93,7 @@ public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnCli
             editTextPassword.requestFocus();
             return;
         }
-        if (!PASSWORD_PATTERN.matcher(userPassword).matches()) {
+        if (!Utility.PASSWORD_PATTERN.matcher(userPassword).matches()) {
             editTextPassword.setError("Wrong Password'");
             editTextPassword.requestFocus();
             return;
