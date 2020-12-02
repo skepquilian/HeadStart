@@ -19,4 +19,6 @@ public class Utility {
                     ".{8,}" +                       // at least 8 characters
                     "$"                             //
     );
+
+
 }
