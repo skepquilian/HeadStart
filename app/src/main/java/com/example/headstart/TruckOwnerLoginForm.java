@@ -18,8 +18,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.regex.Pattern;
-
 public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editTextEmail, editTextPassword;
@@ -57,13 +55,16 @@ public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnCli
     //On click listener
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.forgetPassword) {
+
+        int viewId = v.getId();
+
+        if (viewId == R.id.forgetPassword) {
             startActivity(new Intent(TruckOwnerLoginForm.this, ResetPassword.class));
         }
-        else if (v.getId() == R.id.loginButton) {
+        else if (viewId == R.id.loginButton) {
             loginUser();
         }
-        else if (v.getId() == R.id.registerButton) {
+        else if (viewId == R.id.registerButton) {
             startActivity(new Intent(TruckOwnerLoginForm.this, TruckOwnerRegisterForm.class));
         }
 

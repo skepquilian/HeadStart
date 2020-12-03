@@ -16,4 +16,5 @@
         app:menu="@menu/bottom_nav_bar"
         app:labelVisibilityMode="labeled" />
 
+
 </RelativeLayout>

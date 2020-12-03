@@ -14,6 +14,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
 
+    // Remove inter-activity transition to avoid screen tossing on tapping bottom navigation items
+    @Override
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,26 +35,28 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                if (item.getItemId() == R.id.nav_home){
+                int itemId = item.getItemId();
+
+                if (itemId== R.id.nav_home){
                     //home activity
                     return true;
                 }
-                else if (item.getItemId() == R.id.nav_trucks){
+                else if (itemId == R.id.nav_trucks){
                     //truck activity
                     startActivity(new Intent(HomeActivity.this, TrucksActivity.class));
                     return true;
                 }
-                else if (item.getItemId() == R.id.nav_map){
+                else if (itemId == R.id.nav_map){
                     //map activity
                     startActivity(new Intent(HomeActivity.this, MapActivity.class));
                     return true;
                 }
-                else if (item.getItemId() == R.id.nav_drivers){
+                else if (itemId == R.id.nav_drivers){
                     //drivers activity
                     startActivity(new Intent(HomeActivity.this, DriversActivity.class));
                     return true;
                 }
-                else if (item.getItemId() == R.id.nav_settings){
+                else if (itemId == R.id.nav_settings){
                     //settings activity
                     startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
                     return true;

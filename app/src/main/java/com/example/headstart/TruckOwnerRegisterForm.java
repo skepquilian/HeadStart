@@ -87,10 +87,13 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
     //Onclick Listener for all fields with this property
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.appName || v.getId() == R.id.loginUser) {
+
+        int view = v.getId();
+
+        if (view == R.id.appName || view == R.id.loginUser) {
             startActivity(new Intent(this, TruckOwnerLoginForm.class));
         }
-        else if (v.getId() == R.id.registerButton) {
+        else if (view == R.id.registerButton) {
             registerUser();
         }
     }

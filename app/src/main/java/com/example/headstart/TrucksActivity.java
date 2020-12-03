@@ -12,6 +12,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class TrucksActivity extends AppCompatActivity {
 
+    // Remove inter-activity transition to avoid screen tossing on tapping bottom navigation items
+    @Override
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
