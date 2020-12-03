@@ -3,7 +3,6 @@ package com.example.headstart;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,12 +20,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        updateNavigationBarState();
     }
 
     /**
@@ -72,22 +65,22 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         return false;
     }
 
-    private void updateNavigationBarState(){
-        int actionId = getNavigationMenuItemId();
-        selectBottomNavigationBarItem(actionId);
-    }
+ // private void updateNavigationBarState(){
+  //    int actionId = getNavigationMenuItemId();
+   //   selectBottomNavigationBarItem(actionId);
+  //}
 
-    void selectBottomNavigationBarItem(int itemId) {
+  //void selectBottomNavigationBarItem(int itemId) {
         //Menu menu = bottomNavigationView.getMenu();
         //MenuItem menuItem = menu.getItem(0);
         //menuItem.setChecked(true);
-        MenuItem item = bottomNavigationView.getMenu().findItem(itemId);
-        item.setChecked(true);
-    }
+    //  MenuItem item = bottomNavigationView.getMenu().findItem(itemId);
+    //  item.setChecked(true);
+  //}
 
     abstract int getContentViewId();
 
-    abstract int getNavigationMenuItemId();
+  //abstract int getNavigationMenuItemId();
 
 }
 

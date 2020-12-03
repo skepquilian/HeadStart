@@ -1,9 +1,23 @@
 package com.example.headstart;
 
-
-import android.view.View;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 public class DriversActivity extends BaseActivity {
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        updateNavigationBarState();
+    }
 
 
     @Override
@@ -11,9 +25,14 @@ public class DriversActivity extends BaseActivity {
         return R.layout.activity_drivers;
     }
 
-    @Override
-    int getNavigationMenuItemId() {
-        return R.id.nav_drivers;
+    /**
+     * menu Item select focus function
+     */
+    private void updateNavigationBarState(){
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(3);
+        menuItem.setChecked(true);
     }
+
 
 }
