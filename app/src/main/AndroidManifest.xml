@@ -13,8 +13,8 @@
         <activity android:name=".DriversActivity" />
         <activity android:name=".MapActivity" />
         <activity android:name=".TrucksActivity" />
-
         <activity android:name=".MainActivity">
+
             <!--
             intent-filter>
                 <action android:name="android.intent.action.MAIN" />

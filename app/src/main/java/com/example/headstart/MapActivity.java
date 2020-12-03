@@ -1,64 +1,18 @@
 package com.example.headstart;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import android.view.View;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+public class MapActivity extends BaseActivity {
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MapActivity extends AppCompatActivity {
-
-    // Remove inter-activity transition to avoid screen tossing on tapping bottom navigation items
     @Override
-    public void onPause() {
-        super.onPause();
-        overridePendingTransition(0, 0);
+    int getContentViewId() {
+        return R.layout.activity_map;
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map);
-
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
-        Menu menu = bottomNavigationView.getMenu();
-        MenuItem menuItem = menu.getItem(2);
-        menuItem.setChecked(true);
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                if (item.getItemId() == R.id.nav_home){
-                    //home activity
-                    startActivity(new Intent(MapActivity.this, HomeActivity.class));
-                    return true;
-                }
-                else if (item.getItemId() == R.id.nav_trucks){
-                    //truck activity
-                    startActivity(new Intent(MapActivity.this, TrucksActivity.class));
-                    return true;
-                }
-                else if (item.getItemId() == R.id.nav_map){
-                    //map activity
-                    return true;
-                }
-                else if (item.getItemId() == R.id.nav_drivers){
-                    //drivers activity
-                    startActivity(new Intent(MapActivity.this, DriversActivity.class));
-                    return true;
-                }
-                else if (item.getItemId() == R.id.nav_settings){
-                    //settings activity
-                    startActivity(new Intent(MapActivity.this, SettingsActivity.class));
-                    return true;
-                }
-                return false;
-            }
-        });
+    int getNavigationMenuItemId() {
+        return R.id.nav_map;
     }
+
 }
