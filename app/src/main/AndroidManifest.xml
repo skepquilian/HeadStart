@@ -9,11 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".DriversActivity" />
-        <activity android:name=".MapActivity" />
-        <activity android:name=".TrucksActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Settings.SettingsActivity" />
+        <activity android:name=".Drivers.DriversActivity" />
+        <activity android:name=".Map.MapActivity" />
+        <activity android:name=".Trucks.TrucksActivity" />
+        <activity android:name=".MainEntryActivity">
 
             <!--
             intent-filter>
@@ -24,8 +24,8 @@
             -->
         </activity>
         <activity
-            android:name=".HomeActivity"
-            android:parentActivityName=".TruckOwnerLoginForm">
+            android:name=".Home.HomeActivity"
+            android:parentActivityName=".AuthenticateActivities.TruckOwnerLoginForm">
 
             <!--
             The meta-data tag is required if you support API level 15 and lower >
@@ -40,14 +40,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TruckOwnerRegisterForm"
-            android:parentActivityName=".TruckOwnerLoginForm" />
+            android:name=".AuthenticateActivities.TruckOwnerRegisterForm"
+            android:parentActivityName=".AuthenticateActivities.TruckOwnerLoginForm" />
         <activity
-            android:name=".TruckOwnerLoginForm"
-            android:parentActivityName=".MainActivity" />
+            android:name=".AuthenticateActivities.TruckOwnerLoginForm"
+            android:parentActivityName=".MainEntryActivity" />
         <activity
-            android:name=".ResetPassword"
-            android:parentActivityName=".TruckOwnerLoginForm" />
+            android:name=".AuthenticateActivities.ResetPassword"
+            android:parentActivityName=".AuthenticateActivities.TruckOwnerLoginForm" />
     </application>
 
 </manifest>

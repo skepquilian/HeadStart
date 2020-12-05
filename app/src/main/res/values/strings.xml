@@ -27,4 +27,6 @@
     <string name="map_nav">map</string>
     <string name="drivers_nav">Drivers</string>
     <string name="settings_nav">Settings</string>
+    <string name="track">Track</string>
+    <string name="notify">notify</string>
 </resources>

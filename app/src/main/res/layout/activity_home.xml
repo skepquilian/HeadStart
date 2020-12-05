@@ -4,20 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
+    tools:context=".Home.HomeActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:layout_marginLeft="50dp"
-        android:text="home"
-        android:textColor="@color/white"/>
+    <!--Top Navigation Menu Bar-->
+    <RelativeLayout
+        android:id="@+id/relative_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/appBackground">
 
-    <!-- Navigation Menu Bar-->
-    <include
-        android:id="@+id/bottom_navigation"
-        layout="@layout/activity_bottom_navigation_snippet"
-        />
+    </RelativeLayout>
+
+    <!-- Home activity area -->
+    <RelativeLayout
+        android:id="@+id/relative_middle_activity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/relative_top_bar"
+        android:layout_above="@+id/relative_bottom_bar">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:fillViewport="true">
+        </ScrollView>
+
+    </RelativeLayout>
+
+    <!--Bottom Navigation Menu Bar-->
+    <RelativeLayout
+        android:id="@+id/relative_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true" >
+
+        <include
+            android:id="@+id/bottom_navigation"
+            layout="@layout/activity_bottom_navigation_snippet" />
+
+    </RelativeLayout>
+
+
 
 </RelativeLayout>

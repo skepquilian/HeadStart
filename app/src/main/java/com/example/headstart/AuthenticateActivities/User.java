@@ -1,4 +1,4 @@
-package com.example.headstart;
+package com.example.headstart.AuthenticateActivities;
 
 public class User {
 

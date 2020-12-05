@@ -1,4 +1,4 @@
-package com.example.headstart;
+package com.example.headstart.AuthenticateActivities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.headstart.Home.HomeActivity;
+import com.example.headstart.MainEntryActivity;
+import com.example.headstart.R;
+import com.example.headstart.Utility;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -125,7 +129,7 @@ public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnCli
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(TruckOwnerLoginForm.this, MainActivity.class));
+        startActivity(new Intent(TruckOwnerLoginForm.this, MainEntryActivity.class));
         finish();
     }
 }

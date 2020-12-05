@@ -10,7 +10,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import com.example.headstart.AuthenticateActivities.TruckOwnerLoginForm;
+import com.example.headstart.AuthenticateActivities.User;
+
+public class MainEntryActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button supplierBnt;
     Button customerBtn;
@@ -29,7 +32,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        //if user is a Truck owner and clicks supplier btn redirect to Login Page
+        /**
+         * User clicks supplier btn redirect to Login Page
+         */
         if (v.getId() == R.id.supplierbtn) {
             startActivity(new Intent(this, TruckOwnerLoginForm.class));
         }
@@ -43,14 +48,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onBackPressed() {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainEntryActivity.this)
                 .setTitle("Quit Application")
                 .setCancelable(false)
                 .setMessage("Are your sure want to exit?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        ActivityCompat.finishAffinity(MainActivity.this);
+                        ActivityCompat.finishAffinity(MainEntryActivity.this);
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {

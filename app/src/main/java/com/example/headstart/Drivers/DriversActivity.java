@@ -1,25 +1,39 @@
-package com.example.headstart;
+package com.example.headstart.Drivers;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.headstart.Home.HomeActivity;
+import com.example.headstart.Map.MapActivity;
+import com.example.headstart.R;
+import com.example.headstart.Settings.SettingsActivity;
+import com.example.headstart.Trucks.TrucksActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public abstract class BaseActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class DriversActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
+        View.OnClickListener {
 
-    protected BottomNavigationView bottomNavigationView;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getContentViewId());
+        setContentView(R.layout.activity_drivers);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        updateNavigationBarState();
     }
 
     /**
@@ -33,31 +47,35 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
 
 
     @Override
+    public void onClick(View v) {
+
+    }
+
+    /**
+     * Bottom Navigation bar
+     */
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         int itemId = item.getItemId();
 
-        if (itemId== R.id.nav_home){
+        if (itemId == R.id.nav_home) {
             //home activity
             startActivity(new Intent(this, HomeActivity.class));
             return true;
-        }
-        else if (itemId == R.id.nav_trucks){
+        } else if (itemId == R.id.nav_trucks) {
             //truck activity
             startActivity(new Intent(this, TrucksActivity.class));
             return true;
-        }
-        else if (itemId == R.id.nav_map){
+        } else if (itemId == R.id.nav_map) {
             //map activity
             startActivity(new Intent(this, MapActivity.class));
             return true;
-        }
-        else if (itemId == R.id.nav_drivers){
+        } else if (itemId == R.id.nav_drivers) {
             //drivers activity
             startActivity(new Intent(this, DriversActivity.class));
             return true;
-        }
-        else if (itemId == R.id.nav_settings){
+        } else if (itemId == R.id.nav_settings) {
             //settings activity
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
@@ -65,22 +83,14 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         return false;
     }
 
- // private void updateNavigationBarState(){
-  //    int actionId = getNavigationMenuItemId();
-   //   selectBottomNavigationBarItem(actionId);
-  //}
+    /**
+     * menu Item select focus function
+     */
+    private void updateNavigationBarState() {
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(3);
+        menuItem.setChecked(true);
+    }
 
-  //void selectBottomNavigationBarItem(int itemId) {
-        //Menu menu = bottomNavigationView.getMenu();
-        //MenuItem menuItem = menu.getItem(0);
-        //menuItem.setChecked(true);
-    //  MenuItem item = bottomNavigationView.getMenu().findItem(itemId);
-    //  item.setChecked(true);
-  //}
-
-    abstract int getContentViewId();
-
-  //abstract int getNavigationMenuItemId();
 
 }
-
