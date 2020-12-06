@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Home.HomeActivity">
 
-    <!--Top Navigation Menu Bar-->
+    <!--Top Navigation Tabs-->
     <RelativeLayout
         android:id="@+id/relative_top_bar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:background="@color/appBackground">
+        android:layout_alignParentTop="true" >
+
+        <!--Tabs For Fragment-->
+        <include
+            android:id="@+id/appBar"
+            layout="@layout/top_tab_navigation_bar"/>
 
     </RelativeLayout>
 
@@ -29,6 +32,12 @@
             android:layout_height="match_parent"
             android:background="@color/white"
             android:fillViewport="true">
+
+            <!--ViewPager-->
+            <include
+                android:id="@+id/container"
+                layout="@layout/view_pager_layout"/>
+
         </ScrollView>
 
     </RelativeLayout>
