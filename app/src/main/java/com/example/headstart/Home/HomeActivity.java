@@ -1,6 +1,5 @@
 package com.example.headstart.Home;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,7 +16,6 @@ import com.example.headstart.Map.MapActivity;
 import com.example.headstart.R;
 import com.example.headstart.Settings.SettingsActivity;
 import com.example.headstart.Trucks.TrucksActivity;
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
@@ -94,21 +92,29 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
      */
     private void setupViewPager() {
         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(),
-                FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, 3);
+                FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 
+        //add Fragments (home, tracking, notification) to PagerAdapter
+        pagerAdapter.addFragment(new TrackingFragment());
+        pagerAdapter.addFragment(new HomeFragment());
+        pagerAdapter.addFragment(new NotificationFragment());
+
+        //pass fragment to viewPager container
         ViewPager viewPager = findViewById(R.id.container);
         viewPager.setAdapter(pagerAdapter);
+
+        //Tabs Link to viewPager
         TabLayout tabLayout = findViewById(R.id.tab);
         tabLayout.setupWithViewPager(viewPager);
 
         //An array containing icons from the drawable directory
-        final int [] ICONS = new int[]{
-                R.drawable.ic_truck_icon,
+        final int[] ICONS = new int[]{
+                R.drawable.ic_truck,
                 R.drawable.ic_notify,
         };
 
 
-        tabLayout.getTabAt(0).setIcon(ICONS[0]).setText("Track");;
+        tabLayout.getTabAt(0).setIcon(ICONS[0]);
         tabLayout.getTabAt(1).setText("HeadStart");
         tabLayout.getTabAt(2).setIcon(ICONS[1]);
 
