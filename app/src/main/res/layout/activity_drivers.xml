@@ -5,20 +5,47 @@
     android:layout_height="match_parent"
     tools:context=".Drivers.DriversActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
-        android:textSize="24sp"
-        android:text="driver To Do page"
-        android:textColor="@color/white"/>
+    <!--Top Navigation Tabs-->
+    <RelativeLayout
+        android:id="@+id/relative_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true" >
+
+        <!--Tabs For Fragment-->
+        <include
+            android:id="@+id/appBar"
+            layout="@layout/top_tab_navigation_bar" />
+
+    </RelativeLayout>
+
+    <!-- Driver activity area -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/relative_top_bar"
+            android:layout_above="@id/relative_bottom_bar"
+            android:fillViewport="true">
+
+            <!--ViewPager-->
+            <include
+                android:id="@+id/container"
+                layout="@layout/view_pager_layout"/>
+
+        </ScrollView>
+
+    <!--Bottom Navigation Menu Bar-->
+    <RelativeLayout
+        android:id="@+id/relative_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_alignParentBottom="true" >
 
     <!-- Navigation Menu Bar-->
     <include
         android:id="@+id/bottom_navigation"
         layout="@layout/activity_bottom_navigation_snippet"
         />
+    </RelativeLayout>
 
 </RelativeLayout>

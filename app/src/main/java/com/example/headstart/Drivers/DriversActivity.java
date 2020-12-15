@@ -8,13 +8,17 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.headstart.Home.HomeActivity;
 import com.example.headstart.Map.MapActivity;
+import com.example.headstart.PagerAdapter;
 import com.example.headstart.R;
 import com.example.headstart.Settings.SettingsActivity;
 import com.example.headstart.Trucks.TrucksActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 
 public class DriversActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
         View.OnClickListener {
@@ -28,6 +32,8 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+
+        setupViewPager();
     }
 
     @Override
@@ -81,6 +87,35 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
             return true;
         }
         return false;
+    }
+
+    /**
+     * this adds tabs to home activity, responsible for swapping btw fragments
+     */
+    private void setupViewPager() {
+        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(),
+                FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+
+        //add Fragments (home, tracking, notification) to PagerAdapter
+        pagerAdapter.addFragment(new DriverFragment());
+        pagerAdapter.addFragment(new AddDriverFragment());
+
+        //pass fragment to viewPager container
+        ViewPager viewPager = findViewById(R.id.container);
+        viewPager.setAdapter(pagerAdapter);
+
+        //Tabs Link to viewPager
+        TabLayout tabLayout = findViewById(R.id.tab);
+        tabLayout.setupWithViewPager(viewPager);
+
+//        //An array containing icons from the drawable directory
+//        final int[] ICONS = new int[]{
+//                R.drawable.ic_truck,
+//                R.drawable.ic_notify,
+//        };
+
+        tabLayout.getTabAt(0).setText("My Drivers");
+        tabLayout.getTabAt(1).setText("Add Drivers");
     }
 
     /**

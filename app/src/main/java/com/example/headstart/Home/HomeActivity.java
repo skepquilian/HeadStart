@@ -13,6 +13,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.headstart.Drivers.DriversActivity;
 import com.example.headstart.Map.MapActivity;
+import com.example.headstart.PagerAdapter;
 import com.example.headstart.R;
 import com.example.headstart.Settings.SettingsActivity;
 import com.example.headstart.Trucks.TrucksActivity;

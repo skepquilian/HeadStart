@@ -1,4 +1,4 @@
-package com.example.headstart.Home;
+package com.example.headstart;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -30,16 +30,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-//        switch (position) {
-//            case 0:
-//                return new TrackingFragment();
-//            case 1:
-//                return new HomeFragment();
-//            case 2:
-//                return new NotificationFragment();
-//            default:
-//                return null;
-//        }
         return mFragmentList.get(position);
     }
 

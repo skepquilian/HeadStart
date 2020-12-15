@@ -15,22 +15,16 @@
         <!--Tabs For Fragment-->
         <include
             android:id="@+id/appBar"
-            layout="@layout/top_tab_navigation_bar"/>
+            layout="@layout/top_tab_navigation_bar" />
 
     </RelativeLayout>
 
     <!-- Home activity area -->
-    <RelativeLayout
-        android:id="@+id/relative_middle_activity"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/relative_top_bar"
-        android:layout_above="@+id/relative_bottom_bar">
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
+            android:layout_below="@id/relative_top_bar"
+            android:layout_above="@id/relative_bottom_bar"
             android:fillViewport="true">
 
             <!--ViewPager-->
@@ -40,13 +34,11 @@
 
         </ScrollView>
 
-    </RelativeLayout>
-
     <!--Bottom Navigation Menu Bar-->
     <RelativeLayout
         android:id="@+id/relative_bottom_bar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="46dp"
         android:layout_alignParentBottom="true" >
 
         <include
@@ -54,7 +46,6 @@
             layout="@layout/activity_bottom_navigation_snippet" />
 
     </RelativeLayout>
-
 
 
 </RelativeLayout>
