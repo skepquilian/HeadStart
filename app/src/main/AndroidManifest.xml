@@ -46,9 +46,6 @@
             android:name=".Map.MapActivity"
             android:label="Location"
             android:parentActivityName=".Home.HomeActivity">
-            <meta-data
-                android:name="com.google.android.geo.API_KEY"
-                android:value="${mapsApiKey}" />
         </activity>
 
         <!-- Vehicles-->
