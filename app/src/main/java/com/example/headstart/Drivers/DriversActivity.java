@@ -8,32 +8,38 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import com.example.headstart.Home.HomeActivity;
 import com.example.headstart.Map.MapActivity;
-import com.example.headstart.PagerAdapter;
 import com.example.headstart.R;
 import com.example.headstart.Settings.SettingsActivity;
 import com.example.headstart.Trucks.TrucksActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class DriversActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
         View.OnClickListener {
 
     private BottomNavigationView bottomNavigationView;
+    private FloatingActionButton addDriverFloatBtn, mapFloatBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drivers);
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.bottom_nav_bar);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
-        setupViewPager();
+        bottomNavigationView.setBackground(null);
+        bottomNavigationView.getMenu().getItem(2).setEnabled(false);
+
+        addDriverFloatBtn = findViewById(R.id.addDriver_fab);
+        addDriverFloatBtn.setOnClickListener(this);
+
+        mapFloatBtn =findViewById(R.id.map_floatBar);
+        mapFloatBtn.setOnClickListener(this);
+
     }
 
     @Override
@@ -54,6 +60,14 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
 
     @Override
     public void onClick(View v) {
+        int itemId = v.getId();
+
+        if (itemId == R.id.addDriver_fab){
+            startActivity(new Intent(DriversActivity.this, AddDriverActivity.class));
+        }
+        if (itemId == R.id.map_floatBar){
+            startActivity(new Intent(DriversActivity.this, MapActivity.class));
+        }
 
     }
 
@@ -74,8 +88,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
             startActivity(new Intent(this, TrucksActivity.class));
             return true;
         } else if (itemId == R.id.nav_map) {
-            //map activity
-            startActivity(new Intent(this, MapActivity.class));
+            //truck activity
             return true;
         } else if (itemId == R.id.nav_drivers) {
             //drivers activity
@@ -89,34 +102,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         return false;
     }
 
-    /**
-     * this adds tabs to home activity, responsible for swapping btw fragments
-     */
-    private void setupViewPager() {
-        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(),
-                FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 
-        //add Fragments (home, tracking, notification) to PagerAdapter
-        pagerAdapter.addFragment(new DriverFragment());
-        pagerAdapter.addFragment(new AddDriverFragment());
-
-        //pass fragment to viewPager container
-        ViewPager viewPager = findViewById(R.id.container);
-        viewPager.setAdapter(pagerAdapter);
-
-        //Tabs Link to viewPager
-        TabLayout tabLayout = findViewById(R.id.tab);
-        tabLayout.setupWithViewPager(viewPager);
-
-//        //An array containing icons from the drawable directory
-//        final int[] ICONS = new int[]{
-//                R.drawable.ic_truck,
-//                R.drawable.ic_notify,
-//        };
-
-        tabLayout.getTabAt(0).setText("My Drivers");
-        tabLayout.getTabAt(1).setText("Add Drivers");
-    }
 
     /**
      * menu Item select focus function
@@ -127,5 +113,11 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         menuItem.setChecked(true);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(DriversActivity.this, HomeActivity.class));
+        finish();
+    }
 
 }

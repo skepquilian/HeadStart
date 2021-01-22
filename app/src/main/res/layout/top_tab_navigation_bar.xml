@@ -5,17 +5,18 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="?android:attr/windowBackground">
+        android:layout_height="49dp"
+        android:background="@color/grey">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?android:attr/windowBackground"
+            android:layout_height="50dp"
+            android:background="?android:windowBackground"
             app:tabGravity="fill"
             app:tabMaxWidth="0dp"
             app:tabMode="fixed"
+            app:tabIconTint="@color/black"
             app:tabTextColor="@color/black"/>
 
     </com.google.android.material.appbar.AppBarLayout>

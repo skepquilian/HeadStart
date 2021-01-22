@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import com.example.headstart.R;
 import com.example.headstart.Settings.SettingsActivity;
 import com.example.headstart.Trucks.TrucksActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 
@@ -31,10 +33,13 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.bottom_nav_bar);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
-        //method for swapping between fragments(tracking, home, notifications)
+        FloatingActionButton floatingActionButton = findViewById(R.id.map_floatBar);
+        floatingActionButton.setOnClickListener(this);
+
+        //responsible for swapping between fragments(tracking, home, notifications)
         setupViewPager();
     }
 
@@ -56,6 +61,13 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
     @Override
     public void onClick(View v) {
+        int itemId = v.getId();
+
+        //This sends user to map activity anytime user clicks middle float bar
+        if (itemId == R.id.map_floatBar){
+            startActivity(new Intent(HomeActivity.this, MapActivity.class));
+            Toast.makeText(this, "Real time Location", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -72,11 +84,11 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
             //truck activity
             startActivity(new Intent(this, TrucksActivity.class));
             return true;
+
         } else if (itemId == R.id.nav_map) {
-            //map activity
-            startActivity(new Intent(this, MapActivity.class));
+            //truck activity
             return true;
-        } else if (itemId == R.id.nav_drivers) {
+        }else if (itemId == R.id.nav_drivers) {
             //drivers activity
             startActivity(new Intent(this, DriversActivity.class));
             return true;
@@ -116,7 +128,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
 
         tabLayout.getTabAt(0).setIcon(ICONS[0]);
-        tabLayout.getTabAt(1).setText("HeadStart");
+        tabLayout.getTabAt(1).setText("Home");
         tabLayout.getTabAt(2).setIcon(ICONS[1]);
 
 
@@ -132,5 +144,15 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         MenuItem menuItem = menu.getItem(0);
         menuItem.setChecked(true);
 
+
+        bottomNavigationView.setBackground(null);
+        bottomNavigationView.getMenu().getItem(2).setEnabled(false);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

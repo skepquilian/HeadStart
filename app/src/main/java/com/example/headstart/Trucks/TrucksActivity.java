@@ -15,18 +15,28 @@ import com.example.headstart.Map.MapActivity;
 import com.example.headstart.R;
 import com.example.headstart.Settings.SettingsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class TrucksActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private BottomNavigationView bottomNavigationView;
+    private FloatingActionButton mapFloatBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trucks);
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.bottom_nav_bar);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+
+        bottomNavigationView.setBackground(null);
+        bottomNavigationView.getMenu().getItem(2).setEnabled(false);
+
+        mapFloatBtn = findViewById(R.id.map_floatBar);
+        mapFloatBtn.setOnClickListener(this);
+
+
     }
 
     @Override
@@ -47,6 +57,12 @@ public class TrucksActivity extends AppCompatActivity implements BottomNavigatio
 
     @Override
     public void onClick(View v) {
+        int item = v.getId();
+
+        if (item == R.id.map_floatBar) {
+            startActivity(new Intent(TrucksActivity.this, MapActivity.class));
+            //TODO call toast here
+        }
 
     }
 
@@ -67,8 +83,7 @@ public class TrucksActivity extends AppCompatActivity implements BottomNavigatio
             startActivity(new Intent(this, TrucksActivity.class));
             return true;
         } else if (itemId == R.id.nav_map) {
-            //map activity
-            startActivity(new Intent(this, MapActivity.class));
+            //truck activity
             return true;
         } else if (itemId == R.id.nav_drivers) {
             //drivers activity
@@ -90,5 +105,11 @@ public class TrucksActivity extends AppCompatActivity implements BottomNavigatio
         menuItem.setChecked(true);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(TrucksActivity.this, HomeActivity.class));
+        finish();
+    }
 
 }

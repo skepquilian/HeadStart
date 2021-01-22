@@ -1,17 +1,16 @@
 package com.example.headstart;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import com.example.headstart.AuthenticateActivities.TruckOwnerLoginForm;
-import com.example.headstart.AuthenticateActivities.User;
 
 public class MainEntryActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,9 +31,8 @@ public class MainEntryActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        /**
-         * User clicks supplier btn redirect to Login Page
-         */
+
+          //User clicks supplier btn redirect to Login Page
         if (v.getId() == R.id.supplierbtn) {
             startActivity(new Intent(this, TruckOwnerLoginForm.class));
         }
@@ -51,7 +49,7 @@ public class MainEntryActivity extends AppCompatActivity implements View.OnClick
         AlertDialog.Builder builder = new AlertDialog.Builder(MainEntryActivity.this)
                 .setTitle("Quit Application")
                 .setCancelable(false)
-                .setMessage("Are your sure want to exit?")
+                .setMessage("Are your sure to exit?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

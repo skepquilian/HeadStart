@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="accent_100">#03DAC5</color>
+    <color name="accent_200">#FF018786</color>
     <color name="appBackground">#1E1D20</color>
-    <color name="black">#FF000000</color>
+    <color name="black">#000000</color>
     <color name="white">#FFFFFFFF</color>
 <!--    <color name="grey">#d0d0d0</color>-->
     <color name="grey">#E6E6E6</color>

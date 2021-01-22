@@ -1,8 +1,5 @@
 package com.example.headstart.AuthenticateActivities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -12,6 +9,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.headstart.Home.HomeActivity;
 import com.example.headstart.MainEntryActivity;
@@ -104,7 +104,7 @@ public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnCli
             return;
         }
 
-        //Turn progress bar to visible when onclick Login btn..Progress to true when Login button is clicked
+//        Turn progress bar to visible when onclick Login btn..Progress to true when Login button is clicked
         progressBar.setVisibility(View.VISIBLE);
         mAuth.signInWithEmailAndPassword(emailAddress, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -122,6 +122,7 @@ public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnCli
                     Toast.makeText(TruckOwnerLoginForm.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
                 progressBar.setVisibility(View.GONE);
+
             }
         });
     }

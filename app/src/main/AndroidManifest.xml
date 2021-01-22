@@ -9,42 +9,85 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Settings.SettingsActivity" />
-        <activity android:name=".Drivers.DriversActivity" />
-        <activity android:name=".Map.MapActivity" />
-        <activity android:name=".Trucks.TrucksActivity" />
-        <activity android:name=".MainEntryActivity">
 
-            <!--
-            intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter
-            -->
-        </activity>
+        <!-- Entry Logo display Launcher -->
         <activity
-            android:name=".Home.HomeActivity"
-            android:parentActivityName=".AuthenticateActivities.TruckOwnerLoginForm">
-
-            <!--
-            The meta-data tag is required if you support API level 15 and lower >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".TruckOwnerLoginForm"  /
-            -->
+            android:name=".SplashActivity"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Settings-->
+        <activity
+            android:name=".Settings.SettingsActivity"
+            android:label="Settings"
+            android:parentActivityName=".Home.HomeActivity"
+            android:theme="@style/ActivitiesTheme" />
+
+        <!-- Drivers-->
+        <activity
+            android:name=".Drivers.DriversActivity"
+            android:label="Drivers"
+            android:parentActivityName=".Home.HomeActivity"
+            android:theme="@style/ActivitiesTheme" />
+
+        <activity
+            android:name=".Drivers.AddDriverActivity"
+            android:label="Driver Detail"
+            android:parentActivityName=".Drivers.AddDriverActivity"
+            android:theme="@style/ActivitiesTheme" />
+
+        <!-- Maps-->
+        <activity
+            android:name=".Map.MapActivity"
+            android:label="Location"
+            android:parentActivityName=".Home.HomeActivity">
+            <meta-data
+                android:name="com.google.android.geo.API_KEY"
+                android:value="${mapsApiKey}" />
+        </activity>
+
+        <!-- Vehicles-->
+        <activity
+            android:name=".Trucks.TrucksActivity"
+            android:label="MyVehicles"
+            android:parentActivityName=".Home.HomeActivity"
+            android:theme="@style/ActivitiesTheme" />
+
+        <!--MainEntry of App-->
+        <activity android:name=".MainEntryActivity">
+
+        </activity>
+
+        <!-- Home-->
+        <activity
+            android:name=".Home.HomeActivity"
+            android:theme="@style/ActivitiesTheme">
+            <!--
+            The meta-data tag is required if you support API level 15 and lower >
+            <meta-data
+
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TruckOwnerLoginForm"  /
+            -->
+
+        </activity>
+
+        <!-- Register-->
         <activity
             android:name=".AuthenticateActivities.TruckOwnerRegisterForm"
             android:parentActivityName=".AuthenticateActivities.TruckOwnerLoginForm" />
+
+        <!-- Login-->
         <activity
             android:name=".AuthenticateActivities.TruckOwnerLoginForm"
             android:parentActivityName=".MainEntryActivity" />
+
+        <!-- Reset Password-->
         <activity
             android:name=".AuthenticateActivities.ResetPassword"
             android:parentActivityName=".AuthenticateActivities.TruckOwnerLoginForm" />

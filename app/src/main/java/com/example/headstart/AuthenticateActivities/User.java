@@ -6,7 +6,7 @@ public class User {
 
     /**
      * Here we create a user object ...to be saved in firebase
-     * we create two constructors .....1st constructor returns & accepts nothing also, the 2nd constructor accepts arguments
+     * we create two constructors .....1st constructor returns & accepts nothing, the 2nd constructor accepts arguments
      **/
 
     //1st constructor,

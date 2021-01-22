@@ -15,18 +15,27 @@ import com.example.headstart.R;
 import com.example.headstart.Settings.SettingsActivity;
 import com.example.headstart.Trucks.TrucksActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class MapActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+public class MapActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
+        View.OnClickListener {
 
     private BottomNavigationView bottomNavigationView;
+    private FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.bottom_nav_bar);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+
+        bottomNavigationView.setBackground(null);
+        bottomNavigationView.getMenu().getItem(2).setEnabled(false);
+
+        floatingActionButton = findViewById(R.id.map_floatBar);
+        floatingActionButton.setOnClickListener(this);
     }
 
     @Override
@@ -47,7 +56,10 @@ public class MapActivity extends AppCompatActivity implements BottomNavigationVi
 
     @Override
     public void onClick(View v) {
-
+        int item = v.getId();
+        if (item == R.id.map_floatBar){
+            floatingActionButton.setBackgroundResource(R.color.accent_100);
+        }
     }
 
     /**
@@ -68,7 +80,6 @@ public class MapActivity extends AppCompatActivity implements BottomNavigationVi
             return true;
         } else if (itemId == R.id.nav_map) {
             //map activity
-            startActivity(new Intent(this, MapActivity.class));
             return true;
         } else if (itemId == R.id.nav_drivers) {
             //drivers activity
@@ -90,7 +101,4 @@ public class MapActivity extends AppCompatActivity implements BottomNavigationVi
         MenuItem menuItem = menu.getItem(2);
         menuItem.setChecked(true);
     }
-
-
-
 }

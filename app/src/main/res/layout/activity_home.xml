@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Home.HomeActivity">
 
-    <!--Top Navigation Tabs-->
     <RelativeLayout
-        android:id="@+id/relative_top_bar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true" >
+        android:layout_height="match_parent">
 
-        <!--Tabs For Fragment-->
-        <include
-            android:id="@+id/appBar"
-            layout="@layout/top_tab_navigation_bar" />
+        <!--Top Navigation Tabs-->
+        <RelativeLayout
+            android:id="@+id/relative_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true">
 
-    </RelativeLayout>
+            <!--Tabs For Fragment-->
+            <include
+                android:id="@+id/appBar"
+                layout="@layout/top_tab_navigation_bar" />
 
-    <!-- Home activity area -->
+        </RelativeLayout>
+
+        <!-- Home activity area -->
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@id/bottom_nav_bar"
             android:layout_below="@id/relative_top_bar"
-            android:layout_above="@id/relative_bottom_bar"
             android:fillViewport="true">
 
             <!--ViewPager-->
             <include
                 android:id="@+id/container"
-                layout="@layout/view_pager_layout"/>
+                layout="@layout/view_pager_layout" />
 
         </ScrollView>
 
-    <!--Bottom Navigation Menu Bar-->
-    <RelativeLayout
-        android:id="@+id/relative_bottom_bar"
-        android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:layout_alignParentBottom="true" >
 
+        <!--Bottom Navigation Menu Bar-->
         <include
-            android:id="@+id/bottom_navigation"
+            android:id="@+id/bottom_nav_bar"
             layout="@layout/activity_bottom_navigation_snippet" />
-
     </RelativeLayout>
 
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-</RelativeLayout>
+

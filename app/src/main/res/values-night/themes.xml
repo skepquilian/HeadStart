@@ -1,3 +1,23 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/accent_200</item>
+        <item name="colorPrimaryDark">@color/accent_100</item>
+        <item name="colorSecondary">@color/black</item>
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name = "windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!--    Action Bar for Home page-->
+    <style name="ActivitiesTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/accent_200</item>
+        <item name="colorPrimaryDark">@color/accent_100</item>
+        <item name="colorSecondary">@color/black</item>
+    </style>
+
 
 </resources>

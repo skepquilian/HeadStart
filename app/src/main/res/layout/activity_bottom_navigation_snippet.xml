@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:layout_alignParentBottom="true"
-        android:background="?android:attr/windowBackground"
-        app:menu="@menu/bottom_nav_bar"
-        app:itemTextColor="@color/black"
-        app:itemIconSize="24dp"
-        app:labelVisibilityMode="labeled" />
+        android:layout_height="match_parent">
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:backgroundTint="@color/white"
+            app:fabCradleRoundedCornerRadius="20dp"
+            android:layout_gravity="bottom" >
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottom_nav_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@android:color/transparent"
+                app:itemTextColor="@color/black"
+                app:labelVisibilityMode="labeled"
+                app:itemIconSize="20dp"
+                app:menu="@menu/bottom_menu_items"/>
+        </com.google.android.material.bottomappbar.BottomAppBar>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/map_floatBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/white"
+            android:src="@drawable/ic_action_map"
+            app:layout_anchor="@id/bottom_nav_bar"
+            android:contentDescription="@string/map_activity_fab_icon" />
+
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</merge>
+
+
+
+
+

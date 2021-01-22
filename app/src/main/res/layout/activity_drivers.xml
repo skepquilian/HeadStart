@@ -1,51 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".Drivers.DriversActivity">
 
-    <!--Top Navigation Tabs-->
-    <RelativeLayout
-        android:id="@+id/relative_top_bar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true" >
-
-        <!--Tabs For Fragment-->
-        <include
-            android:id="@+id/appBar"
-            layout="@layout/top_tab_navigation_bar" />
-
-    </RelativeLayout>
 
     <!-- Driver activity area -->
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/relative_top_bar"
-            android:layout_above="@id/relative_bottom_bar"
-            android:fillViewport="true">
-
-            <!--ViewPager-->
-            <include
-                android:id="@+id/container"
-                layout="@layout/view_pager_layout"/>
-
-        </ScrollView>
-
-    <!--Bottom Navigation Menu Bar-->
-    <RelativeLayout
-        android:id="@+id/relative_bottom_bar"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:layout_alignParentBottom="true" >
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_nav_bar"
+        android:fillViewport="true">
 
-    <!-- Navigation Menu Bar-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="5dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/driver_card_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="0dp"
+                app:cardCornerRadius="40sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addDriver_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="60dp"
+                android:contentDescription="@string/float_bar_add_driver_page"
+                android:src="@drawable/ic_add_driver"
+                app:backgroundTint="@color/black" />
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+    <!--Bottom Nav Bar-->
     <include
-        android:id="@+id/bottom_navigation"
-        layout="@layout/activity_bottom_navigation_snippet"
-        />
-    </RelativeLayout>
+        android:id="@+id/bottom_nav_bar"
+        layout="@layout/activity_bottom_navigation_snippet" />
 
 </RelativeLayout>

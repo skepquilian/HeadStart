@@ -81,7 +81,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signUp" />
+            app:layout_constraintTop_toBottomOf="@+id/signUp"
+            android:autofillHints="" />
 
         <!-- Email Address-->
         <EditText
@@ -110,7 +111,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/organizationName" />
+            app:layout_constraintTop_toBottomOf="@+id/organizationName"
+            android:autofillHints="" />
 
         <!-- Phone Number-->
         <EditText
@@ -140,7 +142,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailAddress" />
+            app:layout_constraintTop_toBottomOf="@+id/emailAddress"
+            android:autofillHints="" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textLayoutPassword"
@@ -175,7 +178,8 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                android:autofillHints="" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -214,7 +218,8 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                android:autofillHints="" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -248,7 +253,7 @@
             android:layout_marginBottom="10dp"
             android:fontFamily="monospace"
             android:text="@string/already_a_user_login"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/accent_100"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
