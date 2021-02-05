@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.headstart.Home.HomeActivity;
@@ -21,7 +23,12 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         View.OnClickListener {
 
     private BottomNavigationView bottomNavigationView;
-    private FloatingActionButton addDriverFloatBtn, mapFloatBtn;
+    private FloatingActionButton addDriverFloatBtn, cancelFloatBtn,mapFloatBtn;
+    private AlertDialog.Builder alertDialogBuilder;
+    private AlertDialog alertDialog;
+
+    private EditText editFirstName, editLastName, editPhoneNumber,
+            editEmail, editDriverID, editVehicleID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +44,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         addDriverFloatBtn = findViewById(R.id.addDriver_fab);
         addDriverFloatBtn.setOnClickListener(this);
 
-        mapFloatBtn =findViewById(R.id.map_floatBar);
+        mapFloatBtn = findViewById(R.id.map_floatBar);
         mapFloatBtn.setOnClickListener(this);
 
     }
@@ -62,12 +69,44 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
     public void onClick(View v) {
         int itemId = v.getId();
 
-        if (itemId == R.id.addDriver_fab){
-            startActivity(new Intent(DriversActivity.this, AddDriverActivity.class));
+        if (itemId == R.id.addDriver_fab) {
+//            startActivity(new Intent(DriversActivity.this, AddDriverActivity.class));
+            addDriverDialog();
         }
-        if (itemId == R.id.map_floatBar){
+        if (itemId == R.id.map_floatBar) {
             startActivity(new Intent(DriversActivity.this, MapActivity.class));
         }
+
+    }
+
+    /**
+     * Add driver info popUp function
+     */
+    private void addDriverDialog() {
+        alertDialogBuilder = new AlertDialog.Builder(this);
+        final View addDriverDialog = getLayoutInflater().inflate(R.layout.activity_add_driver, null);
+
+
+        //Text boxes
+        editFirstName = addDriverDialog.findViewById(R.id.driverFirstName);
+        editLastName = addDriverDialog.findViewById(R.id.driverLastName);
+        editPhoneNumber = addDriverDialog.findViewById(R.id.driverPhoneNumber);
+        editEmail = addDriverDialog.findViewById(R.id.driverEmailAddress);
+        editDriverID = addDriverDialog.findViewById(R.id.driver_Id);
+        editVehicleID = addDriverDialog.findViewById(R.id.vehicle_Id);
+
+        //
+        alertDialogBuilder.setView(addDriverDialog);
+        alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+        cancelFloatBtn = addDriverDialog.findViewById(R.id.cancel_float_Btn);
+        cancelFloatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
 
     }
 
@@ -101,7 +140,6 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         }
         return false;
     }
-
 
 
     /**

@@ -38,13 +38,13 @@
         <activity
             android:name=".Drivers.AddDriverActivity"
             android:label="Driver Detail"
-            android:parentActivityName=".Drivers.AddDriverActivity"
             android:theme="@style/ActivitiesTheme" />
 
         <!-- Maps-->
         <activity
             android:name=".Map.MapActivity"
             android:label="Location"
+            android:theme="@style/MaterialAlertDialog.MaterialComponents.Title.Panel.CenterStacked"
             android:parentActivityName=".Home.HomeActivity">
         </activity>
 

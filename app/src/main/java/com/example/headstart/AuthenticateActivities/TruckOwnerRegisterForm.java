@@ -1,8 +1,5 @@
 package com.example.headstart.AuthenticateActivities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
@@ -14,17 +11,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.headstart.R;
 import com.example.headstart.Utility;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class TruckOwnerRegisterForm extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,10 +28,6 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
             editTextPhone, editTextPassword, editTextPasswordConfirm;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
-    DatabaseReference reference;
-
-    long maxId = 1000;
-    //String userId = "HeadStartID";
 
 
     @Override
@@ -67,20 +59,20 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
 
         mAuth = FirebaseAuth.getInstance();
 
-        //Custom User ID when user registers
-        reference = FirebaseDatabase.getInstance().getReference().child("Users");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists())
-                    maxId = (snapshot.getChildrenCount());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//        //Custom User ID when user registers
+//        reference = FirebaseDatabase.getInstance().getReference().child("Users");
+//        reference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if (snapshot.exists())
+//                    maxId = (snapshot.getChildrenCount());
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
     }
 
@@ -166,7 +158,7 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
                     FirebaseDatabase.getInstance().getReference("Users")
 
                             //then give the registered user an id using the below, make id correspond to user when registered
-                            .child(String.valueOf(maxId + 1))
+                            .child(mAuth.getCurrentUser().getUid())
 
                             //set name,email&password to the current user
                             .setValue(user);

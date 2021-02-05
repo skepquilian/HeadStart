@@ -8,7 +8,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:470712621405:android:3b1715379a8cbdd26330b4",
+        "mobilesdk_app_id": "1:470712621405:android:d5eefc30e2201ad76330b4",
         "android_client_info": {
           "package_name": "com.example.headstart"
         }
@@ -21,7 +21,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDyh_NZZJlODe0b6qGOJfga_oYjGYSPPsI"
+          "current_key": "AIzaSyB9UXrlO2B1G6UmNamDgE-Ywt3oeCD2SKA"
         }
       ],
       "services": {

@@ -3,44 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/black"
+    android:layout_height="wrap_content"
+    android:background="@android:color/black"
     tools:context=".Drivers.DriversActivity">
-
-    <!--Top Navigation Tabs-->
-    <RelativeLayout
-        android:id="@+id/relative_top_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true">
-
-
-        <TextView
-            android:id="@+id/driver_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:text="Driver Info"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/driver_info"
-            android:background="@color/grey" />
-
-
-    </RelativeLayout>
-
 
     <!-- Driver activity area -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/relative_top_bar"
         android:fillViewport="true">
 
         <RelativeLayout
@@ -59,7 +29,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:baselineAligned="false"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp"
+                    >
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -270,9 +242,21 @@
                 android:layout_alignParentBottom="true"
                 android:layout_margin="16dp"
                 android:layout_marginEnd="10dp"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/white"
                 android:contentDescription="@string/submit_driver_details_to_list"
                 android:src="@drawable/ic_submit_driver_detail" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/cancel_float_Btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="16dp"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="@color/white"
+                android:contentDescription="@string/submit_driver_details_to_list"
+                android:src="@drawable/ic_add_driver_cancel" />
         </RelativeLayout>
 
     </ScrollView>
