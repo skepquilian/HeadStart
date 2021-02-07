@@ -35,11 +35,6 @@
             android:parentActivityName=".Home.HomeActivity"
             android:theme="@style/ActivitiesTheme" />
 
-        <activity
-            android:name=".Drivers.AddDriverActivity"
-            android:label="Driver Detail"
-            android:theme="@style/ActivitiesTheme" />
-
         <!-- Maps-->
         <activity
             android:name=".Map.MapActivity"

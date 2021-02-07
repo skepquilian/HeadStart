@@ -231,11 +231,18 @@
 
                 </LinearLayout>
 
+                <ProgressBar
+                    android:id="@+id/progressBarw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginTop="400dp"
+                    android:layout_marginStart="180dp"/>
 
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/addDriver_Btn"
+                android:id="@+id/addDriver_float_Btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -257,6 +264,7 @@
                 android:backgroundTint="@color/white"
                 android:contentDescription="@string/submit_driver_details_to_list"
                 android:src="@drawable/ic_add_driver_cancel" />
+
         </RelativeLayout>
 
     </ScrollView>
