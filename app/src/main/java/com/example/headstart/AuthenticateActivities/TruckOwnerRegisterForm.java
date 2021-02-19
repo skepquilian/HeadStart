@@ -20,7 +20,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class TruckOwnerRegisterForm extends AppCompatActivity implements View.OnClickListener {
@@ -29,7 +28,7 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
             editTextPhone, editTextPassword, editTextPasswordConfirm;
     private ProgressBar progressBar;
 
-    private DatabaseReference userDatabaseRef;
+    //private DatabaseReference userDatabaseRef;
     private FirebaseAuth mAuth;
 
 
@@ -63,7 +62,7 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
         mAuth = FirebaseAuth.getInstance();
 
         //take users information to firebase database
-        userDatabaseRef = FirebaseDatabase.getInstance().getReference("Users");
+        //userDatabaseRef = FirebaseDatabase.getInstance().getReference("Users");
 
     }
 
@@ -143,14 +142,12 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
 
                 if (task.isSuccessful()) {
 
-                    //Create unique string id and stores in userID
-                    String userID = userDatabaseRef.push().getKey();
-
                     //Create Users info with these below
                     final User user = new User(organizationName, emailAddress, phoneNumber);
 
                     //then get the registered user ID using the below, make id correspond to user when registered
-                    userDatabaseRef.child(userID)
+                    FirebaseDatabase.getInstance().getReference("Users")
+                            .child(mAuth.getCurrentUser().getUid())
                             //set name,email&password to the current user
                             .setValue(user);
 

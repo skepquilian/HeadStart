@@ -70,8 +70,10 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         mapFloatBtn.setOnClickListener(this);
 
 
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+
         //take driver info to firebase database
-        driverDatabaseRef = FirebaseDatabase.getInstance().getReference("User Drivers");
+        driverDatabaseRef = FirebaseDatabase.getInstance().getReference("User Drivers").child(auth.getCurrentUser().getUid());
 
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -90,6 +92,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         driverDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                driverList.clear();
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Drivers drivers = dataSnapshot.getValue(Drivers.class);
@@ -234,7 +237,6 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
 
             driverDatabaseRef.child(driver_Id)
                     .setValue(drivers);
-
                     Toast.makeText(DriversActivity.this, "Added successfully", Toast.LENGTH_LONG).show();
 
 
