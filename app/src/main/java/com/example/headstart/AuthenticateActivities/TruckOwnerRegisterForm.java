@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class TruckOwnerRegisterForm extends AppCompatActivity implements View.OnClickListener {
@@ -27,6 +28,8 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
     private EditText editTextOrganizationName, editTextEmail,
             editTextPhone, editTextPassword, editTextPasswordConfirm;
     private ProgressBar progressBar;
+
+    private DatabaseReference userDatabaseRef;
     private FirebaseAuth mAuth;
 
 
@@ -59,20 +62,8 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
 
         mAuth = FirebaseAuth.getInstance();
 
-//        //Custom User ID when user registers
-//        reference = FirebaseDatabase.getInstance().getReference().child("Users");
-//        reference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if (snapshot.exists())
-//                    maxId = (snapshot.getChildrenCount());
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+        //take users information to firebase database
+        userDatabaseRef = FirebaseDatabase.getInstance().getReference("Users");
 
     }
 
@@ -151,15 +142,15 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()) {
+
+                    //Create unique string id and stores in userID
+                    String userID = userDatabaseRef.push().getKey();
+
                     //Create Users info with these below
                     final User user = new User(organizationName, emailAddress, phoneNumber);
 
-                    //take users info to firebase database
-                    FirebaseDatabase.getInstance().getReference("Users")
-
-                            //then give the registered user an id using the below, make id correspond to user when registered
-                            .child(mAuth.getCurrentUser().getUid())
-
+                    //then get the registered user ID using the below, make id correspond to user when registered
+                    userDatabaseRef.child(userID)
                             //set name,email&password to the current user
                             .setValue(user);
 

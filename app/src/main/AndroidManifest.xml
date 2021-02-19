@@ -9,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <!-- Entry Logo display Launcher -->
         <activity
             android:name=".SplashActivity"
@@ -21,44 +20,39 @@
             </intent-filter>
         </activity>
 
-        <!-- Settings-->
+        <!-- Settings -->
         <activity
             android:name=".Settings.SettingsActivity"
             android:label="Settings"
             android:parentActivityName=".Home.HomeActivity"
             android:theme="@style/ActivitiesTheme" />
 
-        <!-- Drivers-->
+        <!-- Drivers -->
         <activity
             android:name=".Drivers.DriversActivity"
             android:label="Drivers"
             android:parentActivityName=".Home.HomeActivity"
             android:theme="@style/ActivitiesTheme" />
 
-        <!-- Maps-->
+        <!-- Maps -->
         <activity
             android:name=".Map.MapActivity"
             android:label="Location"
-            android:theme="@style/MaterialAlertDialog.MaterialComponents.Title.Panel.CenterStacked"
-            android:parentActivityName=".Home.HomeActivity">
-        </activity>
+            android:parentActivityName=".Home.HomeActivity"/>
 
-        <!-- Vehicles-->
+        <!-- Vehicles -->
         <activity
             android:name=".Trucks.TrucksActivity"
             android:label="MyVehicles"
             android:parentActivityName=".Home.HomeActivity"
             android:theme="@style/ActivitiesTheme" />
-
-        <!--MainEntry of App-->
-        <activity android:name=".MainEntryActivity">
-
-        </activity>
-
-        <!-- Home-->
+        <!-- MainEntry of App -->
+        <activity android:name=".MainEntryActivity" />
+        <!-- Home -->
         <activity
             android:name=".Home.HomeActivity"
             android:theme="@style/ActivitiesTheme">
+
             <!--
             The meta-data tag is required if you support API level 15 and lower >
             <meta-data
@@ -67,19 +61,13 @@
                 android:value=".TruckOwnerLoginForm"  /
             -->
 
-        </activity>
-
-        <!-- Register-->
+        </activity> <!-- Register -->
         <activity
             android:name=".AuthenticateActivities.TruckOwnerRegisterForm"
-            android:parentActivityName=".AuthenticateActivities.TruckOwnerLoginForm" />
-
-        <!-- Login-->
+            android:parentActivityName=".AuthenticateActivities.TruckOwnerLoginForm" /> <!-- Login -->
         <activity
             android:name=".AuthenticateActivities.TruckOwnerLoginForm"
-            android:parentActivityName=".MainEntryActivity" />
-
-        <!-- Reset Password-->
+            android:parentActivityName=".MainEntryActivity" /> <!-- Reset Password -->
         <activity
             android:name=".AuthenticateActivities.ResetPassword"
             android:parentActivityName=".AuthenticateActivities.TruckOwnerLoginForm" />
