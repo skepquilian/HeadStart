@@ -17,10 +17,10 @@ import com.example.headstart.Settings.SettingsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class TrucksActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+public class TrucksActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
+        View.OnClickListener {
 
     private BottomNavigationView bottomNavigationView;
-    private FloatingActionButton mapFloatBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class TrucksActivity extends AppCompatActivity implements BottomNavigatio
         bottomNavigationView.setBackground(null);
         bottomNavigationView.getMenu().getItem(2).setEnabled(false);
 
-        mapFloatBtn = findViewById(R.id.map_floatBar);
+        FloatingActionButton mapFloatBtn = findViewById(R.id.map_floatBar);
         mapFloatBtn.setOnClickListener(this);
 
 

@@ -15,10 +15,10 @@ public class Holder extends RecyclerView.ViewHolder {
     public Holder(@NonNull View itemView) {
         super(itemView);
 
-        this.firstName = itemView.findViewById(R.id.driverFirstName);
-        this.lastName = itemView.findViewById(R.id.driverLastName);
-        this.phone = itemView.findViewById(R.id.driverPhoneNumber);
-        this.email = itemView.findViewById(R.id.driverEmail);
+        this.firstName = itemView.findViewById(R.id.d_FirstName);
+        this.lastName = itemView.findViewById(R.id.d_LastName);
+        this.phone = itemView.findViewById(R.id.d_PhoneNumber);
+        this.email = itemView.findViewById(R.id.d_Email);
         this.driverID = itemView.findViewById(R.id.driverID);
         this.vehicleID = itemView.findViewById(R.id.vehicleID);
 

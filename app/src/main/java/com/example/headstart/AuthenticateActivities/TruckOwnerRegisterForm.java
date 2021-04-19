@@ -28,7 +28,6 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
             editTextPhone, editTextPassword, editTextPasswordConfirm;
     private ProgressBar progressBar;
 
-    //private DatabaseReference userDatabaseRef;
     private FirebaseAuth mAuth;
 
 
@@ -60,9 +59,6 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
         progressBar = findViewById(R.id.progressBar);
 
         mAuth = FirebaseAuth.getInstance();
-
-        //take users information to firebase database
-        //userDatabaseRef = FirebaseDatabase.getInstance().getReference("Users");
 
     }
 

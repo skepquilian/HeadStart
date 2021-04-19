@@ -24,6 +24,8 @@ import com.example.headstart.Settings.SettingsActivity;
 import com.example.headstart.Trucks.TrucksActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -46,7 +48,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
 
     private DatabaseReference driverDatabaseRef;
 
-    private EditText editFirstName, editLastName, editPhoneNumber,
+    private TextInputEditText editFirstName, editLastName, editPhoneNumber,
             editEmail, editDriverID, editVehicleID;
 
     private ProgressBar progressBar;
@@ -73,7 +75,9 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
         //take driver info to firebase database
-        driverDatabaseRef = FirebaseDatabase.getInstance().getReference("User Drivers").child(auth.getCurrentUser().getUid());
+        driverDatabaseRef = FirebaseDatabase.getInstance().getReference("User Drivers")
+                //get users id as child(Foreign Key)
+                .child(auth.getCurrentUser().getUid());
 
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -87,6 +91,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
     protected void onStart() {
         super.onStart();
         updateNavigationBarState();
+
 
 
         driverDatabaseRef.addValueEventListener(new ValueEventListener() {
@@ -221,7 +226,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         if (user != null) {
             // User is signed in
 
-            //Create unique string id and stores in userID
+            //Create unique string id and stores in driver_Id
             String driver_Id = driverDatabaseRef.push().getKey();
 
             //add driver info when user clicks add button
