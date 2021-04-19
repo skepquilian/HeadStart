@@ -6,7 +6,6 @@ import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,10 +21,11 @@ import com.example.headstart.Map.MapActivity;
 import com.example.headstart.R;
 import com.example.headstart.Settings.SettingsActivity;
 import com.example.headstart.Trucks.TrucksActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -54,6 +54,8 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
     private ProgressBar progressBar;
     private TextView fetchDataTextView;
 
+    FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,8 +73,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         FloatingActionButton mapFloatBtn = findViewById(R.id.map_floatBar);
         mapFloatBtn.setOnClickListener(this);
 
-
-        FirebaseAuth auth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
 
         //take driver info to firebase database
         driverDatabaseRef = FirebaseDatabase.getInstance().getReference("User Drivers")
@@ -210,10 +211,11 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         } else if (driverPhone.isEmpty() || (driverPhone.length() < 10)) {
             editPhoneNumber.setError("Enter a valid Phone Number");
             editPhoneNumber.requestFocus();
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(driverEmail).matches()) {
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(driverEmail).matches() && driverEmail.isEmpty()) {
             editEmail.setError("Please provide valid email");
             editEmail.requestFocus();
-        } else if (driverID.isEmpty()) {
+        }
+        else if (driverID.isEmpty()) {
             editDriverID.setError("Driver Id is required");
             editDriverID.requestFocus();
         } else if (vehicleID.isEmpty()) {
@@ -241,13 +243,31 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
             );
 
             driverDatabaseRef.child(driver_Id)
-                    .setValue(drivers);
-                    Toast.makeText(DriversActivity.this, "Added successfully", Toast.LENGTH_LONG).show();
+                    .setValue(drivers).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()){
+                        editFirstName.setText("");
+                        editLastName.setText("");
+                        editPhoneNumber.setText("");
+                        editEmail.setText("");
+                        editDriverID.setText("");
+                        editVehicleID.setText("");
+
+                        Toast.makeText(DriversActivity.this, "Added successfully", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        Toast.makeText(DriversActivity.this, "Error Please Try again", Toast.LENGTH_LONG).show();
+                    }
+
+                }
+            });
+            // TODO " work on float BTN "
 
 
         } else {
             // No user is signed in
-            Toast.makeText(DriversActivity.this, "Failed....Login to Try Again", Toast.LENGTH_LONG).show();
+            Toast.makeText(DriversActivity.this, "Failed....Login to get Access", Toast.LENGTH_LONG).show();
         }
 
     }

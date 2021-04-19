@@ -25,7 +25,7 @@
             android:name=".Settings.SettingsActivity"
             android:label="Settings"
             android:parentActivityName=".Home.HomeActivity"
-            android:theme="@style/ActivitiesTheme" />
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- Drivers -->
         <activity

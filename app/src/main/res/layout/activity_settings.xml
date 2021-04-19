@@ -1,42 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/contentBodyColor"
     tools:context=".Settings.SettingsActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/header_text_title"
+        style="@style/viewParent.headerText"
+        android:text="@string/my_settings"
+        android:padding="10dp"/>
+
+    <ScrollView
+        android:layout_below="@id/header_text_title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
-        android:textSize="24sp"
-        android:text="Settings activity Todo "
-        android:textColor="@color/white"/>
+        android:fillViewport="true">
 
-    <!-- LogOut Btn-->
-    <Button
-        android:id="@+id/logoutBtn"
-        android:layout_width="76dp"
-        android:layout_height="37dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="44dp"
-        android:background="@color/black"
-        android:padding="5dp"
-        android:textAppearance="@color/accent_100"
-        android:text="@string/logout"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        android:textStyle="bold" />
+        <LinearLayout
 
-    <!-- Navigation Menu Bar-->
-<!--    <include-->
-<!--        android:id="@+id/bottom_nav_bar"-->
-<!--        layout="@layout/activity_bottom_navigation_snippet"-->
-<!--        />-->
+            android:id="@+id/settings_linear1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/profileCircleImageView"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardCornerRadius="35dp">
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/person"
+                        android:contentDescription="@string/profile_image" />
+                </androidx.cardview.widget.CardView>
+
+
+                <TextView
+                    android:id="@+id/usernameTextView"
+                    style="@style/viewParent.headerText"
+                    android:text="Steve Hero"
+                    android:textSize="18sp"
+                    android:layout_toEndOf="@id/profileCircleImageView"
+                    android:layout_marginTop="20dp"/>
+
+                <TextView
+                    style="@style/viewParent.headerText"
+                    android:text="Edit personal details"
+                    android:textSize="16sp"
+                    android:textColor="#5D5C5C"
+                    android:layout_below="@id/usernameTextView"
+                    android:layout_toEndOf="@id/profileCircleImageView"/>
+
+                <ImageView
+                    style="@style/viewParent"
+                    android:src="@drawable/ic_more"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/profile_image" />
+            </RelativeLayout>
+
+            <Switch
+                android:id="@+id/darkModeSwitch"
+                style="@style/settingsText"
+                android:drawableStart="@drawable/ic_dark_mode"
+                android:text="Dark Mode"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+            <TextView
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="Profile"/>
+
+            <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:text="Edit Profile"
+                app:drawableLeftCompat="@drawable/ic_edit_profile" />
+
+            <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:layout_marginTop="10dp"
+                android:text="Change Password"
+                app:drawableLeftCompat="@drawable/ic_edit_password" />
+
+            <TextView
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="Notifications"/>
+
+            <Switch
+                style="@style/settingsText"
+                android:checked="true"
+                android:drawableStart="@drawable/ic_notifications"
+                android:text="Notifications"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+            <TextView
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="Region"/>
+
+            <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:text="Language"
+                app:drawableStartCompat="@drawable/ic_languages" />
+
+            <Button
+                android:id="@+id/logoutBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_margin="18dp"
+                android:padding="5dp"
+                android:background="@color/accent_200"
+                android:text="Logout"
+                android:textStyle="bold"
+                app:drawableLeftCompat="@drawable/ic_logout" />
+
+            <TextView
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:gravity="center"
+                android:text="HeadStart version 1.0.0" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </RelativeLayout>
