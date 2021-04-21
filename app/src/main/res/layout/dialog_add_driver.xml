@@ -140,7 +140,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:cursorVisible="true"
-                    android:hint="Vehicle No"
+                    android:hint="Vehicle Number"
                     android:inputType="text"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black"
