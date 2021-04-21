@@ -108,7 +108,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 
         //add Fragments (home, tracking, notification) to PagerAdapter
-        pagerAdapter.addFragment(new TrackingFragment());
+        pagerAdapter.addFragment(new TrackTimeLineFragment());
         pagerAdapter.addFragment(new HomeFragment());
         pagerAdapter.addFragment(new NotificationFragment());
 

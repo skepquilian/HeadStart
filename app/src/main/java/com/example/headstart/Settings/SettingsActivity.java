@@ -1,13 +1,18 @@
 package com.example.headstart.Settings;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 
 import com.example.headstart.AuthenticateActivities.TruckOwnerLoginForm;
 import com.example.headstart.Home.HomeActivity;
@@ -16,7 +21,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener {
 
-//    private BottomNavigationView bottomNavigationView;
+    //private BottomNavigationView bottomNavigationView;
+    SwitchCompat modeSwitch, notificationSwitch;
+    SharedPreferences sharedPreferences = null;
+    ImageView moreImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,16 +33,46 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
         Button logOut = findViewById(R.id.logoutBtn);
         logOut.setOnClickListener(this);
-//
-//        bottomNavigationView = findViewById(R.id.bottom_nav_bar);
-//        bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
+        moreImage = findViewById(R.id.more_arrow_image);
+        modeSwitch = findViewById(R.id.darkModeSwitch);
+        notificationSwitch = findViewById(R.id.notifySwitch);
+
+
+        sharedPreferences = getSharedPreferences("night", 0);
+        Boolean boolValue = sharedPreferences.getBoolean("night_mode", true);
+        if (boolValue){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            modeSwitch.setChecked(true);
+            moreImage.setImageResource(R.drawable.ic_more);
+        }
+
+        modeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    modeSwitch.setChecked(true);
+                    moreImage.setImageResource(R.drawable.ic_more);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("night_mode", true);
+                    editor.commit();
+                }
+                else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    modeSwitch.setChecked(false);
+                    moreImage.setImageResource(R.drawable.ic_more);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("night_mode", false);
+                    editor.commit();
+                }
+            }
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        //updateNavigationBarState();
     }
 
     /**
@@ -58,49 +96,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-//    /**
-//     * Bottom Navigation bar
-//     */
-//    @Override
-//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//
-//        int itemId = item.getItemId();
-//
-//        if (itemId == R.id.nav_home) {
-//            //home activity
-//            startActivity(new Intent(this, HomeActivity.class));
-//            return true;
-//        } else if (itemId == R.id.nav_trucks) {
-//            //truck activity
-//            startActivity(new Intent(this, TrucksActivity.class));
-//            return true;
-//        } else if (itemId == R.id.nav_map) {
-//            //truck activity
-//            return true;
-//        } else if (itemId == R.id.nav_drivers) {
-//            //drivers activity
-//            startActivity(new Intent(this, DriversActivity.class));
-//            return true;
-//        } else if (itemId == R.id.nav_settings) {
-//            //settings activity
-//            startActivity(new Intent(this, SettingsActivity.class));
-//            return true;
-//        }
-//        return false;
-//    }
-//
-//
-//    /**
-//     * menu Item select focus function
-//     */
-//    private void updateNavigationBarState() {
-//        Menu menu = bottomNavigationView.getMenu();
-//        MenuItem menuItem = menu.getItem(4);
-//        menuItem.setChecked(true);
-//
-//        bottomNavigationView.setBackground(null);
-//        bottomNavigationView.getMenu().getItem(2).setEnabled(false);
-//    }
 
     /**
      * Logging out User.
@@ -109,7 +104,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(SettingsActivity.this, TruckOwnerLoginForm.class));
         Toast.makeText(SettingsActivity.this, "Logged out", Toast.LENGTH_SHORT).show();
-        Log.i("Logging User Out","Successfully Signed out");
+        Log.i("Logging User Out", "Successfully Signed out");
     }
 
     @Override

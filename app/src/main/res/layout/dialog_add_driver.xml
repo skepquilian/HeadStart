@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/driver_card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/black"
+    app:cardCornerRadius="30dp"
     tools:context=".Drivers.DriversActivity">
 
     <RelativeLayout
@@ -14,14 +15,15 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="400dp"
+            android:orientation="vertical"
+            android:paddingTop="5dp">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_FirstName"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="8dp"
                 android:layout_weight="1"
                 android:background="@color/white">
 
@@ -30,21 +32,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:cursorVisible="true"
-                    android:hint="firstname"
-                    android:textColorHint="@color/black"
                     android:drawableEnd="@drawable/person"
+                    android:hint="firstname"
                     android:inputType="textPersonName"
-                    android:padding="16dp"
                     android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     android:textCursorDrawable="@android:color/black"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/textFormat" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_LastName"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="8dp"
                 android:layout_weight="1"
                 android:background="@color/white">
 
@@ -53,21 +54,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:cursorVisible="true"
-                    android:hint="lastname"
-                    android:textColorHint="@color/black"
                     android:drawableEnd="@drawable/person"
+                    android:hint="lastname"
                     android:inputType="textPersonName"
-                    android:padding="16dp"
                     android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     android:textCursorDrawable="@android:color/black"
-                    android:textSize="14sp"/>
+                    android:textSize="@dimen/textFormat" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_PhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="8dp"
                 android:layout_weight="1"
                 android:background="@color/white">
 
@@ -76,21 +76,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:cursorVisible="true"
-                    android:hint="phone"
-                    android:textColorHint="@color/black"
                     android:drawableEnd="@drawable/ic_phone"
+                    android:hint="phone"
                     android:inputType="phone"
-                    android:padding="16dp"
                     android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     android:textCursorDrawable="@android:color/black"
-                    android:textSize="14sp"/>
+                    android:textSize="@dimen/textFormat" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/_text_EmailAddress"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="8dp"
                 android:layout_weight="1"
                 android:background="@color/white">
 
@@ -99,21 +98,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:cursorVisible="true"
-                    android:textColorHint="@color/black"
                     android:drawableEnd="@drawable/ic_email"
                     android:hint="Enter email (optional)"
                     android:inputType="textEmailAddress"
-                    android:padding="16dp"
                     android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     android:textCursorDrawable="@android:color/black"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/textFormat" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_driver_Id"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="8dp"
                 android:layout_weight="1"
                 android:background="@color/white">
 
@@ -123,19 +121,17 @@
                     android:layout_height="wrap_content"
                     android:cursorVisible="true"
                     android:hint="ID number"
-                    android:textColorHint="@color/black"
                     android:inputType="text"
-                    android:padding="16dp"
                     android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     android:textCursorDrawable="@android:color/black"
-                    android:textSize="14sp"/>
+                    android:textSize="@dimen/textFormat" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_vehicle_Id"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginBottom="16dp"
                 android:layout_weight="1"
                 android:background="@color/white">
 
@@ -145,12 +141,11 @@
                     android:layout_height="wrap_content"
                     android:cursorVisible="true"
                     android:hint="Vehicle No"
-                    android:textColorHint="@color/black"
                     android:inputType="text"
-                    android:padding="16dp"
                     android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     android:textCursorDrawable="@android:color/black"
-                    android:textSize="14sp"/>
+                    android:textSize="@dimen/textFormat" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
@@ -161,33 +156,35 @@
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/cancel_float_Btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:layout_marginEnd="10dp"
+                    style="@style/viewParent"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="4dp"
                     android:backgroundTint="@color/white"
                     android:contentDescription="@string/submit_driver_details_to_list"
-                    android:src="@drawable/ic_add_driver_cancel" />
+                    android:src="@drawable/ic_add_driver_cancel"
+                    app:fabSize="mini" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/addDriver_float_Btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
+                    style="@style/viewParent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
                     android:backgroundTint="@color/white"
                     android:contentDescription="@string/submit_driver_details_to_list"
-                    android:src="@drawable/ic_submit_driver_detail" />
+                    android:src="@drawable/ic_submit_driver_detail"
+                    app:fabSize="mini" />
 
             </LinearLayout>
         </LinearLayout>
 
         <ProgressBar
             android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/viewParent"
             android:layout_marginStart="180dp"
             android:layout_marginTop="400dp"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
 
     </RelativeLayout>

@@ -1,6 +1,8 @@
 package com.example.headstart.Drivers;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.Menu;
@@ -69,6 +71,8 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
 
         addDriverFloatBtn = findViewById(R.id.addDriver_fab);
         addDriverFloatBtn.setOnClickListener(this);
+
+
 
         FloatingActionButton mapFloatBtn = findViewById(R.id.map_floatBar);
         mapFloatBtn.setOnClickListener(this);
@@ -152,6 +156,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
      */
     private void addDriverDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
         final View addDriverDialog = getLayoutInflater().inflate(R.layout.dialog_add_driver, null);
 
 

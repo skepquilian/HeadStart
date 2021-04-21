@@ -15,8 +15,7 @@
         <!-- Application Name/Logo-->
         <TextView
             android:id="@+id/appName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/viewParent.headerText"
             android:layout_marginTop="60dp"
             android:fontFamily="sans-serif-smallcaps"
             android:text="@string/app_name"
@@ -34,8 +33,7 @@
         <!-- Sign In TextView-->
         <TextView
             android:id="@+id/signUp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/viewParent.headerText"
             android:layout_marginTop="50dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="sans-serif-condensed"
@@ -58,6 +56,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="10dp"
+            android:autofillHints=""
             android:background="@drawable/round_border"
             android:cursorVisible="true"
             android:drawableStart="@drawable/ic_organization"
@@ -75,14 +74,13 @@
             android:textColorHighlight="@android:color/black"
             android:textColorHint="@android:color/black"
             android:textCursorDrawable="@android:color/black"
-            android:textSize="14sp"
+            android:textSize="@dimen/textFormat"
             android:typeface="normal"
             app:layout_constraintBottom_toTopOf="@+id/emailAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signUp"
-            android:autofillHints="" />
+            app:layout_constraintTop_toBottomOf="@+id/signUp" />
 
         <!-- Email Address-->
         <EditText
@@ -92,6 +90,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="10dp"
+            android:autofillHints=""
             android:background="@drawable/round_border"
             android:drawableStart="@drawable/ic_email"
             android:drawablePadding="10dp"
@@ -106,13 +105,12 @@
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/black"
             android:textCursorDrawable="@android:color/black"
-            android:textSize="14sp"
+            android:textSize="@dimen/textFormat"
             app:layout_constraintBottom_toTopOf="@+id/phoneNumber"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/organizationName"
-            android:autofillHints="" />
+            app:layout_constraintTop_toBottomOf="@+id/organizationName" />
 
         <!-- Phone Number-->
         <EditText
@@ -122,6 +120,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="10dp"
+            android:autofillHints=""
             android:background="@drawable/round_border"
             android:drawableStart="@drawable/ic_phone"
             android:drawablePadding="10dp"
@@ -137,13 +136,12 @@
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/black"
             android:textCursorDrawable="@android:color/black"
-            android:textSize="14sp"
+            android:textSize="@dimen/textFormat"
             app:layout_constraintBottom_toTopOf="@+id/textLayoutPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailAddress"
-            android:autofillHints="" />
+            app:layout_constraintTop_toBottomOf="@+id/emailAddress" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textLayoutPassword"
@@ -161,6 +159,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
+                android:autofillHints=""
                 android:background="@drawable/round_border"
                 android:drawableStart="@drawable/ic_password"
                 android:drawablePadding="10dp"
@@ -175,11 +174,10 @@
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black"
                 android:textCursorDrawable="@android:color/black"
-                android:textSize="14sp"
+                android:textSize="@dimen/textFormat"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                android:autofillHints="" />
+                app:layout_constraintStart_toStartOf="parent" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -201,6 +199,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="10dp"
+                android:autofillHints=""
                 android:background="@drawable/round_border"
                 android:drawableStart="@drawable/ic_password"
                 android:drawablePadding="10dp"
@@ -215,11 +214,10 @@
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black"
                 android:textCursorDrawable="@android:color/black"
-                android:textSize="14sp"
+                android:textSize="@dimen/textFormat"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                android:autofillHints="" />
+                app:layout_constraintStart_toStartOf="parent" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

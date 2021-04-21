@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.headstart.R;
 
-public class TrackingFragment extends Fragment {
+public class TrackTimeLineFragment extends Fragment {
     private static final String TAG = "TrackingFragment";
 
     @Nullable
