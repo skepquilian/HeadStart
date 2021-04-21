@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/contentBodyColor"
     tools:context=".Settings.SettingsActivity">
 
     <TextView
@@ -51,7 +50,7 @@
                 <TextView
                     android:id="@+id/usernameTextView"
                     style="@style/viewParent.headerText"
-                    android:text="Steve Hero"
+                    android:text="Company Name"
                     android:textSize="18sp"
                     android:layout_toEndOf="@id/profileCircleImageView"
                     android:layout_marginTop="20dp"/>
@@ -65,6 +64,7 @@
                     android:layout_toEndOf="@id/profileCircleImageView"/>
 
                 <ImageView
+                    android:id="@+id/more_arrow_image"
                     style="@style/viewParent"
                     android:src="@drawable/ic_more"
                     android:layout_alignParentEnd="true"
@@ -72,12 +72,12 @@
                     android:contentDescription="@string/profile_image" />
             </RelativeLayout>
 
-            <Switch
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/darkModeSwitch"
                 style="@style/settingsText"
                 android:drawableStart="@drawable/ic_dark_mode"
-                android:text="Dark Mode"
-                tools:ignore="UseSwitchCompatOrMaterialXml" />
+                android:text="Dark Mode"/>
+
 
             <TextView
                 style="@style/viewParent.headerText.settingsMiniTitle"
@@ -98,7 +98,8 @@
                 style="@style/viewParent.headerText.settingsMiniTitle"
                 android:text="Notifications"/>
 
-            <Switch
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/notifySwitch"
                 style="@style/settingsText"
                 android:checked="true"
                 android:drawableStart="@drawable/ic_notifications"
@@ -123,7 +124,7 @@
                 android:layout_margin="18dp"
                 android:padding="5dp"
                 android:background="@color/accent_200"
-                android:text="Logout"
+                android:text="@string/logout"
                 android:textStyle="bold"
                 app:drawableLeftCompat="@drawable/ic_logout" />
 

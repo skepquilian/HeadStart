@@ -15,8 +15,7 @@
         <!-- Application Name/Logo-->
         <TextView
             android:id="@+id/appName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/viewParent.headerText"
             android:layout_marginTop="72dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="sans-serif-smallcaps"
@@ -36,8 +35,7 @@
         <!-- Login TextView-->
         <TextView
             android:id="@+id/signUp"
-            android:layout_width="147dp"
-            android:layout_height="36dp"
+            style="@style/viewParent.headerText"
             android:fontFamily="sans-serif-condensed"
             android:text="@string/login"
             android:textAlignment="center"
@@ -71,7 +69,7 @@
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/black"
             android:textCursorDrawable="@android:color/black"
-            android:textSize="14sp"
+            android:textSize="@dimen/textFormat"
             app:layout_constraintBottom_toTopOf="@+id/textLayoutPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -89,7 +87,7 @@
             app:passwordToggleEnabled="true">
 
             <!-- Password TextView for logIn -->
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/userPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -109,7 +107,7 @@
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black"
                 android:textCursorDrawable="@android:color/black"
-                android:textSize="14sp"
+                android:textSize="@dimen/textFormat"
                 app:layout_constraintBottom_toTopOf="@+id/loginButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -194,9 +192,7 @@
 
         <ProgressBar
             android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/viewParent.headerText"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:visibility="gone"

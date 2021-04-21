@@ -27,8 +27,7 @@
 
             <ProgressBar
                 android:id="@+id/progressBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/viewParent"
                 android:layout_centerInParent="true"
                 android:visibility="visible" />
 
@@ -45,8 +44,7 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addDriver_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/viewParent"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="10dp"
