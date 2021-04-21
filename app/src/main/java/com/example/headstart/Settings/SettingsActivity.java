@@ -38,13 +38,44 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         modeSwitch = findViewById(R.id.darkModeSwitch);
         notificationSwitch = findViewById(R.id.notifySwitch);
 
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        darkModeToggle();
+    }
+
+    /**
+     * Remove inter-activity transition to avoid screen tossing on tapping bottom navigation items
+     */
+    @Override
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
+    }
+
+
+    /**
+     * Onclick listener
+     */
+    @Override
+    public void onClick(View v) {
+
+        if (v.getId() == R.id.logoutBtn) {
+            logoutUser();
+        }
+    }
+
+    /**
+     * Toggle Dark mode switch to Light mode function
+     */
+    public void darkModeToggle(){
         sharedPreferences = getSharedPreferences("night", 0);
         Boolean boolValue = sharedPreferences.getBoolean("night_mode", true);
         if (boolValue){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             modeSwitch.setChecked(true);
-            moreImage.setImageResource(R.drawable.ic_more);
         }
 
         modeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -68,32 +99,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 }
             }
         });
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    /**
-     * Remove inter-activity transition to avoid screen tossing on tapping bottom navigation items
-     */
-    @Override
-    public void onPause() {
-        super.onPause();
-        overridePendingTransition(0, 0);
-    }
-
-
-    /**
-     * Onclick listener
-     */
-    @Override
-    public void onClick(View v) {
-
-        if (v.getId() == R.id.logoutBtn) {
-            logoutUser();
-        }
     }
 
 

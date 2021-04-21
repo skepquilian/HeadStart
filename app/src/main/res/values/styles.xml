@@ -25,7 +25,7 @@
     </style>
 
     <style name="viewParent.headerText.settingsMiniTitle">
-        <item name="android:textColor">#5D5C5C</item>
+        <item name="android:textColor">@color/miniTitle2</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:textSize">12sp</item>
         <item name="android:layout_marginTop">20dp</item>

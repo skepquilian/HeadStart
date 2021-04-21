@@ -10,7 +10,9 @@
     <TextView
         android:id="@+id/header_text_title"
         style="@style/viewParent.headerText"
+        android:background="@color/miniTitle"
         android:text="@string/my_settings"
+        android:textColor="@color/white"
         android:padding="10dp"/>
 
     <ScrollView
@@ -37,51 +39,52 @@
                     android:layout_height="80dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    app:cardCornerRadius="35dp">
+                    app:cardCornerRadius="60dp">
 
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:src="@drawable/person"
-                        android:contentDescription="@string/profile_image" />
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/profile_image"
+                        android:src="@drawable/person" />
                 </androidx.cardview.widget.CardView>
 
 
                 <TextView
                     android:id="@+id/usernameTextView"
                     style="@style/viewParent.headerText"
-                    android:text="Company Name"
-                    android:textSize="18sp"
+                    android:layout_marginTop="20dp"
                     android:layout_toEndOf="@id/profileCircleImageView"
-                    android:layout_marginTop="20dp"/>
+                    android:text="Company Name"
+                    android:textSize="18sp" />
 
                 <TextView
                     style="@style/viewParent.headerText"
-                    android:text="Edit personal details"
-                    android:textSize="16sp"
-                    android:textColor="#5D5C5C"
                     android:layout_below="@id/usernameTextView"
-                    android:layout_toEndOf="@id/profileCircleImageView"/>
+                    android:layout_toEndOf="@id/profileCircleImageView"
+                    android:text="Edit personal details"
+                    android:textColor="#5D5C5C"
+                    android:textSize="16sp" />
 
                 <ImageView
                     android:id="@+id/more_arrow_image"
                     style="@style/viewParent"
-                    android:src="@drawable/ic_more"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:contentDescription="@string/profile_image" />
+                    android:contentDescription="@string/profile_image"
+                    android:src="@drawable/ic_more" />
             </RelativeLayout>
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/darkModeSwitch"
                 style="@style/settingsText"
                 android:drawableStart="@drawable/ic_dark_mode"
-                android:text="Dark Mode"/>
+                android:text="Dark Mode" />
 
 
             <TextView
                 style="@style/viewParent.headerText.settingsMiniTitle"
-                android:text="Profile"/>
+                android:text="Profile" />
 
             <TextView
                 style="@style/viewParent.headerText.settingsTextIcon"
@@ -96,7 +99,7 @@
 
             <TextView
                 style="@style/viewParent.headerText.settingsMiniTitle"
-                android:text="Notifications"/>
+                android:text="Notifications" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/notifySwitch"
@@ -108,7 +111,7 @@
 
             <TextView
                 style="@style/viewParent.headerText.settingsMiniTitle"
-                android:text="Region"/>
+                android:text="Region" />
 
             <TextView
                 style="@style/viewParent.headerText.settingsTextIcon"
@@ -120,10 +123,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:layout_margin="18dp"
-                android:padding="5dp"
                 android:background="@color/accent_200"
+                android:gravity="center"
+                android:padding="5dp"
                 android:text="@string/logout"
                 android:textStyle="bold"
                 app:drawableLeftCompat="@drawable/ic_logout" />

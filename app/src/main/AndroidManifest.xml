@@ -50,8 +50,7 @@
         <activity android:name=".MainEntryActivity" />
         <!-- Home -->
         <activity
-            android:name=".Home.HomeActivity"
-            android:theme="@style/ActivitiesTheme">
+            android:name=".Home.HomeActivity">
 
             <!--
             The meta-data tag is required if you support API level 15 and lower >

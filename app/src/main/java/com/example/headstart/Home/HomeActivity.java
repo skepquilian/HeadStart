@@ -39,9 +39,14 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         FloatingActionButton floatingActionButton = findViewById(R.id.map_floatBar);
         floatingActionButton.setOnClickListener(this);
 
+
+        //To hide actionBar
+        getSupportActionBar().hide();
+
         //responsible for swapping between fragments(tracking, home, notifications)
         setupViewPager();
     }
+
 
     @Override
     protected void onStart() {
