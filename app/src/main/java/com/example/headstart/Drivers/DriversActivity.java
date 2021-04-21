@@ -171,6 +171,8 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         //
         alertDialogBuilder.setView(addDriverDialog);
         alertDialog = alertDialogBuilder.create();
+                //make root parent view transparent
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         alertDialog.show();
 
         //add button
