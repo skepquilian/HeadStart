@@ -2,6 +2,7 @@
 <resources>
     <color name="accent_100">#03DAC5</color>
     <color name="accent_200">#FF018786</color>
+    <color name="accent_300">#FF009789</color>
     <color name="appBackground">#1E1D20</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFFFF</color>

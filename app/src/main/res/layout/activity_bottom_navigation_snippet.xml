@@ -20,6 +20,7 @@
                 android:layout_alignParentBottom="true"
                 android:background="@android:color/transparent"
                 app:itemIconSize="20dp"
+                app:itemIconTint="@color/miniTitle"
                 app:itemTextColor="@color/black"
                 app:labelVisibilityMode="labeled"
                 app:menu="@menu/bottom_menu_items" />

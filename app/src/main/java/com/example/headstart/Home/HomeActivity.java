@@ -133,8 +133,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
 
         tabLayout.getTabAt(0).setIcon(ICONS[0]);
-        tabLayout.getTabAt(1).setText("Home");
-        tabLayout.getTabAt(2).setIcon(ICONS[1]);
+        tabLayout.getTabAt(1).setIcon(ICONS[1]);
 
 
         //set the home fragment to be current page when activity is loaded
@@ -148,7 +147,6 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(0);
         menuItem.setChecked(true);
-
 
         bottomNavigationView.setBackground(null);
         bottomNavigationView.getMenu().getItem(2).setEnabled(false);

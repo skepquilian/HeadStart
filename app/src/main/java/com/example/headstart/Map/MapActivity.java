@@ -36,6 +36,9 @@ public class MapActivity extends AppCompatActivity implements BottomNavigationVi
 
         floatingActionButton = findViewById(R.id.map_floatBar);
         floatingActionButton.setOnClickListener(this);
+
+        //To hide actionBar
+        getSupportActionBar().hide();
     }
 
     @Override

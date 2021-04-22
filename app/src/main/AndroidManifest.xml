@@ -24,15 +24,13 @@
         <activity
             android:name=".Settings.SettingsActivity"
             android:label="Settings"
-            android:parentActivityName=".Home.HomeActivity"
-            android:theme="@style/AppTheme."/>
+            android:parentActivityName=".Home.HomeActivity"/>
 
         <!-- Drivers -->
         <activity
             android:name=".Drivers.DriversActivity"
             android:label="Drivers"
-            android:parentActivityName=".Home.HomeActivity"
-            android:theme="@style/ActivitiesTheme" />
+            android:parentActivityName=".Home.HomeActivity"/>
 
         <!-- Maps -->
         <activity
@@ -44,8 +42,7 @@
         <activity
             android:name=".Trucks.TrucksActivity"
             android:label="MyVehicles"
-            android:parentActivityName=".Home.HomeActivity"
-            android:theme="@style/ActivitiesTheme" />
+            android:parentActivityName=".Home.HomeActivity"/>
         <!-- MainEntry of App -->
         <activity android:name=".MainEntryActivity" />
         <!-- Home -->

@@ -8,27 +8,11 @@
 
     <!--TODO HeadStart Logo-->
 
-    <TextView
-        android:id="@+id/h_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/start_logo"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="cursive"
-        android:text="H"
-        android:textColor="@color/black"
-        android:textSize="60sp" />
 
-    <TextView
-        android:id="@+id/s_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/start_logo"
-        android:layout_toEndOf="@id/h_text"
-        android:fontFamily="cursive"
-        android:text="S"
-        android:textColor="@color/accent_100"
-        android:textSize="60sp" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:src="@drawable/headstart1" />
 
     <ImageView
         android:id="@+id/start_logo"
@@ -38,38 +22,6 @@
         android:contentDescription="logo for application"
         android:scaleType="centerCrop"
         android:src="@drawable/headstartlogo" />
-
-    <TextView
-        android:id="@+id/head_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="79dp"
-        android:text="Head"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="79dp"
-        android:layout_toEndOf="@id/head_text"
-        android:text="Start"
-        android:textColor="@color/accent_100"
-        android:textSize="20sp" />
-
-    <!--    <ProgressBar-->
-    <!--        android:layout_width="30dp"-->
-    <!--        android:layout_height="50dp"-->
-    <!--        android:layout_alignParentEnd="true"-->
-    <!--        android:layout_alignParentBottom="true"-->
-    <!--        android:layout_marginEnd="22dp"-->
-    <!--        android:progressTint="@color/black"-->
-    <!--        android:layout_marginBottom="226dp"-->
-    <!--        android:visibility="visible" />-->
 
 
 </RelativeLayout>

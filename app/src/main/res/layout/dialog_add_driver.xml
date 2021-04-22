@@ -19,6 +19,7 @@
                 android:id="@+id/driver_card_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/accent_300"
                 app:cardCornerRadius="20dp">
 
                 <LinearLayout

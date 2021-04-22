@@ -1,17 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--    Action Bar for page activities (HomePage, TruckPage, DriversPage-->
-    <style name="ActivitiesTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/accent_200</item>
-        <item name="colorPrimaryVariant">@color/accent_100</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/accent_200</item>
-        <item name="colorSecondaryVariant">@color/black</item>
-        <item name="colorOnSecondary">@color/accent_100</item>
-    </style>
-
     <!--styles-->
     <style name="viewParent">
         <item name="android:layout_width">wrap_content</item>
