@@ -133,7 +133,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
 
         tabLayout.getTabAt(0).setIcon(ICONS[0]);
-        tabLayout.getTabAt(1).setIcon(ICONS[1]);
+        tabLayout.getTabAt(1).setText(R.string.app_name);
+        tabLayout.getTabAt(2).setIcon(ICONS[1]);
 
 
         //set the home fragment to be current page when activity is loaded

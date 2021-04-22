@@ -232,7 +232,7 @@
             android:background="@color/white"
             android:text="@string/register_btn"
             android:textAlignment="center"
-            android:textColor="@android:color/black"
+            android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/loginUser"

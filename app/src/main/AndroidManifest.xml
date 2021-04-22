@@ -61,11 +61,13 @@
         <!-- Register -->
         <activity
             android:name=".AuthenticateActivities.TruckOwnerRegisterForm"
-            android:parentActivityName=".AuthenticateActivities.TruckOwnerLoginForm" />
+            android:parentActivityName=".AuthenticateActivities.TruckOwnerLoginForm"
+            android:theme="@style/AppTheme."/>
         <!-- Login -->
         <activity
             android:name=".AuthenticateActivities.TruckOwnerLoginForm"
-            android:parentActivityName=".MainEntryActivity" />
+            android:parentActivityName=".MainEntryActivity"
+            android:theme="@style/AppTheme."/>
         <!-- Reset Password -->
         <activity
             android:name=".AuthenticateActivities.ResetPassword"
