@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Trucks.TrucksActivity">
+    tools:context=".MaintenanceSchedule.MaintenanceActivity">
 
     <TextView
         style="@style/viewParent"
-        android:background="@color/black"
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
         android:textSize="24sp"
-        android:text="trucks activity, !To Do"
-        android:textColor="@color/white"/>
+        android:text="maintenance activity, !To Do"
+        android:textColor="@color/black"/>
 
     <!-- Navigation Menu Bar-->
     <include

@@ -22,7 +22,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editTextEmail, editTextPassword;
     private ProgressBar progressBar;
@@ -63,13 +63,13 @@ public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnCli
         int viewId = v.getId();
 
         if (viewId == R.id.forgetPassword) {
-            startActivity(new Intent(TruckOwnerLoginForm.this, ResetPassword.class));
+            startActivity(new Intent(LoginActivity.this, ResetPassword.class));
         }
         else if (viewId == R.id.loginButton) {
             loginUser();
         }
         else if (viewId == R.id.registerButton) {
-            startActivity(new Intent(TruckOwnerLoginForm.this, TruckOwnerRegisterForm.class));
+            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         }
 
     }
@@ -112,14 +112,14 @@ public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnCli
                 if (task.isSuccessful()) {
                     if (mAuth.getCurrentUser().isEmailVerified()) {
                         //Redirect user to Home activity if Login success
-                        startActivity(new Intent(TruckOwnerLoginForm.this, HomeActivity.class));
+                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                         //Show success message
-                        Toast.makeText(TruckOwnerLoginForm.this, "Login Successful", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
                     } else {
-                        Toast.makeText(TruckOwnerLoginForm.this, "Please VERIFY your account ", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, "Please VERIFY your account ", Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    Toast.makeText(TruckOwnerLoginForm.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
                 progressBar.setVisibility(View.GONE);
 
@@ -130,7 +130,7 @@ public class TruckOwnerLoginForm extends AppCompatActivity implements View.OnCli
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(TruckOwnerLoginForm.this, MainEntryActivity.class));
+        startActivity(new Intent(LoginActivity.this, MainEntryActivity.class));
         finish();
     }
 }

@@ -11,8 +11,8 @@
 
     <item
         android:id="@+id/nav_trucks"
-        android:title="@string/truck_nav"
-        android:icon="@drawable/ic_action_truck"
+        android:title="@string/maintenance_nav"
+        android:icon="@drawable/ic_maintenance"
         />
 
     <item

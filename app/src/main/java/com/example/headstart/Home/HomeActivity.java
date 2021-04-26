@@ -17,7 +17,7 @@ import com.example.headstart.Map.MapActivity;
 import com.example.headstart.PagerAdapter;
 import com.example.headstart.R;
 import com.example.headstart.Settings.SettingsActivity;
-import com.example.headstart.Trucks.TrucksActivity;
+import com.example.headstart.MaintenanceSchedule.MaintenanceActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -87,7 +87,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
             return true;
         } else if (itemId == R.id.nav_trucks) {
             //truck activity
-            startActivity(new Intent(this, TrucksActivity.class));
+            startActivity(new Intent(this, MaintenanceActivity.class));
             return true;
 
         } else if (itemId == R.id.nav_map) {
@@ -113,7 +113,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 
         //add Fragments (home, tracking, notification) to PagerAdapter
-        pagerAdapter.addFragment(new TrackTimeLineFragment());
+        pagerAdapter.addFragment(new TrackingDetail());
         pagerAdapter.addFragment(new HomeFragment());
         pagerAdapter.addFragment(new NotificationFragment());
 
@@ -127,14 +127,15 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
         //An array containing icons from the drawable directory
         final int[] ICONS = new int[]{
-                R.drawable.ic_truck,
-                R.drawable.ic_notify,
+                R.drawable.ic_action_truck,
+                R.string.app_name,
+                R.drawable.ic_notifications,
         };
 
 
         tabLayout.getTabAt(0).setIcon(ICONS[0]);
-        tabLayout.getTabAt(1).setText(R.string.app_name);
-        tabLayout.getTabAt(2).setIcon(ICONS[1]);
+        tabLayout.getTabAt(1).setText(ICONS[1]);
+        tabLayout.getTabAt(2).setIcon(ICONS[2]);
 
 
         //set the home fragment to be current page when activity is loaded

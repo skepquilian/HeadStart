@@ -10,7 +10,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.example.headstart.AuthenticateActivities.TruckOwnerLoginForm;
+import com.example.headstart.AuthenticateActivities.LoginActivity;
 
 public class MainEntryActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -34,7 +34,7 @@ public class MainEntryActivity extends AppCompatActivity implements View.OnClick
 
           //User clicks supplier btn redirect to Login Page
         if (v.getId() == R.id.supplierbtn) {
-            startActivity(new Intent(this, TruckOwnerLoginForm.class));
+            startActivity(new Intent(this, LoginActivity.class));
         }
         // Or if user is customer then redirect to customer page....
         /*if (v.getId() == R.id.customerbtn){

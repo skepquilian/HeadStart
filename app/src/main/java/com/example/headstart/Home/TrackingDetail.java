@@ -11,13 +11,11 @@ import androidx.fragment.app.Fragment;
 
 import com.example.headstart.R;
 
-public class TrackTimeLineFragment extends Fragment {
-    private static final String TAG = "TrackingFragment";
+public class TrackingDetail extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_tracking, container, false);
-        return view;
+        return inflater.inflate(R.layout.fragment_tracking, container, false);
     }
 }

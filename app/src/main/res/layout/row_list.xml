@@ -3,14 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="wrap_content"
     app:cardCornerRadius="20dp"
+    android:outlineAmbientShadowColor="@color/black"
     android:layout_margin="5dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:padding="10dp">
 
         <TextView
@@ -20,8 +20,7 @@
             android:layout_marginBottom="36dp"
             android:text="Firstname"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/d_LastName"
@@ -31,8 +30,7 @@
             android:text="Lastname"
             android:textColor="@color/black"
             android:layout_marginStart="3dp"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:textSize="14sp"
             android:layout_toEndOf="@id/d_FirstName"/>
 
         <TextView
@@ -42,8 +40,7 @@
             android:layout_below="@id/d_FirstName"
             android:text="email"
             android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/driverID"
@@ -52,8 +49,7 @@
             android:layout_alignParentEnd="true"
             android:text="driver id"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/d_PhoneNumber"
@@ -62,8 +58,7 @@
             android:layout_below="@id/d_Email"
             android:text="phone"
             android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/vehicleID"
@@ -73,8 +68,7 @@
             android:layout_alignParentEnd="true"
             android:text="Truck number"
             android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="14sp"/>
 
     </RelativeLayout>
 

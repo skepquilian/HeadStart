@@ -13,7 +13,7 @@ import com.example.headstart.Drivers.DriversActivity;
 import com.example.headstart.Home.HomeActivity;
 import com.example.headstart.R;
 import com.example.headstart.Settings.SettingsActivity;
-import com.example.headstart.Trucks.TrucksActivity;
+import com.example.headstart.MaintenanceSchedule.MaintenanceActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -79,7 +79,7 @@ public class MapActivity extends AppCompatActivity implements BottomNavigationVi
             return true;
         } else if (itemId == R.id.nav_trucks) {
             //truck activity
-            startActivity(new Intent(this, TrucksActivity.class));
+            startActivity(new Intent(this, MaintenanceActivity.class));
             return true;
         } else if (itemId == R.id.nav_map) {
             //map activity

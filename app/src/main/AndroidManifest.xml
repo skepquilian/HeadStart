@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.headstart">
+    package="com.example.headstart"
+    >
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -8,7 +10,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
+
+
         <!-- Entry Logo display Launcher -->
         <activity
             android:name=".SplashActivity"
@@ -38,9 +42,9 @@
             android:label="Location"
             android:parentActivityName=".Home.HomeActivity"/>
 
-        <!-- Vehicles -->
+        <!-- Vehicle maintenance -->
         <activity
-            android:name=".Trucks.TrucksActivity"
+            android:name=".MaintenanceSchedule.MaintenanceActivity"
             android:label="MyVehicles"
             android:parentActivityName=".Home.HomeActivity"/>
         <!-- MainEntry of App -->
@@ -60,19 +64,19 @@
         </activity>
         <!-- Register -->
         <activity
-            android:name=".AuthenticateActivities.TruckOwnerRegisterForm"
-            android:parentActivityName=".AuthenticateActivities.TruckOwnerLoginForm"
+            android:name=".AuthenticateActivities.RegisterActivity"
+            android:parentActivityName=".AuthenticateActivities.LoginActivity"
             android:theme="@style/AppTheme."/>
         <!-- Login -->
         <activity
-            android:name=".AuthenticateActivities.TruckOwnerLoginForm"
+            android:name=".AuthenticateActivities.LoginActivity"
             android:parentActivityName=".MainEntryActivity"
             android:theme="@style/AppTheme."/>
         <!-- Reset Password -->
         <activity
             android:name=".AuthenticateActivities.ResetPassword"
             android:label="Reset Password"
-            android:parentActivityName=".AuthenticateActivities.TruckOwnerLoginForm" />
+            android:parentActivityName=".AuthenticateActivities.LoginActivity" />
     </application>
 
 </manifest>

@@ -91,7 +91,7 @@ public class ResetPassword extends AppCompatActivity implements View.OnClickList
     //On back press to redirect to login page
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(ResetPassword.this, TruckOwnerLoginForm.class));
+        startActivity(new Intent(ResetPassword.this, LoginActivity.class));
         finish();
     }
 }

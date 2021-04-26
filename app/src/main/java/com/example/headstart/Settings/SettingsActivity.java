@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 
-import com.example.headstart.AuthenticateActivities.TruckOwnerLoginForm;
+import com.example.headstart.AuthenticateActivities.LoginActivity;
 import com.example.headstart.Home.HomeActivity;
 import com.example.headstart.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -107,7 +107,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
      */
     public void logoutUser() {
         FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(SettingsActivity.this, TruckOwnerLoginForm.class));
+        startActivity(new Intent(SettingsActivity.this, LoginActivity.class));
         Toast.makeText(SettingsActivity.this, "Logged out", Toast.LENGTH_SHORT).show();
         Log.i("Logging User Out", "Successfully Signed out");
     }

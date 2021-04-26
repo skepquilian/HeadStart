@@ -22,7 +22,7 @@ import com.example.headstart.Home.HomeActivity;
 import com.example.headstart.Map.MapActivity;
 import com.example.headstart.R;
 import com.example.headstart.Settings.SettingsActivity;
-import com.example.headstart.Trucks.TrucksActivity;
+import com.example.headstart.MaintenanceSchedule.MaintenanceActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -98,10 +98,11 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         updateNavigationBarState();
 
 
-
+        //Load data
         driverDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //before data is fetched from firebase, clear list
                 driverList.clear();
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
@@ -122,7 +123,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                    //
             }
         });
     }
@@ -160,7 +161,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         final View addDriverDialog = getLayoutInflater().inflate(R.layout.dialog_add_driver, null);
 
 
-        //Text boxes
+        //EditText boxes
         editFirstName = addDriverDialog.findViewById(R.id.driverFirstName);
         editLastName = addDriverDialog.findViewById(R.id.driverLastName);
         editPhoneNumber = addDriverDialog.findViewById(R.id.driverPhoneNumber);
@@ -171,6 +172,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         //
         alertDialogBuilder.setView(addDriverDialog);
         alertDialog = alertDialogBuilder.create();
+
                 //make root parent view transparent
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         alertDialog.show();
@@ -233,43 +235,48 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            // User is signed in
+            try {
+                // User is signed in
 
-            //Create unique string id and stores in driver_Id
-            String driver_Id = driverDatabaseRef.push().getKey();
+                //Create unique string id and stores in driver_Id
+                String driver_Id = driverDatabaseRef.push().getKey();
 
-            //add driver info when user clicks add button
-            //Create Driver info with these below
-            final Drivers drivers = new Drivers(
-                    driverFirstName,
-                    driverLastName,
-                    driverPhone,
-                    driverEmail,
-                    driverID,
-                    vehicleID
-            );
+                //add driver info when user clicks add button
+                //Create Driver info with these below
+                final Drivers drivers = new Drivers(
+                        driverFirstName,
+                        driverLastName,
+                        driverPhone,
+                        driverEmail,
+                        driverID,
+                        vehicleID
+                );
 
-            driverDatabaseRef.child(driver_Id)
-                    .setValue(drivers).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()){
-                        editFirstName.setText("");
-                        editLastName.setText("");
-                        editPhoneNumber.setText("");
-                        editEmail.setText("");
-                        editDriverID.setText("");
-                        editVehicleID.setText("");
+                driverDatabaseRef.child(driver_Id)
+                        .setValue(drivers).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            editFirstName.setText("");
+                            editLastName.setText("");
+                            editPhoneNumber.setText("");
+                            editEmail.setText("");
+                            editDriverID.setText("");
+                            editVehicleID.setText("");
 
-                        Toast.makeText(DriversActivity.this, "Added successfully", Toast.LENGTH_LONG).show();
+                            Toast.makeText(DriversActivity.this, "Added successfully", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            Toast.makeText(DriversActivity.this, "Error Please Try again", Toast.LENGTH_LONG).show();
+                        }
+
                     }
-                    else {
-                        Toast.makeText(DriversActivity.this, "Error Please Try again", Toast.LENGTH_LONG).show();
-                    }
+                });
+            }catch (Exception e){
+                Toast.makeText(DriversActivity.this, "Erro "+ e, Toast.LENGTH_LONG).show();
+            }
 
-                }
-            });
-            // TODO " work on float BTN "
+            // TODO " work on float BTN to handle submission error "
 
 
         } else {
@@ -293,7 +300,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
             return true;
         } else if (itemId == R.id.nav_trucks) {
             //truck activity
-            startActivity(new Intent(this, TrucksActivity.class));
+            startActivity(new Intent(this, MaintenanceActivity.class));
             return true;
         } else if (itemId == R.id.nav_map) {
             //truck activity

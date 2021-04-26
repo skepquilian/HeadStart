@@ -1,5 +1,6 @@
 package com.example.headstart.AuthenticateActivities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
@@ -12,7 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.example.headstart.R;
 import com.example.headstart.Utility;
@@ -22,7 +25,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class TruckOwnerRegisterForm extends AppCompatActivity implements View.OnClickListener {
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editTextOrganizationName, editTextEmail,
             editTextPhone, editTextPassword, editTextPasswordConfirm;
@@ -69,7 +72,7 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
         int view = v.getId();
 
         if (view == R.id.appName || view == R.id.loginUser) {
-            startActivity(new Intent(this, TruckOwnerLoginForm.class));
+            startActivity(new Intent(this, LoginActivity.class));
         }
         else if (view == R.id.registerButton) {
             registerUser();
@@ -132,6 +135,7 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
 
         //set progress Bar to visible when register button is clicked
         progressBar.setVisibility(View.VISIBLE);
+
         mAuth.createUserWithEmailAndPassword(emailAddress, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -154,16 +158,16 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
                             //check if user is registered successfully
                             if (task.isSuccessful()) {
                                 //Redirect to Login Page if registration is successful
-                                startActivity(new Intent(TruckOwnerRegisterForm.this, TruckOwnerLoginForm.class));
-                                Toast.makeText(TruckOwnerRegisterForm.this, "Account registered...VERIFY email Now", Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                Toast.makeText(RegisterActivity.this, "Account registered...VERIFY email Now", Toast.LENGTH_LONG).show();
                             } else {
-                                Toast.makeText(TruckOwnerRegisterForm.this, "Registration Failed. TRY AGAIN", Toast.LENGTH_LONG).show();
+                                Toast.makeText(RegisterActivity.this, "Registration Failed. TRY AGAIN", Toast.LENGTH_LONG).show();
                             }
                             progressBar.setVisibility(View.GONE);
                         }
                     });
                 } else {
-                    Toast.makeText(TruckOwnerRegisterForm.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
                 }
             }
@@ -174,6 +178,6 @@ public class TruckOwnerRegisterForm extends AppCompatActivity implements View.On
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(TruckOwnerRegisterForm.this, TruckOwnerLoginForm.class));
+        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
     }
 }
