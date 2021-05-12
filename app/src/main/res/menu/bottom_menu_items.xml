@@ -5,30 +5,25 @@
 
     <item
         android:id="@+id/nav_home"
-        android:title="@string/home_nav"
         android:icon="@drawable/ic_action_home"
-    />
+        android:title="@string/home_nav" />
 
     <item
-        android:id="@+id/nav_trucks"
-        android:title="@string/maintenance_nav"
+        android:id="@+id/nav_maintenance"
         android:icon="@drawable/ic_maintenance"
-        />
+        android:title="@string/maintenance_nav" />
 
     <item
         android:id="@+id/nav_map"
-        android:title="@string/map_nav"
-        />
+        android:title="@string/map_nav" />
 
     <item
         android:id="@+id/nav_drivers"
-        android:title="@string/drivers_nav"
         android:icon="@drawable/ic_action_drivers"
-        />
+        android:title="@string/drivers_nav" />
 
     <item
         android:id="@+id/nav_settings"
-        android:title="@string/settings_nav"
         android:icon="@drawable/ic_action_settings"
-        />
+        android:title="@string/settings_nav" />
 </menu>

@@ -8,196 +8,194 @@
     tools:context=".Drivers.DriversActivity">
 
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/driver_card_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/driver_card_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/accent_300"
-                app:cardCornerRadius="20dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/text_FirstName"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_weight="1"
-                        android:background="@color/white">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/driverFirstName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:cursorVisible="true"
-                            android:drawableEnd="@drawable/person"
-                            android:hint="firstname"
-                            android:inputType="textPersonName"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/black"
-                            android:textCursorDrawable="@android:color/black"
-                            android:textSize="@dimen/textFormat" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/text_LastName"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_weight="1"
-                        android:background="@color/white">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/driverLastName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:cursorVisible="true"
-                            android:drawableEnd="@drawable/person"
-                            android:hint="lastname"
-                            android:inputType="textPersonName"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/black"
-                            android:textCursorDrawable="@android:color/black"
-                            android:textSize="@dimen/textFormat" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/text_PhoneNumber"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_weight="1"
-                        android:background="@color/white">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/driverPhoneNumber"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:cursorVisible="true"
-                            android:drawableEnd="@drawable/ic_phone"
-                            android:hint="phone"
-                            android:inputType="phone"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/black"
-                            android:textCursorDrawable="@android:color/black"
-                            android:textSize="@dimen/textFormat" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/_text_EmailAddress"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_weight="1"
-                        android:background="@color/white">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/driverEmailAddress"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:cursorVisible="true"
-                            android:drawableEnd="@drawable/ic_email"
-                            android:hint="Enter email (optional)"
-                            android:inputType="textEmailAddress"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/black"
-                            android:textCursorDrawable="@android:color/black"
-                            android:textSize="@dimen/textFormat" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/text_driver_Id"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_weight="1"
-                        android:background="@color/white">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/driver_Id"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:cursorVisible="true"
-                            android:hint="ID number"
-                            android:inputType="text"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/black"
-                            android:textCursorDrawable="@android:color/black"
-                            android:textSize="@dimen/textFormat" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/text_vehicle_Id"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:background="@color/white">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/vehicle_Id"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:cursorVisible="true"
-                            android:hint="Vehicle Number"
-                            android:inputType="text"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/black"
-                            android:textCursorDrawable="@android:color/black"
-                            android:textSize="@dimen/textFormat" />
-                    </com.google.android.material.textfield.TextInputLayout>
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/cancel_float_Btn"
-                    style="@style/viewParent"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="4dp"
-                    android:backgroundTint="@color/white"
-                    android:contentDescription="@string/submit_driver_details_to_list"
-                    android:src="@drawable/ic_add_driver_cancel"
-                    app:fabSize="mini" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_FirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/white">
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/addDriver_float_Btn"
-                    style="@style/viewParent"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:backgroundTint="@color/white"
-                    android:contentDescription="@string/submit_driver_details_to_list"
-                    android:src="@drawable/ic_submit_driver_detail"
-                    app:fabSize="mini" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/driverFirstName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="true"
+                        android:hint="firstname"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:textCursorDrawable="@android:color/black"
+                        android:textSize="@dimen/textFormat" />
+                </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_LastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/white">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/driverLastName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="true"
+                        android:hint="lastname"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:textCursorDrawable="@android:color/black"
+                        android:textSize="@dimen/textFormat" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_PhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/white">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/driverPhoneNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="true"
+                        android:drawableEnd="@drawable/ic_phone"
+                        android:hint="phone"
+                        android:inputType="phone"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:textCursorDrawable="@android:color/black"
+                        android:textSize="@dimen/textFormat" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/_text_EmailAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/white">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/driverEmailAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="true"
+                        android:drawableEnd="@drawable/ic_email"
+                        android:hint="Enter email (optional)"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:textCursorDrawable="@android:color/black"
+                        android:textSize="@dimen/textFormat" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_driver_Id"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/white">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/driver_Id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="true"
+                        android:hint="ID number"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:textCursorDrawable="@android:color/black"
+                        android:textSize="@dimen/textFormat" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_vehicle_Id"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/white">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/vehicle_Id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="true"
+                        android:hint="Vehicle Number"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:textCursorDrawable="@android:color/black"
+                        android:textSize="@dimen/textFormat" />
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/cancel_float_Btn"
+                style="@style/viewParent"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="4dp"
+                android:backgroundTint="@color/white"
+                android:contentDescription="@string/submit_driver_details_to_list"
+                android:src="@drawable/ic_add_driver_cancel"
+                app:fabSize="normal" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addDriver_float_Btn"
+                style="@style/viewParent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:backgroundTint="@color/white"
+                android:contentDescription="@string/submit_driver_details_to_list"
+                android:src="@drawable/ic_submit_driver_detail"
+                app:fabSize="normal" />
 
         </LinearLayout>
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="@style/viewParent"
-            android:layout_marginStart="180dp"
-            android:layout_marginTop="400dp"
-            android:visibility="gone" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/viewParent"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="400dp"
+        android:visibility="gone" />
 </RelativeLayout>
 
 

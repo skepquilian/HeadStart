@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.headstart.Home.HomeActivity;
 import com.example.headstart.MainEntryActivity;
 import com.example.headstart.R;
-import com.example.headstart.Utility;
+import com.example.headstart.Utility.PasswordUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             editTextPassword.requestFocus();
             return;
         }
-        if (!Utility.PASSWORD_PATTERN.matcher(userPassword).matches()) {
+        if (!PasswordUtils.PASSWORD_PATTERN.matcher(userPassword).matches()) {
             editTextPassword.setError("Wrong Password'");
             editTextPassword.requestFocus();
             return;

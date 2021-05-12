@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,7 @@ public class MaintenanceActivity extends AppCompatActivity implements BottomNavi
         View.OnClickListener {
 
     private BottomNavigationView bottomNavigationView;
+    private TextView taskTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,9 @@ public class MaintenanceActivity extends AppCompatActivity implements BottomNavi
 
         FloatingActionButton mapFloatBtn = findViewById(R.id.map_floatBar);
         mapFloatBtn.setOnClickListener(this);
+
+        taskTextView = findViewById(R.id.task_id);
+        taskTextView.setOnClickListener(this);
 
 
     }
@@ -60,10 +65,12 @@ public class MaintenanceActivity extends AppCompatActivity implements BottomNavi
         int item = v.getId();
 
         if (item == R.id.map_floatBar) {
-            startActivity(new Intent(MaintenanceActivity.this, MapActivity.class));
+            startActivity(new Intent(this, MapActivity.class));
             //TODO call toast here
         }
-
+        else if(item == R.id.task_id) {
+            startActivity(new Intent(this, TasksActivity.class));
+        }
     }
 
     /**
@@ -78,7 +85,7 @@ public class MaintenanceActivity extends AppCompatActivity implements BottomNavi
             //home activity
             startActivity(new Intent(this, HomeActivity.class));
             return true;
-        } else if (itemId == R.id.nav_trucks) {
+        } else if (itemId == R.id.nav_maintenance) {
             //truck activity
             startActivity(new Intent(this, MaintenanceActivity.class));
             return true;

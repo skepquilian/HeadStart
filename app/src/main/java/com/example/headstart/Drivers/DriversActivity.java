@@ -1,14 +1,16 @@
 package com.example.headstart.Drivers;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,12 +19,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.headstart.Home.HomeActivity;
+import com.example.headstart.MaintenanceSchedule.MaintenanceActivity;
 import com.example.headstart.Map.MapActivity;
 import com.example.headstart.R;
 import com.example.headstart.Settings.SettingsActivity;
-import com.example.headstart.MaintenanceSchedule.MaintenanceActivity;
+import com.example.headstart.Utility.NetworkChangeListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -41,6 +45,7 @@ import java.util.ArrayList;
 public class DriversActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
         View.OnClickListener {
 
+    private static final String TAG = "DriversActivity";
     private BottomNavigationView bottomNavigationView;
     private FloatingActionButton addDriverFloatBtn;
     private AlertDialog alertDialog;
@@ -53,8 +58,9 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
     private TextInputEditText editFirstName, editLastName, editPhoneNumber,
             editEmail, editDriverID, editVehicleID;
 
-    private ProgressBar progressBar;
     private TextView fetchDataTextView;
+
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     FirebaseAuth auth;
 
@@ -71,7 +77,6 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
 
         addDriverFloatBtn = findViewById(R.id.addDriver_fab);
         addDriverFloatBtn.setOnClickListener(this);
-
 
 
         FloatingActionButton mapFloatBtn = findViewById(R.id.map_floatBar);
@@ -92,44 +97,56 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
 
     }
 
+
     @Override
     protected void onStart() {
         super.onStart();
         updateNavigationBarState();
 
-
-        //Load data
-        driverDatabaseRef.addValueEventListener(new ValueEventListener() {
+        final SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.swiperefresh);
+        Log.d(TAG, "onStart: Refresh page when user swipe down");
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //before data is fetched from firebase, clear list
-                driverList.clear();
+            public void onRefresh() {
+                IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+                registerReceiver(networkChangeListener, intentFilter);
+                //Load data
+                driverDatabaseRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        //before data is fetched from firebase, clear list
+                        driverList.clear();
 
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Drivers drivers = dataSnapshot.getValue(Drivers.class);
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            Drivers drivers = dataSnapshot.getValue(Drivers.class);
 
-                    driverList.add(drivers);
+                            driverList.add(drivers);
 
-                    //When data is not fetched show progressBar with fetch data textView
-                    progressBar = findViewById(R.id.progressBar);
-                    progressBar.setVisibility(View.GONE);
-                    fetchDataTextView = findViewById(R.id.fetchData);
-                    fetchDataTextView.setVisibility(View.GONE);
-                }
+                            //When data is not fetched show progressBar with fetch data textView
+                            // progressBar = findViewById(R.id.progressBar);
+                            // progressBar.setVisibility(View.GONE);
+                            fetchDataTextView = findViewById(R.id.fetchData);
+                            fetchDataTextView.setVisibility(View.GONE);
+                            swipeRefreshLayout.setRefreshing(false);
+                        }
 
-                DriverAdapter driverAdapter = new DriverAdapter(DriversActivity.this, driverList);
-                recyclerView.setAdapter(driverAdapter);
-            }
+                        DriverAdapter driverAdapter = new DriverAdapter(DriversActivity.this, driverList);
+                        recyclerView.setAdapter(driverAdapter);
+                    }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                    //
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        //
+                    }
+                });
             }
         });
     }
 
+
     /**
-     * Remove inter-activity transition to avoid screen tossing on tapping bottom navigation items
+     * overridePending Remove inter-activity transition to avoid
+     * screen tossing on tapping bottom navigation items
      */
     @Override
     public void onPause() {
@@ -137,6 +154,12 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         overridePendingTransition(0, 0);
     }
 
+    @Override
+    protected void onStop() {
+        //TODO I am to check -- network state when app stops
+        //unregisterReceiver(networkChangeListener);
+        super.onStop();
+    }
 
     @Override
     public void onClick(View v) {
@@ -173,7 +196,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         alertDialogBuilder.setView(addDriverDialog);
         alertDialog = alertDialogBuilder.create();
 
-                //make root parent view transparent
+        //make root parent view transparent
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         alertDialog.show();
 
@@ -203,8 +226,8 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
      * adding driver to database
      */
     private void addDriver() {
-        String driverFirstName = editFirstName.getText().toString().trim();
-        String driverLastName = editLastName.getText().toString().trim();
+        String driverFirstName = editFirstName.getText().toString().toUpperCase().trim();
+        String driverLastName = editLastName.getText().toString().toUpperCase().trim();
         String driverPhone = editPhoneNumber.getText().toString().trim();
         String driverEmail = editEmail.getText().toString().trim();
         String driverID = editDriverID.getText().toString().trim();
@@ -223,8 +246,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         } else if (!Patterns.EMAIL_ADDRESS.matcher(driverEmail).matches() && driverEmail.isEmpty()) {
             editEmail.setError("Please provide valid email");
             editEmail.requestFocus();
-        }
-        else if (driverID.isEmpty()) {
+        } else if (driverID.isEmpty()) {
             editDriverID.setError("Driver Id is required");
             editDriverID.requestFocus();
         } else if (vehicleID.isEmpty()) {
@@ -256,7 +278,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
                         .setValue(drivers).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             editFirstName.setText("");
                             editLastName.setText("");
                             editPhoneNumber.setText("");
@@ -265,15 +287,14 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
                             editVehicleID.setText("");
 
                             Toast.makeText(DriversActivity.this, "Added successfully", Toast.LENGTH_LONG).show();
-                        }
-                        else {
+                        } else {
                             Toast.makeText(DriversActivity.this, "Error Please Try again", Toast.LENGTH_LONG).show();
                         }
 
                     }
                 });
-            }catch (Exception e){
-                Toast.makeText(DriversActivity.this, "Erro "+ e, Toast.LENGTH_LONG).show();
+            } catch (Exception e) {
+                Toast.makeText(DriversActivity.this, "Error " + e, Toast.LENGTH_LONG).show();
             }
 
             // TODO " work on float BTN to handle submission error "
@@ -298,7 +319,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
             //home activity
             startActivity(new Intent(this, HomeActivity.class));
             return true;
-        } else if (itemId == R.id.nav_trucks) {
+        } else if (itemId == R.id.nav_maintenance) {
             //truck activity
             startActivity(new Intent(this, MaintenanceActivity.class));
             return true;

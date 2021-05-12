@@ -1,6 +1,5 @@
 package com.example.headstart.AuthenticateActivities;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
@@ -13,12 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import com.example.headstart.R;
-import com.example.headstart.Utility;
+import com.example.headstart.Utility.PasswordUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -122,7 +119,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             editTextPasswordConfirm.requestFocus();
             return;
         }
-        if (!Utility.PASSWORD_PATTERN.matcher(userPassword).matches()) {
+        if (!PasswordUtils.PASSWORD_PATTERN.matcher(userPassword).matches()) {
             editTextPassword.setError("Password must contain at least 8 char(uppercase & lowercase, special Char, number)..eg.'@Example1'");
             editTextPassword.requestFocus();
             return;

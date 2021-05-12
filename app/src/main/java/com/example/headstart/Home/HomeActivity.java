@@ -1,7 +1,9 @@
 package com.example.headstart.Home;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,20 +15,25 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.headstart.Drivers.DriversActivity;
+import com.example.headstart.MaintenanceSchedule.MaintenanceActivity;
 import com.example.headstart.Map.MapActivity;
 import com.example.headstart.PagerAdapter;
 import com.example.headstart.R;
 import com.example.headstart.Settings.SettingsActivity;
-import com.example.headstart.MaintenanceSchedule.MaintenanceActivity;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 
-public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
-        View.OnClickListener {
+public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+
+    private static final String TAG = "HomeActivity";
+    private static final int ERROR_DIALOG_REQUEST = 9001;
 
     private BottomNavigationView bottomNavigationView;
+    private FloatingActionButton mapFloatButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +43,16 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         bottomNavigationView = findViewById(R.id.bottom_nav_bar);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
-        FloatingActionButton floatingActionButton = findViewById(R.id.map_floatBar);
-        floatingActionButton.setOnClickListener(this);
+        mapFloatButton = findViewById(R.id.map_floatBar);
 
 
         //To hide actionBar
         getSupportActionBar().hide();
+
+        //checks Map connectivity,
+        if (isMapServiceOKay()) {
+            mapOnClick();
+        }
 
         //responsible for swapping between fragments(tracking, home, notifications)
         setupViewPager();
@@ -63,17 +74,42 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         overridePendingTransition(0, 0);
     }
 
-
-    @Override
-    public void onClick(View v) {
-        int itemId = v.getId();
-
+    //map Button
+    public void mapOnClick() {
         //This sends user to map activity anytime user clicks middle float bar
-        if (itemId == R.id.map_floatBar){
-            startActivity(new Intent(HomeActivity.this, MapActivity.class));
-            Toast.makeText(this, "Real time Location", Toast.LENGTH_SHORT).show();
-        }
+        mapFloatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, MapActivity.class));
+                Toast.makeText(HomeActivity.this, "Real time Location", Toast.LENGTH_SHORT).show();
+            }
+        });
 
+    }
+
+    /**
+     * function to check if map is working before redirecting to Map activity
+     *
+     * @return false if all conditions are not met.
+     */
+    public boolean isMapServiceOKay() {
+        Log.d(TAG, "isMapServiceOKay: checking if service is working");
+
+        int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(HomeActivity.this);
+
+        if (available == ConnectionResult.SUCCESS) {
+            Log.d(TAG, "isMapServiceOKay: Google play service is working");
+            return true;
+        } else if (GoogleApiAvailability.getInstance().isUserResolvableError(available)) {
+            //an error occurred but can be fixed
+            Log.d(TAG, "isMapServiceOKay: an error has occurred, can fix");
+            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(HomeActivity.this, available, ERROR_DIALOG_REQUEST);
+            dialog.show();
+        } else {
+            //An error has occurred, Map cannot show......
+            Toast.makeText(this, "Map cannot show at this time", Toast.LENGTH_LONG).show();
+        }
+        return false;
     }
 
 
@@ -85,15 +121,14 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         if (itemId == R.id.nav_home) {
             //home activity
             return true;
-        } else if (itemId == R.id.nav_trucks) {
+        } else if (itemId == R.id.nav_maintenance) {
             //truck activity
             startActivity(new Intent(this, MaintenanceActivity.class));
             return true;
-
         } else if (itemId == R.id.nav_map) {
             //truck activity
             return true;
-        }else if (itemId == R.id.nav_drivers) {
+        } else if (itemId == R.id.nav_drivers) {
             //drivers activity
             startActivity(new Intent(this, DriversActivity.class));
             return true;

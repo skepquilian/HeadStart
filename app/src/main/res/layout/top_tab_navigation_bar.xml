@@ -16,7 +16,7 @@
             app:tabGravity="fill"
             app:tabMaxWidth="0dp"
             app:tabMode="fixed"
-            app:tabTextColor="@color/black"/>
+            app:tabTextColor="@color/black" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -33,7 +33,7 @@
     <string name="float_bar_add_driver_page">This sends user to add driver page</string>
     <string name="submit_driver_details_to_list">Float bar to add driver to list</string>
     <string name="map_activity_fab_icon">Map Activity Fab icon</string>
-    <string name="fetching_data">Fetching Data.....</string>
+    <string name="fetching_data">Pull down to Fetch Data.....</string>
     <string name="my_settings">Settings</string>
     <string name="profile_image">profile Image</string>
     <string name="night">Night</string>

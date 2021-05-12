@@ -1,133 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- A CardView that contains a TextView -->
-    <androidx.cardview.widget.CardView
+    <ImageView
+        android:id="@+id/img1"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/headstart_1" />
 
-        android:id="@+id/real_time_card_view"
-        android:layout_width="74dp"
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        card_view:cardCornerRadius="5dp"
-        card_view:cardBackgroundColor="@color/appBackground">
+        android:layout_below="@id/img1"
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="Real Time"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="Trucks"
+            android:textSize="@dimen/textFormat" />
 
-    </androidx.cardview.widget.CardView>
-
-
-    <ProgressBar
-        android:id="@+id/progressBar2"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="10dp"
-        android:layout_toEndOf="@id/real_time_card_view" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/grey"
-        android:layout_below="@id/progressBar2"
-        android:layout_marginTop="5dp"
-        />
-
-
-    <!-- List Of Trucks Being tracked plus Location Layout -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/real_time_card_view"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
-
-        <!--  Current Vehicle being Tracked  -->
-        <LinearLayout
+        <TextView
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_weight="4"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="Active"
+            android:textSize="@dimen/textFormat" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/active_trucks"
-                android:textColor="@color/black"
-                android:fontFamily="serif"
-                android:textStyle="bold"
-                android:textSize="12sp"
-                android:layout_marginBottom="10dp"
-                android:textAlignment="center"/>
-
-            <androidx.cardview.widget.CardView
-
-                android:id="@+id/card_view"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:transformPivotX="@dimen/cardview_default_elevation"
-                android:layout_margin="10dp"
-                card_view:cardBackgroundColor="@color/black"
-                android:layout_marginEnd="10dp"
-                card_view:cardCornerRadius="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="Truck A"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"/>
-
-            </androidx.cardview.widget.CardView>
-
-
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:textColor="@color/black"
-                android:fontFamily="serif"
-                android:textStyle="bold"
-                android:textSize="12sp"
-                android:layout_gravity="center"
-                android:text="Location"
-                android:textAlignment="center"/>
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:src="@drawable/ic_action_map"/>
-
-        </LinearLayout>
+            android:gravity="center"
+            android:text="Status"
+            android:textSize="@dimen/textFormat" />
 
     </LinearLayout>
-    <!--  End list of trucks Layout  -->
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layout">
+
+    </ScrollView>
+
 
 </RelativeLayout>

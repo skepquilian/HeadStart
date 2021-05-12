@@ -1,8 +1,8 @@
-package com.example.headstart;
+package com.example.headstart.Utility;
 
 import java.util.regex.Pattern;
 
-public class Utility {
+public class PasswordUtils {
 
     /**
      * For password validation, before user can sign up successfully, user must provide strong password

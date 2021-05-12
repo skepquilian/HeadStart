@@ -1,44 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="20dp"
-    android:outlineAmbientShadowColor="@color/black"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    app:cardCornerRadius="20dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp">
 
+        <!--Profile Image -->
+        <ImageView
+            android:id="@+id/driver_img"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/rounded_box"
+            android:scaleType="centerCrop"
+            android:src="@drawable/person" />
+
+        <!--First name -->
         <TextView
             android:id="@+id/d_FirstName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="36dp"
+            android:layout_toEndOf="@id/driver_img"
             android:text="Firstname"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
+        <!--LastName -->
         <TextView
             android:id="@+id/d_LastName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
             android:layout_marginBottom="36dp"
+            android:layout_toEndOf="@id/d_FirstName"
             android:text="Lastname"
             android:textColor="@color/black"
-            android:layout_marginStart="3dp"
-            android:textSize="14sp"
-            android:layout_toEndOf="@id/d_FirstName"/>
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
+        <!--Driver Id number-->
         <TextView
-            android:id="@+id/d_Email"
+            android:id="@+id/driverID_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/d_FirstName"
-            android:text="email"
+            android:layout_toEndOf="@id/driver_img"
+            android:text="DRIVER ID : "
             android:textColor="@color/black"
             android:textSize="14sp" />
 
@@ -46,29 +61,66 @@
             android:id="@+id/driverID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
+            android:layout_below="@id/d_FirstName"
+            android:layout_toEndOf="@id/driverID_label"
             android:text="driver id"
             android:textColor="@color/black"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
+        <!--Vehicle ID number -->
         <TextView
-            android:id="@+id/d_PhoneNumber"
+            android:id="@+id/vehicleID_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/d_Email"
-            android:text="phone"
+            android:layout_below="@id/driverID_label"
+            android:layout_toEndOf="@id/driver_img"
+            android:text="VEHICLE ID : "
             android:textColor="@color/black"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/vehicleID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/driverID"
-            android:layout_alignParentEnd="true"
-            android:text="Truck number"
+            android:layout_toEndOf="@id/vehicleID_label"
+            android:text="vehicle number"
             android:textColor="@color/black"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
+
+        <!--Phone number-->
+        <TextView
+            android:id="@+id/d_PhoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/driver_img"
+            android:gravity="center"
+            android:text="phone"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:drawableStartCompat="@drawable/ic_phone" />
+
+        <!--Email-->
+        <TextView
+            android:id="@+id/d_Email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/d_PhoneNumber"
+            android:autoLink="email"
+            android:gravity="bottom"
+            android:text="email"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:drawableStartCompat="@drawable/ic_email" />
+
+        <!--Options Button -->
+        <ImageView
+            android:layout_width="5dp"
+            android:layout_height="15dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="8dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/options" />
 
     </RelativeLayout>
 

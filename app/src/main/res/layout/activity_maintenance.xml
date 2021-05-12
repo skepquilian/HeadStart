@@ -1,24 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MaintenanceSchedule.MaintenanceActivity">
 
+
     <TextView
-        style="@style/viewParent"
-        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Reminder"
+        android:background="@color/accent_200"
+        android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
-        android:textSize="24sp"
-        android:text="maintenance activity, !To Do"
-        android:textColor="@color/black"/>
+        android:gravity="center"
+        android:padding="5dp"
+        app:drawableTopCompat="@drawable/ic_notify" />
+
+<!-- TODO add list of reminders here-->
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="70dp"
+        app:cardCornerRadius="20dp"
+        android:layout_marginEnd="16dp">
+
+        <TextView
+            android:id="@+id/task_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="10dp"
+            android:shadowColor="@color/black"
+            android:text="Tasks"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="normal" />
+    </androidx.cardview.widget.CardView>
+
 
     <!-- Navigation Menu Bar-->
     <include
         android:id="@+id/bottom_nav_bar"
-        layout="@layout/activity_bottom_navigation_snippet"
-        />
+        layout="@layout/activity_bottom_navigation_snippet" />
 
 
 </RelativeLayout>
