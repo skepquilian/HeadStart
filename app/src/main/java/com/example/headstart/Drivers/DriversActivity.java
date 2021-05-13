@@ -2,20 +2,15 @@ package com.example.headstart.Drivers;
 
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,13 +22,9 @@ import com.example.headstart.Map.MapActivity;
 import com.example.headstart.R;
 import com.example.headstart.Settings.SettingsActivity;
 import com.example.headstart.Utility.NetworkChangeListener;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,20 +38,21 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
 
     private static final String TAG = "DriversActivity";
     private BottomNavigationView bottomNavigationView;
-    private FloatingActionButton addDriverFloatBtn;
-    private AlertDialog alertDialog;
+    //private AlertDialog alertDialog;
 
     private RecyclerView recyclerView;
     private ArrayList<Drivers> driverList;
 
     private DatabaseReference driverDatabaseRef;
 
-    private TextInputEditText editFirstName, editLastName, editPhoneNumber,
-            editEmail, editDriverID, editVehicleID;
+   // private TextInputEditText editFirstName, editLastName, editPhoneNumber,
+    //        editEmail, editDriverID, editVehicleID;
 
     private TextView fetchDataTextView;
 
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
+
+    DriverDialog driverDialog = new DriverDialog(this);
 
     FirebaseAuth auth;
 
@@ -75,9 +67,8 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         bottomNavigationView.setBackground(null);
         bottomNavigationView.getMenu().getItem(2).setEnabled(false);
 
-        addDriverFloatBtn = findViewById(R.id.addDriver_fab);
+        FloatingActionButton addDriverFloatBtn = findViewById(R.id.addDriver_fab);
         addDriverFloatBtn.setOnClickListener(this);
-
 
         FloatingActionButton mapFloatBtn = findViewById(R.id.map_floatBar);
         mapFloatBtn.setOnClickListener(this);
@@ -108,6 +99,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                //checks if phone is connected to the internet
                 IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
                 registerReceiver(networkChangeListener, intentFilter);
                 //Load data
@@ -167,9 +159,9 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
 
         if (itemId == R.id.addDriver_fab) {
 //            startActivity(new Intent(DriversActivity.this, AddDriverActivity.class));
-            addDriverDialog();
+            driverDialog();
         }
-        if (itemId == R.id.map_floatBar) {
+        else if(itemId == R.id.map_floatBar) {
             startActivity(new Intent(DriversActivity.this, MapActivity.class));
         }
 
@@ -178,134 +170,22 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
     /**
      * Add driver info Dialog function
      */
-    private void addDriverDialog() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-
-        final View addDriverDialog = getLayoutInflater().inflate(R.layout.dialog_add_driver, null);
-
-
-        //EditText boxes
-        editFirstName = addDriverDialog.findViewById(R.id.driverFirstName);
-        editLastName = addDriverDialog.findViewById(R.id.driverLastName);
-        editPhoneNumber = addDriverDialog.findViewById(R.id.driverPhoneNumber);
-        editEmail = addDriverDialog.findViewById(R.id.driverEmailAddress);
-        editDriverID = addDriverDialog.findViewById(R.id.driver_Id);
-        editVehicleID = addDriverDialog.findViewById(R.id.vehicle_Id);
-
-        //
-        alertDialogBuilder.setView(addDriverDialog);
-        alertDialog = alertDialogBuilder.create();
-
-        //make root parent view transparent
-        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        alertDialog.show();
-
-        //add button
-        addDriverFloatBtn = addDriverDialog.findViewById(R.id.addDriver_float_Btn);
-        addDriverFloatBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //perform this function
-                addDriver();
-            }
-        });
-
-        //cancel button
-        FloatingActionButton cancelFloatBtn = addDriverDialog.findViewById(R.id.cancel_float_Btn);
-        cancelFloatBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertDialog.dismiss();
-            }
-        });
-
+    private void driverDialog() {
+        driverDialog.addDriverDialog();
     }
 
-    /**
-     * adding driver to database
-     */
-    private void addDriver() {
-        String driverFirstName = editFirstName.getText().toString().toUpperCase().trim();
-        String driverLastName = editLastName.getText().toString().toUpperCase().trim();
-        String driverPhone = editPhoneNumber.getText().toString().trim();
-        String driverEmail = editEmail.getText().toString().trim();
-        String driverID = editDriverID.getText().toString().trim();
-        String vehicleID = editVehicleID.getText().toString().trim();
 
-        //If Statements to validate these Inputs..Check validation
-        if (driverFirstName.isEmpty()) {
-            editFirstName.setError("FirstName is required");
-            editFirstName.requestFocus();
-        } else if (driverLastName.isEmpty()) {
-            editLastName.setError("LastName is required");
-            editLastName.requestFocus();
-        } else if (driverPhone.isEmpty() || (driverPhone.length() < 10)) {
-            editPhoneNumber.setError("Enter a valid Phone Number");
-            editPhoneNumber.requestFocus();
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(driverEmail).matches() && driverEmail.isEmpty()) {
-            editEmail.setError("Please provide valid email");
-            editEmail.requestFocus();
-        } else if (driverID.isEmpty()) {
-            editDriverID.setError("Driver Id is required");
-            editDriverID.requestFocus();
-        } else if (vehicleID.isEmpty()) {
-            editVehicleID.setError("LastName is required");
-            editVehicleID.requestFocus();
-        }
-
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            try {
-                // User is signed in
-
-                //Create unique string id and stores in driver_Id
-                String driver_Id = driverDatabaseRef.push().getKey();
-
-                //add driver info when user clicks add button
-                //Create Driver info with these below
-                final Drivers drivers = new Drivers(
-                        driverFirstName,
-                        driverLastName,
-                        driverPhone,
-                        driverEmail,
-                        driverID,
-                        vehicleID
-                );
-
-                driverDatabaseRef.child(driver_Id)
-                        .setValue(drivers).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            editFirstName.setText("");
-                            editLastName.setText("");
-                            editPhoneNumber.setText("");
-                            editEmail.setText("");
-                            editDriverID.setText("");
-                            editVehicleID.setText("");
-
-                            Toast.makeText(DriversActivity.this, "Added successfully", Toast.LENGTH_LONG).show();
-                        } else {
-                            Toast.makeText(DriversActivity.this, "Error Please Try again", Toast.LENGTH_LONG).show();
-                        }
-
-                    }
-                });
-            } catch (Exception e) {
-                Toast.makeText(DriversActivity.this, "Error " + e, Toast.LENGTH_LONG).show();
-            }
-
-            // TODO " work on float BTN to handle submission error "
-
-
-        } else {
-            // No user is signed in
-            Toast.makeText(DriversActivity.this, "Failed....Login to get Access", Toast.LENGTH_LONG).show();
-        }
-
-    }
+//    /**
+//     * Bottom Edit Dialog for drivers
+//     */
+//    private void driverOptionBar() {
+//        BottomSheetDialog alertDialog2 = new BottomSheetDialog(DriversActivity.this);
+//        View addBottomDialog = getLayoutInflater().inflate(R.layout.driver_edit_layout, null);
+//
+//        alertDialog2.setContentView(addBottomDialog);
+//        alertDialog2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        alertDialog2.show();
+//    }
 
     /**
      * Bottom Navigation bar

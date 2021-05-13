@@ -54,7 +54,6 @@
         app:backgroundTint="@color/black"
         app:fabSize="normal" />
 
-
     <!--Bottom Nav Bar-->
     <include
         android:id="@+id/bottom_nav_bar"
