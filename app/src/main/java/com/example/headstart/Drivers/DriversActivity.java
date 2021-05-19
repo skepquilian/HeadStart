@@ -38,20 +38,13 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
 
     private static final String TAG = "DriversActivity";
     private BottomNavigationView bottomNavigationView;
-    //private AlertDialog alertDialog;
-
     private RecyclerView recyclerView;
     private ArrayList<Drivers> driverList;
-
     private DatabaseReference driverDatabaseRef;
-
-   // private TextInputEditText editFirstName, editLastName, editPhoneNumber,
-    //        editEmail, editDriverID, editVehicleID;
-
     private TextView fetchDataTextView;
 
+    SwipeRefreshLayout swipeRefreshLayout;
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
-
     DriverDialog driverDialog = new DriverDialog(this);
 
     FirebaseAuth auth;
@@ -80,7 +73,6 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
                 //get users id as child(Foreign Key)
                 .child(auth.getCurrentUser().getUid());
 
-
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -94,43 +86,50 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         super.onStart();
         updateNavigationBarState();
 
-        final SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.swiperefresh);
-        Log.d(TAG, "onStart: Refresh page when user swipe down");
+        Log.i(TAG, "onStart: Refresh page when user swipe down");
+        swipeRefreshLayout = findViewById(R.id.swiperefresh);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 //checks if phone is connected to the internet
+                Log.i(TAG, "onRefresh: checks if Internet connected");
                 IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
                 registerReceiver(networkChangeListener, intentFilter);
-                //Load data
-                driverDatabaseRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        //before data is fetched from firebase, clear list
-                        driverList.clear();
-
-                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                            Drivers drivers = dataSnapshot.getValue(Drivers.class);
-
-                            driverList.add(drivers);
-
-                            //When data is not fetched show progressBar with fetch data textView
-                            // progressBar = findViewById(R.id.progressBar);
-                            // progressBar.setVisibility(View.GONE);
-                            fetchDataTextView = findViewById(R.id.fetchData);
-                            fetchDataTextView.setVisibility(View.GONE);
-                            swipeRefreshLayout.setRefreshing(false);
-                        }
-
-                        DriverAdapter driverAdapter = new DriverAdapter(DriversActivity.this, driverList);
-                        recyclerView.setAdapter(driverAdapter);
+                if (swipeRefreshLayout.isRefreshing()) {
+                    if (!driverList.isEmpty()) {
+                        Log.i(TAG, "onRefresh: Driver list is not empty");
+                        swipeRefreshLayout.setRefreshing(false);
                     }
+                }
+            }
+        });
+        //Load data
+        driverDatabaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //before data is fetched from firebase, clear list
+                Log.i(TAG, "onDataChange: data is cleared in adapter. User adds new driver ");
+                driverList.clear();
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        //
-                    }
-                });
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Drivers drivers = dataSnapshot.getValue(Drivers.class);
+                    Log.i(TAG, "onDataChange: adds drivers to list ");
+                    driverList.add(drivers);
+
+                    //When data is not fetched show progressBar with fetch data textView
+                    // progressBar = findViewById(R.id.progressBar);
+                    // progressBar.setVisibility(View.GONE);
+                    fetchDataTextView = findViewById(R.id.fetchData);
+                    fetchDataTextView.setVisibility(View.GONE);
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+                DriverAdapter driverAdapter = new DriverAdapter(DriversActivity.this, driverList);
+                recyclerView.setAdapter(driverAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                //
             }
         });
     }
@@ -160,8 +159,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         if (itemId == R.id.addDriver_fab) {
 //            startActivity(new Intent(DriversActivity.this, AddDriverActivity.class));
             driverDialog();
-        }
-        else if(itemId == R.id.map_floatBar) {
+        } else if (itemId == R.id.map_floatBar) {
             startActivity(new Intent(DriversActivity.this, MapActivity.class));
         }
 
@@ -171,21 +169,10 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
      * Add driver info Dialog function
      */
     private void driverDialog() {
+        Log.i(TAG, "driverDialog: calls dialog class with its function");
         driverDialog.addDriverDialog();
     }
 
-
-//    /**
-//     * Bottom Edit Dialog for drivers
-//     */
-//    private void driverOptionBar() {
-//        BottomSheetDialog alertDialog2 = new BottomSheetDialog(DriversActivity.this);
-//        View addBottomDialog = getLayoutInflater().inflate(R.layout.driver_edit_layout, null);
-//
-//        alertDialog2.setContentView(addBottomDialog);
-//        alertDialog2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//        alertDialog2.show();
-//    }
 
     /**
      * Bottom Navigation bar

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import com.example.headstart.AuthenticateActivities.LoginActivity;
 import com.example.headstart.Home.HomeActivity;
 import com.example.headstart.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -25,6 +27,8 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     SwitchCompat modeSwitch, notificationSwitch;
     SharedPreferences sharedPreferences = null;
     ImageView moreImage;
+    TextView userName;
+    FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +38,18 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         Button logOut = findViewById(R.id.logoutBtn);
         logOut.setOnClickListener(this);
 
+        userName = findViewById(R.id.usernameTextView);
         moreImage = findViewById(R.id.more_arrow_image);
         modeSwitch = findViewById(R.id.darkModeSwitch);
         notificationSwitch = findViewById(R.id.notifySwitch);
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser != null){
+            String name = firebaseUser.getEmail();
+            if (name != null){
+                userName.setText("".concat(name));
+            }
+        }
 
     }
 

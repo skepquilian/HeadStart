@@ -22,13 +22,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class DriverDialog {
     private AlertDialog alertDialog;
-    private final Activity myActivity;
-
+    private final Activity context;
     private final DatabaseReference driverDatabaseRef;
     FirebaseAuth auth;
-
     private TextInputEditText editFirstName, editLastName, editPhoneNumber,
             editEmail, editDriverID, editVehicleID;
+
 
     public DriverDialog(Activity activity) {
         auth = FirebaseAuth.getInstance();
@@ -37,16 +36,16 @@ public class DriverDialog {
         driverDatabaseRef = FirebaseDatabase.getInstance().getReference("User Drivers")
                 //get users id as child(Foreign Key)
                 .child(auth.getCurrentUser().getUid());
-        myActivity = activity;
+        context = activity;
     }
 
     /**
      * Add driver info Dialog function
      */
     public void addDriverDialog() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(myActivity);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
-        final View addDriverDialog = myActivity.getLayoutInflater().inflate(R.layout.dialog_add_driver, null);
+        final View addDriverDialog = context.getLayoutInflater().inflate(R.layout.dialog_add_driver, null);
 
 
         //EditText boxes
@@ -151,15 +150,15 @@ public class DriverDialog {
                             editDriverID.setText("");
                             editVehicleID.setText("");
 
-                            Toast.makeText(myActivity, "Added successfully", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "Added successfully", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(myActivity, "Error Please Try again", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "Error Please Try again", Toast.LENGTH_LONG).show();
                         }
 
                     }
                 });
             } catch (Exception e) {
-                Toast.makeText(myActivity, "Error " + e, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Error " + e, Toast.LENGTH_LONG).show();
             }
 
             // TODO " work on float BTN to handle submission error "
@@ -167,7 +166,7 @@ public class DriverDialog {
 
         } else {
             // No user is signed in
-            Toast.makeText(myActivity, "Failed....Login to get Access", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Failed....Login to get Access", Toast.LENGTH_LONG).show();
         }
 
     }

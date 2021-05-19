@@ -3,15 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#5E1866"
     tools:context=".MaintenanceSchedule.TasksActivity">
 
     <RelativeLayout
         android:id="@+id/R_layout_1"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@color/black"
         android:padding="5dp">
 
         <TextView
@@ -46,9 +44,9 @@
 
 
     <ScrollView
-        android:layout_below="@id/R_layout_1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/R_layout_1"
         android:background="@drawable/background_top_radius"
         android:fillViewport="true">
 
@@ -58,25 +56,66 @@
             android:layout_margin="18dp"
             android:orientation="vertical">
 
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:layout_marginStart="22dp"
-                android:layout_marginEnd="22dp"
-                android:hint="name (required)"
-                android:inputType="text"/>
+                android:text="What Task is to be done ?"
+                android:textColor="#5E1866" />
+
+
             <EditText
+                android:id="@+id/task_name_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:layout_marginStart="22dp"
                 android:layout_marginEnd="22dp"
-                android:hint="Date"
-                android:inputType="date"/>
+                android:layout_marginBottom="30dp"
+                android:drawableEnd="@drawable/ic_baseline_add_task"
+                android:hint="Enter your task"
+                android:inputType="text"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Schedule Task Date"
+                android:textColor="#5E1866" />
+
+            <EditText
+                android:id="@+id/task_date_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="22dp"
+                android:drawableEnd="@drawable/ic_baseline_calender"
+                android:hint="Date not set"
+                android:inputType="date"
+                android:layout_marginBottom="30dp"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select Driver"
+                android:textColor="#5E1866" />
+
+
 
         </LinearLayout>
+
     </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/submit_task_float_id"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="#5E1866"
+        android:src="@drawable/ic_check"
+        android:contentDescription="submit button for adding task" />
+
+
 
 
 </RelativeLayout>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:id="@+id/settings_linear1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_top_radius"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/profileCircleImageView"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/rounded_box"
+                android:contentDescription="@string/profile_image"
+                android:src="@drawable/person" />
+
+
+            <TextView
+                android:id="@+id/d_FirstName"
+                style="@style/viewParent.headerText"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@id/profileCircleImageView"
+                android:text="FirstName "
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/d_LastName"
+                style="@style/viewParent.headerText"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@id/d_FirstName"
+                android:text="LastName"
+                android:textSize="18sp" />
+
+            <TextView
+                style="@style/viewParent.headerText"
+                android:layout_below="@id/d_FirstName"
+                android:layout_toEndOf="@id/profileCircleImageView"
+                android:text="Update driver info"
+                android:textColor="#5D5C5C"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/more_arrow_image"
+                style="@style/viewParent"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/profile_image"
+                android:src="@drawable/ic_more" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/darkModeSwitch"
+            style="@style/settingsText"
+            android:text="Status"
+            app:drawableStartCompat="@drawable/ic_driver_status"
+            app:drawableEndCompat="@drawable/ic_active_status" />
+
+
+        <TextView
+            style="@style/viewParent.headerText.settingsMiniTitle"
+            android:text="Report" />
+
+        <TextView
+            style="@style/viewParent.headerText.settingsTextIcon"
+            android:text="Current Trip"
+            app:drawableLeftCompat="@drawable/ic_current_trip" />
+
+        <TextView
+            style="@style/viewParent.headerText.settingsTextIcon"
+            android:text="Road Trip summary"
+            app:drawableLeftCompat="@drawable/ic_report_summary" />
+
+        <TextView
+            style="@style/viewParent.headerText.settingsTextIcon"
+            android:layout_marginTop="10dp"
+            android:text="License Expiry"
+            app:drawableLeftCompat="@drawable/ic_alert" />
+
+        <Button
+            android:id="@+id/deleteBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="18dp"
+            android:background="@drawable/rounded_box"
+            android:backgroundTint="@color/red"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Remove Driver Info"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</RelativeLayout>

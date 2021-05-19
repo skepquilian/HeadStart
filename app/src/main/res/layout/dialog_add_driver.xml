@@ -183,7 +183,7 @@
                 android:layout_marginBottom="4dp"
                 android:backgroundTint="@color/white"
                 android:contentDescription="@string/submit_driver_details_to_list"
-                android:src="@drawable/ic_submit_driver_detail"
+                android:src="@drawable/ic_submit_btn"
                 app:fabSize="normal" />
 
         </LinearLayout>

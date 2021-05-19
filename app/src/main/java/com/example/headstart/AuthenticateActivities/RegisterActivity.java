@@ -1,6 +1,8 @@
 package com.example.headstart.AuthenticateActivities;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.util.Patterns;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.headstart.R;
@@ -131,7 +134,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
 
         //set progress Bar to visible when register button is clicked
-        progressBar.setVisibility(View.VISIBLE);
+       // progressBar.setVisibility(View.VISIBLE);
+        final AlertDialog alertDialog;
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        final View addDialog = getLayoutInflater().inflate(R.layout.loading_dialog, null);
+        alertDialogBuilder.setView(addDialog);
+        alertDialog = alertDialogBuilder.create();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        alertDialog.show();
 
         mAuth.createUserWithEmailAndPassword(emailAddress, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -160,12 +170,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             } else {
                                 Toast.makeText(RegisterActivity.this, "Registration Failed. TRY AGAIN", Toast.LENGTH_LONG).show();
                             }
-                            progressBar.setVisibility(View.GONE);
+                            //progressBar.setVisibility(View.GONE);
+                            alertDialog.dismiss();
                         }
                     });
                 } else {
                     Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                    progressBar.setVisibility(View.GONE);
+                   // progressBar.setVisibility(View.GONE);
+                    alertDialog.dismiss();
                 }
             }
         });

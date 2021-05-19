@@ -1,6 +1,8 @@
 package com.example.headstart.AuthenticateActivities;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.headstart.Home.HomeActivity;
@@ -105,7 +108,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
 //        Turn progress bar to visible when onclick Login btn..Progress to true when Login button is clicked
-        progressBar.setVisibility(View.VISIBLE);
+        //progressBar.setVisibility(View.VISIBLE);
+        final AlertDialog alertDialog;
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        final View addDialog = getLayoutInflater().inflate(R.layout.loading_dialog, null);
+        alertDialogBuilder.setView(addDialog);
+        alertDialog = alertDialogBuilder.create();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        alertDialog.show();
+
         mAuth.signInWithEmailAndPassword(emailAddress, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -121,7 +132,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 } else {
                     Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
-                progressBar.setVisibility(View.GONE);
+                //progressBar.setVisibility(View.GONE);
+                alertDialog.dismiss();
 
             }
         });
