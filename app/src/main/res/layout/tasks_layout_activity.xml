@@ -71,6 +71,7 @@
                 android:layout_marginBottom="30dp"
                 android:drawableEnd="@drawable/ic_baseline_add_task"
                 android:hint="Enter your task"
+                android:focusable="auto"
                 android:inputType="text"
                 android:textSize="16sp" />
 
@@ -88,16 +89,24 @@
                 android:layout_marginBottom="30dp"
                 android:drawableEnd="@drawable/ic_baseline_calender"
                 android:hint="Date not set"
-                android:clickable="true"
+                android:focusableInTouchMode="true"
+                android:cursorVisible="false"
+                android:focusable="false"
                 android:inputType="date"
-                android:textSize="16sp"
-                android:focusable="true" />
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Select Driver"
+                android:text="Maintenance To ?  Select Driver"
+                android:textSize="16sp"
                 android:textColor="#5E1866" />
+
+            <Spinner
+                android:id="@+id/driver_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dialog"/>
 
 
         </LinearLayout>
