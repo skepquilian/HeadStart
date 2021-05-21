@@ -85,11 +85,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="22dp"
+                android:layout_marginBottom="30dp"
                 android:drawableEnd="@drawable/ic_baseline_calender"
                 android:hint="Date not set"
+                android:clickable="true"
                 android:inputType="date"
-                android:layout_marginBottom="30dp"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -98,24 +100,22 @@
                 android:textColor="#5E1866" />
 
 
-
         </LinearLayout>
 
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/submit_task_float_id"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="50dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="51dp"
         android:backgroundTint="#5E1866"
-        android:src="@drawable/ic_check"
-        android:contentDescription="submit button for adding task" />
-
-
+        android:contentDescription="submit button for adding task"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_check" />
 
 
 </RelativeLayout>

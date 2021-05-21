@@ -7,8 +7,8 @@
         android:id="@+id/img1"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/headstart_1" />
+        android:scaleType="fitXY"
+        android:src="@drawable/headstart_logo" />
 
     <LinearLayout
         android:id="@+id/layout"
