@@ -35,14 +35,11 @@ public class NetworkChangeListener extends BroadcastReceiver {
             //alertDialog.getWindow().setGravity(Gravity.CENTER);
 
             //when retry button is clicked, close dialog(Internet Accessible) , no Internet show dialog ag
-            retryBTN.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d(TAG, "onClick: If button is clicked and Is Internet access Dismiss Dialog" +
-                            "else continue showing dialog");
-                    alertDialog.dismiss();
-                    onReceive(context, intent);
-                }
+            retryBTN.setOnClickListener(v -> {
+                Log.d(TAG, "onClick: If button is clicked and Is Internet access Dismiss Dialog" +
+                        "else continue showing dialog");
+                alertDialog.dismiss();
+                onReceive(context, intent);
             });
         }
     }

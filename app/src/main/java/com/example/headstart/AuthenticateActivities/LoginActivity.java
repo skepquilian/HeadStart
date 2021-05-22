@@ -12,7 +12,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,9 +19,6 @@ import com.example.headstart.Home.HomeActivity;
 import com.example.headstart.MainEntryActivity;
 import com.example.headstart.R;
 import com.example.headstart.Utility.PasswordUtils;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -67,11 +63,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (viewId == R.id.forgetPassword) {
             startActivity(new Intent(LoginActivity.this, ResetPassword.class));
-        }
-        else if (viewId == R.id.loginButton) {
+        } else if (viewId == R.id.loginButton) {
             loginUser();
-        }
-        else if (viewId == R.id.registerButton) {
+        } else if (viewId == R.id.registerButton) {
             startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         }
 
@@ -117,25 +111,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         alertDialog.show();
 
-        mAuth.signInWithEmailAndPassword(emailAddress, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    if (mAuth.getCurrentUser().isEmailVerified()) {
-                        //Redirect user to Home activity if Login success
-                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                        //Show success message
-                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Please VERIFY your account ", Toast.LENGTH_LONG).show();
-                    }
+        mAuth.signInWithEmailAndPassword(emailAddress, userPassword).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                if (mAuth.getCurrentUser().isEmailVerified()) {
+                    //Redirect user to Home activity if Login success
+                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                    //Show success message
+                    Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, "Please VERIFY your account ", Toast.LENGTH_LONG).show();
                 }
-                //progressBar.setVisibility(View.GONE);
-                alertDialog.dismiss();
-
+            } else {
+                Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
             }
+            //progressBar.setVisibility(View.GONE);
+            alertDialog.dismiss();
+
         });
     }
 

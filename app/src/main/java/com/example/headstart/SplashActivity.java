@@ -21,12 +21,9 @@ public class SplashActivity extends AppCompatActivity {
         long secondsCount = 2000;
 
         Handler handler = new Handler(Looper.myLooper());
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startActivity(new Intent(SplashActivity.this, HomeActivity.class));
-                finish();
-            }
+        handler.postDelayed(() -> {
+            startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+            finish();
         }, secondsCount);
     }
 }

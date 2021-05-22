@@ -119,6 +119,7 @@ public class MapActivity extends AppCompatActivity implements BottomNavigationVi
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         Log.d(TAG, "onRequestPermissionsResult: permission is called");
         locationPermissions = false;
         switch (requestCode) {

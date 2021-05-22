@@ -44,9 +44,9 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         notificationSwitch = findViewById(R.id.notifySwitch);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (firebaseUser != null){
+        if (firebaseUser != null) {
             String name = firebaseUser.getEmail();
-            if (name != null){
+            if (name != null) {
                 userName.setText("".concat(name));
             }
         }
@@ -83,33 +83,29 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     /**
      * Toggle Dark mode switch to Light mode function
      */
-    public void darkModeToggle(){
+    public void darkModeToggle() {
         sharedPreferences = getSharedPreferences("night", 0);
         Boolean boolValue = sharedPreferences.getBoolean("night_mode", true);
-        if (boolValue){
+        if (boolValue) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             modeSwitch.setChecked(true);
         }
 
-        modeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    modeSwitch.setChecked(true);
-                    moreImage.setImageResource(R.drawable.ic_more);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putBoolean("night_mode", true);
-                    editor.commit();
-                }
-                else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    modeSwitch.setChecked(false);
-                    moreImage.setImageResource(R.drawable.ic_more);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putBoolean("night_mode", false);
-                    editor.commit();
-                }
+        modeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                modeSwitch.setChecked(true);
+                moreImage.setImageResource(R.drawable.ic_more);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("night_mode", true);
+                editor.commit();
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                modeSwitch.setChecked(false);
+                moreImage.setImageResource(R.drawable.ic_more);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("night_mode", false);
+                editor.commit();
             }
         });
     }

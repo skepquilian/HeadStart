@@ -8,6 +8,7 @@
 
 
     <TextView
+        android:id="@+id/reminder"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="Reminder"
@@ -19,6 +20,16 @@
         app:drawableTopCompat="@drawable/ic_notify" />
 
 <!-- TODO add list of reminders here-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/reminder"
+        android:padding="10dp"
+        android:layout_marginBottom="50dp">
+        <include
+            android:id="@id/recyclerView"
+            layout="@layout/activity_recycler" />
+    </RelativeLayout>
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"

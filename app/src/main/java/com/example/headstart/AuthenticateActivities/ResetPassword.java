@@ -1,8 +1,5 @@
 package com.example.headstart.AuthenticateActivities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -12,10 +9,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.headstart.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ResetPassword extends AppCompatActivity implements View.OnClickListener {
@@ -67,23 +63,17 @@ public class ResetPassword extends AppCompatActivity implements View.OnClickList
 
         //set progressBar to Visible when Reset BTN is Clicked
         progressBar.setVisibility(View.VISIBLE);
-        mAuth.sendPasswordResetEmail(emailAddress).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                //Check if Task is Successful
-                if (task.isSuccessful()) {
-                    Toast.makeText(ResetPassword.this, "Password Request Sent....Check Email", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(ResetPassword.this, "Password Request Failed....TRY AGAIN!!!", Toast.LENGTH_SHORT).show();
-                }
-                progressBar.setVisibility(View.GONE);
+        mAuth.sendPasswordResetEmail(emailAddress).addOnCompleteListener(task -> {
+            //Check if Task is Successful
+            if (task.isSuccessful()) {
+                Toast.makeText(ResetPassword.this, "Password Request Sent....Check Email", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(ResetPassword.this, "Password Request Failed....TRY AGAIN!!!", Toast.LENGTH_SHORT).show();
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                //get and show proper error message
-                Toast.makeText(ResetPassword.this, "" + e.getMessage(), Toast.LENGTH_LONG).show();
-            }
+            progressBar.setVisibility(View.GONE);
+        }).addOnFailureListener(e -> {
+            //get and show proper error message
+            Toast.makeText(ResetPassword.this, "" + e.getMessage(), Toast.LENGTH_LONG).show();
         });
     }
 

@@ -47,20 +47,14 @@ public class DriverAdapter extends RecyclerView.Adapter<Holder> {
         holder.vehicleID.setText(drivers.getVehicleId());
 
 
-        holder.optionBar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i(TAG, "onClick: show bottom dialog method.Option Bar pressed");
-                bottomSheetDialog();
-            }
+        holder.optionBar.setOnClickListener(v -> {
+            Log.i(TAG, "onClick: show bottom dialog method.Option Bar pressed");
+            bottomSheetDialog();
         });
-        holder.driverViewParent.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                Log.i(TAG, "onClick: show bottom dialog method.Long press on cardView");
-                bottomSheetDialog();
-                return false;
-            }
+        holder.driverViewParent.setOnLongClickListener(v -> {
+            Log.i(TAG, "onClick: show bottom dialog method.Long press on cardView");
+            bottomSheetDialog();
+            return false;
         });
     }
 

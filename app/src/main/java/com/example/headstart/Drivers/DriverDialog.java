@@ -117,56 +117,57 @@ public class DriverDialog {
             editVehicleID.setError("LastName is required");
             editVehicleID.requestFocus();
         }
+        //If all validations is true..then add driver information to database
+        else{
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user != null) {
+                try {
+                    // User is signed in
 
+                    //Create unique string id and stores in driver_Id
+                    String driver_Id = driverDatabaseRef.push().getKey();
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            try {
-                // User is signed in
+                    //add driver info when user clicks add button
+                    //Create Driver info with these below
+                    final Drivers drivers = new Drivers(
+                            driverFirstName,
+                            driverLastName,
+                            driverPhone,
+                            driverEmail,
+                            driverID,
+                            vehicleID
+                    );
 
-                //Create unique string id and stores in driver_Id
-                String driver_Id = driverDatabaseRef.push().getKey();
+                    driverDatabaseRef.child(driver_Id)
+                            .setValue(drivers).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                editFirstName.setText("");
+                                editLastName.setText("");
+                                editPhoneNumber.setText("");
+                                editEmail.setText("");
+                                editDriverID.setText("");
+                                editVehicleID.setText("");
 
-                //add driver info when user clicks add button
-                //Create Driver info with these below
-                final Drivers drivers = new Drivers(
-                        driverFirstName,
-                        driverLastName,
-                        driverPhone,
-                        driverEmail,
-                        driverID,
-                        vehicleID
-                );
+                                Toast.makeText(context, "Added successfully", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(context, "Error Please Try again", Toast.LENGTH_LONG).show();
+                            }
 
-                driverDatabaseRef.child(driver_Id)
-                        .setValue(drivers).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            editFirstName.setText("");
-                            editLastName.setText("");
-                            editPhoneNumber.setText("");
-                            editEmail.setText("");
-                            editDriverID.setText("");
-                            editVehicleID.setText("");
-
-                            Toast.makeText(context, "Added successfully", Toast.LENGTH_LONG).show();
-                        } else {
-                            Toast.makeText(context, "Error Please Try again", Toast.LENGTH_LONG).show();
                         }
+                    });
+                } catch (Exception e) {
+                    Toast.makeText(context, "Error " + e, Toast.LENGTH_LONG).show();
+                }
 
-                    }
-                });
-            } catch (Exception e) {
-                Toast.makeText(context, "Error " + e, Toast.LENGTH_LONG).show();
+                // TODO " work on float BTN to handle submission error "
+
+
+            } else {
+                // No user is signed in
+                Toast.makeText(context, "Failed....Login to get Access", Toast.LENGTH_LONG).show();
             }
-
-            // TODO " work on float BTN to handle submission error "
-
-
-        } else {
-            // No user is signed in
-            Toast.makeText(context, "Failed....Login to get Access", Toast.LENGTH_LONG).show();
         }
 
     }

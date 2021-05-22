@@ -6,13 +6,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.headstart.Drivers.DriversActivity;
 import com.example.headstart.MaintenanceSchedule.MaintenanceActivity;
@@ -25,6 +23,7 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 
 public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -77,12 +76,9 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     //map Button
     public void mapOnClick() {
         //This sends user to map activity anytime user clicks middle float bar
-        mapFloatButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, MapActivity.class));
-                Toast.makeText(HomeActivity.this, "Real time Location", Toast.LENGTH_SHORT).show();
-            }
+        mapFloatButton.setOnClickListener(v -> {
+            startActivity(new Intent(HomeActivity.this, MapActivity.class));
+            Toast.makeText(HomeActivity.this, "Real time Location", Toast.LENGTH_SHORT).show();
         });
 
     }
@@ -144,8 +140,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
      * this adds tabs to home activity, responsible for swapping btw fragments
      */
     private void setupViewPager() {
-        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(),
-                FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), getLifecycle());
 
         //add Fragments (home, tracking, notification) to PagerAdapter
         pagerAdapter.addFragment(new TrackingDetail());
@@ -153,12 +148,15 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         pagerAdapter.addFragment(new NotificationFragment());
 
         //pass fragment to viewPager container
-        ViewPager viewPager = findViewById(R.id.container);
-        viewPager.setAdapter(pagerAdapter);
+        ViewPager2 viewPager2 = findViewById(R.id.container);
+        viewPager2.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
+        viewPager2.setAdapter(pagerAdapter);
 
         //Tabs Link to viewPager
         TabLayout tabLayout = findViewById(R.id.tab);
-        tabLayout.setupWithViewPager(viewPager);
+        //tabLayout.setupWithViewPager(viewPager2, true);
+        new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> tab.setText("")
+        ).attach();
 
         //An array containing icons from the drawable directory
         final int[] ICONS = new int[]{
@@ -174,7 +172,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
 
         //set the home fragment to be current page when activity is loaded
-        viewPager.setCurrentItem(1);
+        viewPager2.setCurrentItem(1);
     }
 
     /**

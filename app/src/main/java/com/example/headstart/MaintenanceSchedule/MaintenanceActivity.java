@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.headstart.Drivers.DriversActivity;
 import com.example.headstart.Home.HomeActivity;
@@ -18,11 +20,15 @@ import com.example.headstart.Settings.SettingsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+
 public class MaintenanceActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
         View.OnClickListener {
 
     private BottomNavigationView bottomNavigationView;
-    private TextView taskTextView;
+    private TextView taskTextViewBTN;
+    private RecyclerView recyclerView;
+    private ArrayList<Schedules> scheduleList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +44,14 @@ public class MaintenanceActivity extends AppCompatActivity implements BottomNavi
         FloatingActionButton mapFloatBtn = findViewById(R.id.map_floatBar);
         mapFloatBtn.setOnClickListener(this);
 
-        taskTextView = findViewById(R.id.task_id);
-        taskTextView.setOnClickListener(this);
+        taskTextViewBTN = findViewById(R.id.task_id);
+        taskTextViewBTN.setOnClickListener(this);
+
+
+        scheduleList = new ArrayList<>();
+
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
     }
@@ -48,6 +60,9 @@ public class MaintenanceActivity extends AppCompatActivity implements BottomNavi
     protected void onStart() {
         super.onStart();
         updateNavigationBarState();
+
+        ScheduleAdapter scheduleAdapter = new ScheduleAdapter(MaintenanceActivity.this, scheduleList);
+        recyclerView.setAdapter(scheduleAdapter);
     }
 
     /**
@@ -67,8 +82,7 @@ public class MaintenanceActivity extends AppCompatActivity implements BottomNavi
         if (item == R.id.map_floatBar) {
             startActivity(new Intent(this, MapActivity.class));
             //TODO call toast here
-        }
-        else if(item == R.id.task_id) {
+        } else if (item == R.id.task_id) {
             startActivity(new Intent(this, TasksActivity.class));
         }
     }
@@ -103,6 +117,7 @@ public class MaintenanceActivity extends AppCompatActivity implements BottomNavi
         }
         return false;
     }
+
     /**
      * menu Item select focus function
      */

@@ -21,7 +21,6 @@ import com.example.headstart.R;
 import com.example.headstart.Utility.PasswordUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -73,8 +72,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         if (view == R.id.appName || view == R.id.loginUser) {
             startActivity(new Intent(this, LoginActivity.class));
-        }
-        else if (view == R.id.registerButton) {
+        } else if (view == R.id.registerButton) {
             registerUser();
         }
     }
@@ -134,7 +132,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
 
         //set progress Bar to visible when register button is clicked
-       // progressBar.setVisibility(View.VISIBLE);
+        // progressBar.setVisibility(View.VISIBLE);
         final AlertDialog alertDialog;
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         final View addDialog = getLayoutInflater().inflate(R.layout.loading_dialog, null);
@@ -143,42 +141,39 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         alertDialog.show();
 
-        mAuth.createUserWithEmailAndPassword(emailAddress, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+        mAuth.createUserWithEmailAndPassword(emailAddress, userPassword).addOnCompleteListener(task -> {
 
-                if (task.isSuccessful()) {
+            if (task.isSuccessful()) {
 
-                    //Create Users info with these below
-                    final User user = new User(organizationName, emailAddress, phoneNumber);
+                //Create Users info with these below
+                final User user = new User(organizationName, emailAddress, phoneNumber);
 
-                    //then get the registered user ID using the below, make id correspond to user when registered
-                    FirebaseDatabase.getInstance().getReference("Users")
-                            .child(mAuth.getCurrentUser().getUid())
-                            //set name,email&password to the current user
-                            .setValue(user);
+                //then get the registered user ID using the below, make id correspond to user when registered
+                FirebaseDatabase.getInstance().getReference("Users")
+                        .child(mAuth.getCurrentUser().getUid())
+                        //set name,email&password to the current user
+                        .setValue(user);
 
-                    //send email verification if user is registered successfully
-                    mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            //check if user is registered successfully
-                            if (task.isSuccessful()) {
-                                //Redirect to Login Page if registration is successful
-                                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                                Toast.makeText(RegisterActivity.this, "Account registered...VERIFY email Now", Toast.LENGTH_LONG).show();
-                            } else {
-                                Toast.makeText(RegisterActivity.this, "Registration Failed. TRY AGAIN", Toast.LENGTH_LONG).show();
-                            }
-                            //progressBar.setVisibility(View.GONE);
-                            alertDialog.dismiss();
+                //send email verification if user is registered successfully
+                mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        //check if user is registered successfully
+                        if (task.isSuccessful()) {
+                            //Redirect to Login Page if registration is successful
+                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                            Toast.makeText(RegisterActivity.this, "Account registered...VERIFY email Now", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(RegisterActivity.this, "Registration Failed. TRY AGAIN", Toast.LENGTH_LONG).show();
                         }
-                    });
-                } else {
-                    Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                   // progressBar.setVisibility(View.GONE);
-                    alertDialog.dismiss();
-                }
+                        //progressBar.setVisibility(View.GONE);
+                        alertDialog.dismiss();
+                    }
+                });
+            } else {
+                Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                // progressBar.setVisibility(View.GONE);
+                alertDialog.dismiss();
             }
         });
     }

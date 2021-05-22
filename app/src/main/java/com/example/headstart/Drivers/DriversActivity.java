@@ -76,7 +76,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        driverList = new ArrayList<Drivers>();
+        driverList = new ArrayList<>();
 
     }
 
@@ -88,18 +88,15 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
 
         Log.i(TAG, "onStart: Refresh page when user swipe down");
         swipeRefreshLayout = findViewById(R.id.swiperefresh);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                //checks if phone is connected to the internet
-                Log.i(TAG, "onRefresh: checks if Internet connected");
-                IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-                registerReceiver(networkChangeListener, intentFilter);
-                if (swipeRefreshLayout.isRefreshing()) {
-                    if (!driverList.isEmpty()) {
-                        Log.i(TAG, "onRefresh: Driver list is not empty");
-                        swipeRefreshLayout.setRefreshing(false);
-                    }
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            //checks if phone is connected to the internet
+            Log.i(TAG, "onRefresh: checks if Internet connected");
+            IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+            registerReceiver(networkChangeListener, intentFilter);
+            if (swipeRefreshLayout.isRefreshing()) {
+                if (!driverList.isEmpty()) {
+                    Log.i(TAG, "onRefresh: Driver list is not empty");
+                    swipeRefreshLayout.setRefreshing(false);
                 }
             }
         });
