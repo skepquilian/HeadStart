@@ -1,7 +1,11 @@
 package com.example.headstart.MaintenanceSchedule;
 
 import android.app.DatePickerDialog;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -17,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.headstart.R;
 import com.example.headstart.Utility.NetworkChangeListener;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -36,7 +41,9 @@ public class TasksActivity extends AppCompatActivity implements View.OnClickList
     private EditText task_name;
     private EditText task_date;
     private Spinner driverSpinner;
+    private BottomSheetDialog bottomSheetDialog;
     private ArrayList<String> driverList;
+    private ArrayList<String> offlineList;
     private ArrayAdapter<String> driverAdapter;
     private FirebaseAuth auth;
 
@@ -55,14 +62,24 @@ public class TasksActivity extends AppCompatActivity implements View.OnClickList
         task_date = findViewById(R.id.task_date_id);
         task_date.setOnClickListener(this);
 
+        driverSpinner = findViewById(R.id.driver_spinner);
+
+        bottomSheetDialog = new BottomSheetDialog(this);
+        bottomSheetDialog.setContentView(R.layout.bottom_sheet_error_dialog);
+
         FloatingActionButton submitTaskBTN = findViewById(R.id.submit_task_float_id);
         submitTaskBTN.setOnClickListener(this);
 
         auth = FirebaseAuth.getInstance();
 
         driverList = new ArrayList<>();
+        offlineList = new ArrayList<>();
 
-        addDriver();
+        Log.i(TAG, "onCreate: User is on Connected to Internet");
+        addDriverSpinner();
+
+        Log.i(TAG, "onCreate: User is not Internet connected");
+        isOfflineSpinner();
     }
 
     /**
@@ -88,23 +105,38 @@ public class TasksActivity extends AppCompatActivity implements View.OnClickList
         DatabaseReference scheduleDatabaseRef = FirebaseDatabase.getInstance().getReference("Schedules")
                 .child(auth.getCurrentUser().getUid());
 
+        //checks if phone is connected to the internet
+        Log.i(TAG, "onRefresh: checks if Internet connected");
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener, intentFilter);
+
         final String taskName = task_name.getText().toString().trim();
         final String taskDate = task_date.getText().toString().trim();
         final String taskDriverName = driverSpinner.getSelectedItem().toString();
 
-
         //If Statements to validate these Inputs..Check validation
         if (taskName.isEmpty()) {
-            task_name.setError("FirstName is required");
-            task_name.requestFocus();
+            Log.i(TAG, "scheduleMaintenance: BottomSheet Error message 1");
+            bottomSheetDialog.show();
+            //dismissDialog after seconds
+            Log.i(TAG, "scheduleMaintenance: Error message dismissed");
+            dismissErrorDialog();
         } else if (taskDate.isEmpty()) {
-            task_date.setError("LastName is required");
-            task_date.requestFocus();
+            Log.i(TAG, "scheduleMaintenance: BottomSheet Error message 1");
+            bottomSheetDialog.show();
+            //dismissDialog after seconds
+            Log.i(TAG, "scheduleMaintenance: Error message dismissed");
+            dismissErrorDialog();
         }
         //Todo : error is here .... check if isInternet connected
-        else if (taskDriverName.isEmpty()) {
-            driverSpinner.requestFocus();
-        } else {
+        if (taskDriverName == driverSpinner.getItemAtPosition(0)){
+            Log.i(TAG, "scheduleMaintenance: BottomSheet Error message 1");
+            bottomSheetDialog.show();
+            //dismissDialog after seconds
+            Log.i(TAG, "scheduleMaintenance: Error message dismissed");
+            dismissErrorDialog();
+        }
+        else {
             String schedule_id = scheduleDatabaseRef.push().getKey();
 
             final Schedules schedules = new Schedules(
@@ -127,11 +159,21 @@ public class TasksActivity extends AppCompatActivity implements View.OnClickList
         }
 
     }
+    /**
+     *
+     */
+    private void dismissErrorDialog(){
+        long secondsCount = 2000;
+        Handler handler = new Handler(Looper.myLooper());
+        handler.postDelayed(() -> {
+            bottomSheetDialog.dismiss();
+        }, secondsCount);
+    }
 
     /**
      * function for adding Driver name to Spinner dropdown
      */
-    private void addDriver() {
+    private void addDriverSpinner() {
         //take driver info to firebase database
         DatabaseReference driverDatabaseRef = FirebaseDatabase.getInstance().getReference("User Drivers")
                 //get users id as child(Foreign Key)
@@ -153,7 +195,9 @@ public class TasksActivity extends AppCompatActivity implements View.OnClickList
                     Log.i(TAG, "onDataChange: Driver FullName is added to list for Selection");
                     driverList.add(drivers);
                 }
-                driverSpinner = findViewById(R.id.driver_spinner);
+                //Default value in dropdown
+                driverList.add(0, "Choose Driver");
+                driverSpinner.setSelection(0);
                 driverAdapter = new ArrayAdapter<>(TasksActivity.this, android.R.layout.simple_spinner_item, driverList);
                 driverAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 driverAdapter.notifyDataSetChanged();
@@ -168,7 +212,16 @@ public class TasksActivity extends AppCompatActivity implements View.OnClickList
             }
         });
     }
-
+    private void isOfflineSpinner(){
+        Log.i(TAG, "isOffline: User is offline, show offline list to user.");
+        //Default value in dropdown
+        offlineList.add(0,"You are Offline");
+        offlineList.add(1,"Driver Data is unavailable");
+        driverAdapter = new ArrayAdapter<>(TasksActivity.this, android.R.layout.simple_spinner_item, offlineList);
+        driverAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Log.i(TAG, "onDataChange: Adapter is ready");
+        driverSpinner.setAdapter(driverAdapter);
+    }
     /**
      * function for adding date for scheduling
      */

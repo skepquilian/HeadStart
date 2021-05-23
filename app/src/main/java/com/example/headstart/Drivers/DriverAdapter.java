@@ -38,7 +38,6 @@ public class DriverAdapter extends RecyclerView.Adapter<Holder> {
     public void onBindViewHolder(@NonNull final Holder holder, final int position) {
 
         final Drivers drivers = driverList.get(position);
-
         holder.firstName.setText(drivers.getFirstName());
         holder.lastName.setText(drivers.getLastName());
         holder.phone.setText(drivers.getPhone());
