@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#5E1866"
+    android:background="@color/accent_200"
     tools:context=".MaintenanceSchedule.TasksActivity">
 
     <RelativeLayout
@@ -115,13 +115,13 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/submit_task_float_id"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="51dp"
-        android:backgroundTint="#5E1866"
+        android:backgroundTint="@color/accent_200"
         android:contentDescription="submit button for adding task"
         android:scaleType="fitXY"
         android:src="@drawable/ic_check" />

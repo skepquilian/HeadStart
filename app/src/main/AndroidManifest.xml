@@ -64,7 +64,15 @@
         <activity
             android:name=".MaintenanceSchedule.MaintenanceActivity"
             android:label="Schedules"
-            android:parentActivityName=".Home.HomeActivity"/>
+            android:parentActivityName=".Home.HomeActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+
+        </activity>
 
         <activity
             android:name=".MaintenanceSchedule.TasksActivity"

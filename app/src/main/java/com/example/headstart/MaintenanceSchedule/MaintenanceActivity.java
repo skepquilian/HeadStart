@@ -1,11 +1,18 @@
 package com.example.headstart.MaintenanceSchedule;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.PopupMenu;
+import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,16 +26,25 @@ import com.example.headstart.R;
 import com.example.headstart.Settings.SettingsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MaintenanceActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
         View.OnClickListener {
 
+    private static final String TAG = "MaintenanceActivity";
     private BottomNavigationView bottomNavigationView;
-    private TextView taskTextViewBTN;
     private RecyclerView recyclerView;
+    private ScheduleAdapter scheduleAdapter;
     private ArrayList<Schedules> scheduleList;
+    private DatabaseReference scheduleDatabaseRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +60,20 @@ public class MaintenanceActivity extends AppCompatActivity implements BottomNavi
         FloatingActionButton mapFloatBtn = findViewById(R.id.map_floatBar);
         mapFloatBtn.setOnClickListener(this);
 
-        taskTextViewBTN = findViewById(R.id.task_id);
+        TextView taskTextViewBTN = findViewById(R.id.task_id);
         taskTextViewBTN.setOnClickListener(this);
-
 
         scheduleList = new ArrayList<>();
 
+
+        scheduleAdapter = new ScheduleAdapter(MaintenanceActivity.this, scheduleList);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+
+        scheduleDatabaseRef = FirebaseDatabase.getInstance().getReference("Schedules")
+                .child(auth.getCurrentUser().getUid());
 
     }
 
@@ -61,8 +82,72 @@ public class MaintenanceActivity extends AppCompatActivity implements BottomNavi
         super.onStart();
         updateNavigationBarState();
 
-        ScheduleAdapter scheduleAdapter = new ScheduleAdapter(MaintenanceActivity.this, scheduleList);
-        recyclerView.setAdapter(scheduleAdapter);
+        scheduleDatabaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                scheduleList.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Schedules schedules = dataSnapshot.getValue(Schedules.class);
+                    scheduleList.add(schedules);
+                }
+                recyclerView.setAdapter(scheduleAdapter);
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search_options_menu, menu);
+
+        //Search Bar Menu
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        MenuItem searchItem = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+        //Sorting Bar  Menu
+        MenuItem sortItem = menu.findItem(R.id.sort);
+        sortItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Log.i(TAG, "onMenuItemClick: PopupMenu is populated");
+                View sort = findViewById(R.id.sort);
+                PopupMenu popupMenu = new PopupMenu(MaintenanceActivity.this, sort);
+                Log.i(TAG, "onMenuItemClick: Populated by sort menu items");
+                popupMenu.inflate(R.menu.sort_menu);
+                popupMenu.show();
+
+                Log.i(TAG, "onMenuItemClick: on MenuItem clicked Listener");
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        int itemId = item.getItemId();
+                        if (itemId == R.id.by_date) {
+                            Collections.sort(scheduleList, Schedules.SchedulesA_ZAscending);
+                            Log.i(TAG, "onMenuItemClick: sorting By Date");
+                            Toast.makeText(MaintenanceActivity.this, "Sorted By date", Toast.LENGTH_LONG).show();
+                        } else if (itemId == R.id.name_ascending) {
+                            Collections.sort(scheduleList, Schedules.SchedulesZ_ADescending);
+                            Log.i(TAG, "onMenuItemClick: sorting By Name Ascending");
+                            Toast.makeText(MaintenanceActivity.this, "Ascending ", Toast.LENGTH_LONG).show();
+                        } else if (itemId == R.id.name_descending) {
+                            Log.i(TAG, "onMenuItemClick: sorting By Name Descending");
+                            Toast.makeText(MaintenanceActivity.this, "Descending", Toast.LENGTH_LONG).show();
+                        }
+                        return false;
+                    }
+                });
+                return false;
+            }
+        });
+        return true;
     }
 
     /**

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/by_date"
+        android:title="Date"
+        android:icon="@drawable/ic_arrow_upward" />
+    <item
+        android:id="@+id/name_ascending"
+        android:title="A - Z"
+        android:icon="@drawable/ic_arrow_downward" />
+    <item
+        android:id="@+id/name_descending"
+        android:title="Z - A"
+        android:icon="@drawable/ic_arrow_upward"/>
+
+</menu>

@@ -111,7 +111,7 @@ public class TasksActivity extends AppCompatActivity implements View.OnClickList
         registerReceiver(networkChangeListener, intentFilter);
 
         final String taskName = task_name.getText().toString().trim();
-        final String taskDate = task_date.getText().toString().trim();
+        final String taskDate = task_date.getText().toString();
         final String taskDriverName = driverSpinner.getSelectedItem().toString();
 
         //If Statements to validate these Inputs..Check validation
@@ -129,14 +129,13 @@ public class TasksActivity extends AppCompatActivity implements View.OnClickList
             dismissErrorDialog();
         }
         //Todo : error is here .... check if isInternet connected
-        if (taskDriverName == driverSpinner.getItemAtPosition(0)){
+        if (taskDriverName == driverSpinner.getItemAtPosition(0)) {
             Log.i(TAG, "scheduleMaintenance: BottomSheet Error message 1");
             bottomSheetDialog.show();
             //dismissDialog after seconds
             Log.i(TAG, "scheduleMaintenance: Error message dismissed");
             dismissErrorDialog();
-        }
-        else {
+        } else {
             String schedule_id = scheduleDatabaseRef.push().getKey();
 
             final Schedules schedules = new Schedules(
@@ -159,10 +158,11 @@ public class TasksActivity extends AppCompatActivity implements View.OnClickList
         }
 
     }
+
     /**
      *
      */
-    private void dismissErrorDialog(){
+    private void dismissErrorDialog() {
         long secondsCount = 2000;
         Handler handler = new Handler(Looper.myLooper());
         handler.postDelayed(() -> {
@@ -212,16 +212,18 @@ public class TasksActivity extends AppCompatActivity implements View.OnClickList
             }
         });
     }
-    private void isOfflineSpinner(){
+
+    private void isOfflineSpinner() {
         Log.i(TAG, "isOffline: User is offline, show offline list to user.");
         //Default value in dropdown
-        offlineList.add(0,"You are Offline");
-        offlineList.add(1,"Driver Data is unavailable");
+        offlineList.add(0, "You are Offline");
+        offlineList.add(1, "Driver Data is unavailable");
         driverAdapter = new ArrayAdapter<>(TasksActivity.this, android.R.layout.simple_spinner_item, offlineList);
         driverAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Log.i(TAG, "onDataChange: Adapter is ready");
         driverSpinner.setAdapter(driverAdapter);
     }
+
     /**
      * function for adding date for scheduling
      */
@@ -239,6 +241,5 @@ public class TasksActivity extends AppCompatActivity implements View.OnClickList
 
         String datePickedString = DateFormat.getDateInstance().format(calendar.getTime());
         task_date.setText(datePickedString);
-
     }
 }

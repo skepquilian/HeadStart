@@ -1,8 +1,6 @@
 package com.example.headstart.MaintenanceSchedule;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.text.style.BackgroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.headstart.R;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleHolder> {
 
@@ -28,20 +25,31 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleHolder> {
     @NonNull
     @Override
     public ScheduleHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_list, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_row_list, parent, false);
+//        Random rnd = new Random();
+//        int currentColor = Color.argb(18, rnd.nextInt(100), rnd.nextInt(255), rnd.nextInt(100));
+//        view.setBackgroundColor(currentColor);
         return new ScheduleHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ScheduleHolder holder, int position) {
         final Schedules schedules = scheduleList.get(position);
-        Random rnd = new Random();
-        int currentColor = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
 
-        holder.cardViewParent.setBackgroundColor(currentColor);
         holder.taskName.setText(schedules.getTaskName());
         holder.taskDate.setText(schedules.getTaskDate());
         holder.taskDriverName.setText(schedules.getTaskDriverName());
+
+        boolean isExpandable = schedules.isExpandable();
+
+        holder.expandableLayout.setVisibility(isExpandable ? View.VISIBLE : View.GONE);
+
+        holder.linearLayout.setOnClickListener(v -> {
+            schedules.setExpandable(!isExpandable);
+            notifyItemChanged(holder.getBindingAdapterPosition());
+
+        });
+
     }
 
     @Override

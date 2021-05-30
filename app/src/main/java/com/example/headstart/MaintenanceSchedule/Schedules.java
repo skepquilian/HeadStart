@@ -1,8 +1,11 @@
 package com.example.headstart.MaintenanceSchedule;
 
+import java.util.Comparator;
+
 public class Schedules {
 
     public String taskName, taskDate, taskDriverName;
+    public boolean isExpandable;
 
 
     /**
@@ -13,12 +16,26 @@ public class Schedules {
     public Schedules() {
     }
 
-
     public Schedules(String taskName, String taskDate, String taskDriverName) {
         this.taskName = taskName;
         this.taskDate = taskDate;
         this.taskDriverName = taskDriverName;
+        this.isExpandable = false;
     }
+
+    public static Comparator<Schedules> SchedulesA_ZAscending = new Comparator<Schedules>() {
+        @Override
+        public int compare(Schedules s1, Schedules s2) {
+            return s1.getTaskDriverName().compareTo(s2.getTaskDriverName()) ;
+        }
+    };
+    public static Comparator<Schedules> SchedulesZ_ADescending = new Comparator<Schedules>() {
+        @Override
+        public int compare(Schedules s1, Schedules s2) {
+            return s2.getTaskDriverName().compareTo(s1.getTaskDriverName());
+        }
+    };
+
 
     public String getTaskName() {
         return taskName;
@@ -42,5 +59,13 @@ public class Schedules {
 
     public void setTaskDriverName(String taskDriverName) {
         this.taskDriverName = taskDriverName;
+    }
+
+    public boolean isExpandable() {
+        return isExpandable;
+    }
+
+    public void setExpandable(boolean expandable) {
+        isExpandable = expandable;
     }
 }

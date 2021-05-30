@@ -24,6 +24,7 @@
     <string name="settings_menu">Settings</string>
     <string name="home_nav">Home</string>
     <string name="maintenance_nav">Schedule</string>
+    <string name="enter_search">search for ?</string>
     <string name="map_nav">Map</string>
     <string name="drivers_nav">Drivers</string>
     <string name="settings_nav">Settings</string>

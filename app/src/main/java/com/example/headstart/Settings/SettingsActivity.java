@@ -16,10 +16,13 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 
 import com.example.headstart.AuthenticateActivities.LoginActivity;
+import com.example.headstart.AuthenticateActivities.User;
 import com.example.headstart.Home.HomeActivity;
 import com.example.headstart.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -45,7 +48,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser != null) {
-            String name = firebaseUser.getEmail();
+            String name = firebaseUser.getDisplayName();
             if (name != null) {
                 userName.setText("".concat(name));
             }
