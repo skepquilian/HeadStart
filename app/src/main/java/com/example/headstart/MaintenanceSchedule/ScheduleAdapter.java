@@ -36,9 +36,9 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleHolder> {
     public void onBindViewHolder(@NonNull ScheduleHolder holder, int position) {
         final Schedules schedules = scheduleList.get(position);
 
-        holder.taskName.setText(schedules.getTaskName());
+        holder.taskName.setText(schedules.getTaskName().toUpperCase());
         holder.taskDate.setText(schedules.getTaskDate());
-        holder.taskDriverName.setText(schedules.getTaskDriverName());
+        holder.taskDriverName.setText(schedules.getTaskDriverName().toUpperCase());
 
         boolean isExpandable = schedules.isExpandable();
 

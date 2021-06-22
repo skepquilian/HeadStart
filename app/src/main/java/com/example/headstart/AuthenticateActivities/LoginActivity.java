@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //Login Button
         Button btnLogin = findViewById(R.id.loginButton);
         btnLogin.setOnClickListener(this);
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.dr_progressBar);
 
         mAuth = FirebaseAuth.getInstance();
 

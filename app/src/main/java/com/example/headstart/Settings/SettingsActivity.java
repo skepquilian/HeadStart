@@ -88,7 +88,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
      */
     public void darkModeToggle() {
         sharedPreferences = getSharedPreferences("night", 0);
-        Boolean boolValue = sharedPreferences.getBoolean("night_mode", true);
+        Boolean boolValue = sharedPreferences.getBoolean("night_mode", false);
         if (boolValue) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             modeSwitch.setChecked(true);
@@ -101,14 +101,14 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 moreImage.setImageResource(R.drawable.ic_more);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean("night_mode", true);
-                editor.commit();
+                editor.apply();
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 modeSwitch.setChecked(false);
                 moreImage.setImageResource(R.drawable.ic_more);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean("night_mode", false);
-                editor.commit();
+                editor.apply();
             }
         });
     }

@@ -67,7 +67,7 @@ public class MaintenanceActivity extends AppCompatActivity implements BottomNavi
 
 
         scheduleAdapter = new ScheduleAdapter(MaintenanceActivity.this, scheduleList);
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.schedule_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -118,8 +118,8 @@ public class MaintenanceActivity extends AppCompatActivity implements BottomNavi
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 Log.i(TAG, "onMenuItemClick: PopupMenu is populated");
-                View sort = findViewById(R.id.sort);
-                PopupMenu popupMenu = new PopupMenu(MaintenanceActivity.this, sort);
+                View sortView = findViewById(R.id.sort);
+                PopupMenu popupMenu = new PopupMenu(MaintenanceActivity.this, sortView);
                 Log.i(TAG, "onMenuItemClick: Populated by sort menu items");
                 popupMenu.inflate(R.menu.sort_menu);
                 popupMenu.show();
@@ -129,15 +129,22 @@ public class MaintenanceActivity extends AppCompatActivity implements BottomNavi
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         int itemId = item.getItemId();
+
                         if (itemId == R.id.by_date) {
                             Collections.sort(scheduleList, Schedules.SchedulesA_ZAscending);
+                            recyclerView.setAdapter(scheduleAdapter);
                             Log.i(TAG, "onMenuItemClick: sorting By Date");
                             Toast.makeText(MaintenanceActivity.this, "Sorted By date", Toast.LENGTH_LONG).show();
-                        } else if (itemId == R.id.name_ascending) {
-                            Collections.sort(scheduleList, Schedules.SchedulesZ_ADescending);
+                        }
+                        else if (itemId == R.id.name_ascending) {
+                            Collections.sort(scheduleList, Schedules.SchedulesA_ZAscending);
+                            recyclerView.setAdapter(scheduleAdapter);
                             Log.i(TAG, "onMenuItemClick: sorting By Name Ascending");
                             Toast.makeText(MaintenanceActivity.this, "Ascending ", Toast.LENGTH_LONG).show();
-                        } else if (itemId == R.id.name_descending) {
+                        }
+                        else if (itemId == R.id.name_descending) {
+                            Collections.sort(scheduleList, Schedules.SchedulesZ_ADescending);
+                            recyclerView.setAdapter(scheduleAdapter);
                             Log.i(TAG, "onMenuItemClick: sorting By Name Descending");
                             Toast.makeText(MaintenanceActivity.this, "Descending", Toast.LENGTH_LONG).show();
                         }
@@ -147,7 +154,7 @@ public class MaintenanceActivity extends AppCompatActivity implements BottomNavi
                 return false;
             }
         });
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     /**

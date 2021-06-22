@@ -107,7 +107,7 @@ public class DriverDialog {
         } else if (driverPhone.isEmpty() || (driverPhone.length() < 10)) {
             editPhoneNumber.setError("Enter a valid Phone Number");
             editPhoneNumber.requestFocus();
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(driverEmail).matches() && driverEmail.isEmpty()) {
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(driverEmail).matches() && !driverEmail.isEmpty()) {
             editEmail.setError("Please provide valid email");
             editEmail.requestFocus();
         } else if (driverID.isEmpty()) {

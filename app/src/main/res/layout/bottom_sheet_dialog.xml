@@ -2,27 +2,41 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:color/transparent">
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/bottom_text_view1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/accent_300"
+        android:gravity="center"
+        android:text="tracking information"
+        android:textColor="@color/black" />
 
     <LinearLayout
         android:id="@+id/settings_linear1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_top_radius"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_width="382dp"
+        android:layout_height="310dp"
+        android:layout_below="@id/bottom_text_view1"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_top_radius"
+            android:backgroundTint="@color/accent_300"
+            android:gravity="center">
 
             <ImageView
                 android:id="@+id/profileCircleImageView"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/rounded_box"
                 android:contentDescription="@string/profile_image"
                 android:src="@drawable/person" />
@@ -32,8 +46,9 @@
                 android:id="@+id/d_FirstName"
                 style="@style/viewParent.headerText"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
                 android:layout_toEndOf="@id/profileCircleImageView"
-                android:text="FirstName "
+                android:text="FirstName"
                 android:textSize="18sp" />
 
             <TextView
@@ -44,29 +59,14 @@
                 android:text="LastName"
                 android:textSize="18sp" />
 
-            <TextView
-                style="@style/viewParent.headerText"
-                android:layout_below="@id/d_FirstName"
-                android:layout_toEndOf="@id/profileCircleImageView"
-                android:text="Update driver info"
-                android:textColor="#5D5C5C"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:id="@+id/more_arrow_image"
-                style="@style/viewParent"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:contentDescription="@string/profile_image"
-                android:src="@drawable/ic_more" />
         </RelativeLayout>
 
         <TextView
             android:id="@+id/darkModeSwitch"
             style="@style/settingsText"
             android:text="Status"
-            app:drawableStartCompat="@drawable/ic_driver_status"
-            app:drawableEndCompat="@drawable/ic_active_status" />
+            app:drawableEndCompat="@drawable/ic_active_status"
+            app:drawableStartCompat="@drawable/ic_driver_status" />
 
 
         <TextView
@@ -88,20 +88,6 @@
             android:layout_marginTop="10dp"
             android:text="License Expiry"
             app:drawableLeftCompat="@drawable/ic_alert" />
-
-        <Button
-            android:id="@+id/deleteBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="18dp"
-            android:background="@drawable/rounded_box"
-            android:backgroundTint="@color/red"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="Remove Driver Info"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
 
     </LinearLayout>
 

@@ -23,7 +23,6 @@
                 android:id="@id/recyclerView"
                 layout="@layout/activity_recycler" />
 
-
             <ProgressBar
                 android:id="@+id/dr_progressBar"
                 style="@style/viewParent"
@@ -39,6 +38,7 @@
                 android:gravity="center"
                 android:text="@string/fetching_data"
                 android:visibility="visible" />
+
         </RelativeLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

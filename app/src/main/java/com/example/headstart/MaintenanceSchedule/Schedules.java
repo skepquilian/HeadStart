@@ -1,6 +1,7 @@
 package com.example.headstart.MaintenanceSchedule;
 
 import java.util.Comparator;
+import java.util.Date;
 
 public class Schedules {
 
@@ -26,16 +27,15 @@ public class Schedules {
     public static Comparator<Schedules> SchedulesA_ZAscending = new Comparator<Schedules>() {
         @Override
         public int compare(Schedules s1, Schedules s2) {
-            return s1.getTaskDriverName().compareTo(s2.getTaskDriverName()) ;
+            return s1.getTaskName().compareTo(s2.getTaskName()) ;
         }
     };
     public static Comparator<Schedules> SchedulesZ_ADescending = new Comparator<Schedules>() {
         @Override
         public int compare(Schedules s1, Schedules s2) {
-            return s2.getTaskDriverName().compareTo(s1.getTaskDriverName());
+            return s2.getTaskName().compareTo(s1.getTaskName());
         }
     };
-
 
     public String getTaskName() {
         return taskName;

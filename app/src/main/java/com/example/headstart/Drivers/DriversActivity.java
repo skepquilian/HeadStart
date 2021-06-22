@@ -1,13 +1,18 @@
 package com.example.headstart.Drivers;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,26 +27,22 @@ import com.example.headstart.Map.MapActivity;
 import com.example.headstart.R;
 import com.example.headstart.Settings.SettingsActivity;
 import com.example.headstart.Utility.NetworkChangeListener;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 public class DriversActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
         View.OnClickListener {
 
     private static final String TAG = "DriversActivity";
     private BottomNavigationView bottomNavigationView;
-    private RecyclerView recyclerView;
-    private ArrayList<Drivers> driverList;
-    private DatabaseReference driverDatabaseRef;
-    private TextView fetchDataTextView;
+    DriverAdapter driverAdapter;
+    private ProgressBar progressBar;
+
+    RecyclerView recyclerView;
 
     SwipeRefreshLayout swipeRefreshLayout;
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
@@ -66,18 +67,27 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         FloatingActionButton mapFloatBtn = findViewById(R.id.map_floatBar);
         mapFloatBtn.setOnClickListener(this);
 
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         auth = FirebaseAuth.getInstance();
 
         //take driver info to firebase database
-        driverDatabaseRef = FirebaseDatabase.getInstance().getReference("User Drivers")
+        //get users id as child(Foreign Key)
+        //private ArrayList<Drivers> driverList;
+        DatabaseReference driverDatabaseRef = FirebaseDatabase.getInstance().getReference("User Drivers")
                 //get users id as child(Foreign Key)
                 .child(auth.getCurrentUser().getUid());
 
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        driverList = new ArrayList<>();
-
+        //driverList = new ArrayList<>();
+        // It is a class provide by the FirebaseUI to make a
+        // query in the database to fetch appropriate data
+        FirebaseRecyclerOptions<Drivers> options
+                = new FirebaseRecyclerOptions.Builder<Drivers>()
+                .setQuery(driverDatabaseRef, Drivers.class)
+                .build();
+        driverAdapter = new DriverAdapter(options);
+        recyclerView.setAdapter(driverAdapter);
     }
 
 
@@ -85,7 +95,6 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
     protected void onStart() {
         super.onStart();
         updateNavigationBarState();
-
         Log.i(TAG, "onStart: Refresh page when user swipe down");
         swipeRefreshLayout = findViewById(R.id.swiperefresh);
         swipeRefreshLayout.setOnRefreshListener(() -> {
@@ -94,43 +103,36 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
             IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
             registerReceiver(networkChangeListener, intentFilter);
             if (swipeRefreshLayout.isRefreshing()) {
-                if (!driverList.isEmpty()) {
-                    Log.i(TAG, "onRefresh: Driver list is not empty");
-                    swipeRefreshLayout.setRefreshing(false);
-                }
+                Log.i(TAG, "onRefresh: Driver list is not empty");
+                driverAdapter.startListening();
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
-        //Load data
-        driverDatabaseRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //before data is fetched from firebase, clear list
-                Log.i(TAG, "onDataChange: data is cleared in adapter. User adds new driver ");
-                driverList.clear();
 
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Drivers drivers = dataSnapshot.getValue(Drivers.class);
-                    Log.i(TAG, "onDataChange: adds drivers to list ");
-                    driverList.add(drivers);
+        driverAdapter.startListening();
 
-                    //When data is not fetched show progressBar with fetch data textView
-                    // progressBar = findViewById(R.id.progressBar);
-                    // progressBar.setVisibility(View.GONE);
-                    fetchDataTextView = findViewById(R.id.fetchData);
-                    fetchDataTextView.setVisibility(View.GONE);
-                    swipeRefreshLayout.setRefreshing(false);
-                }
-                DriverAdapter driverAdapter = new DriverAdapter(DriversActivity.this, driverList);
-                recyclerView.setAdapter(driverAdapter);
-            }
+        //When data is not fetched show progressBar with fetch data textView
+        progressBar = findViewById(R.id.dr_progressBar);
+        progressBar.setVisibility(View.GONE);
+        TextView fetchDataTextView = findViewById(R.id.fetchData);
+        fetchDataTextView.setVisibility(View.GONE);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                //
-            }
-        });
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.search_options_menu, menu);
+
+        //Search Bar Menu
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        MenuItem searchItem = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+        return super.onCreateOptionsMenu(menu);
+    }
 
     /**
      * overridePending Remove inter-activity transition to avoid

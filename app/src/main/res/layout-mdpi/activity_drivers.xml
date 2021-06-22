@@ -23,7 +23,6 @@
                 android:id="@id/recyclerView"
                 layout="@layout/activity_recycler" />
 
-
             <ProgressBar
                 android:id="@+id/dr_progressBar"
                 style="@style/viewParent"
@@ -53,7 +52,7 @@
         android:background="@color/white"
         android:contentDescription="@string/float_bar_add_driver_page"
         android:src="@drawable/ic_add_driver"
-        app:fabSize="normal" />
+        app:fabSize="mini" />
 
     <!--Bottom Nav Bar-->
     <include

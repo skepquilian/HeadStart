@@ -24,7 +24,7 @@
             android:textColor="@android:color/background_light"
             android:textSize="44sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/progressBar"
+            app:layout_constraintBottom_toTopOf="@+id/dr_progressBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -229,7 +229,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="30dp"
-            android:background="@color/white"
+            android:backgroundTint="@color/white"
+            android:padding="10dp"
             android:text="@string/register_btn"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -260,7 +261,7 @@
             app:layout_constraintTop_toBottomOf="@+id/registerButton" />
 
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/dr_progressBar"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

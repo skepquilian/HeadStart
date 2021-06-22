@@ -6,11 +6,11 @@
         android:icon="@drawable/ic_arrow_upward" />
     <item
         android:id="@+id/name_ascending"
-        android:title="A - Z"
+        android:title="order by A - Z"
         android:icon="@drawable/ic_arrow_downward" />
     <item
         android:id="@+id/name_descending"
-        android:title="Z - A"
+        android:title="order by Z - A"
         android:icon="@drawable/ic_arrow_upward"/>
 
 </menu>

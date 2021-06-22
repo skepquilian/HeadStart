@@ -31,8 +31,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class TasksActivity extends AppCompatActivity implements View.OnClickListener,
         DatePickerDialog.OnDateSetListener {
@@ -99,7 +101,7 @@ public class TasksActivity extends AppCompatActivity implements View.OnClickList
     }
 
     /**
-     * function for maintenance schedule
+     * function to add a maintenance schedule
      */
     private void scheduleMaintenance() {
         DatabaseReference scheduleDatabaseRef = FirebaseDatabase.getInstance().getReference("Schedules")
@@ -111,7 +113,7 @@ public class TasksActivity extends AppCompatActivity implements View.OnClickList
         registerReceiver(networkChangeListener, intentFilter);
 
         final String taskName = task_name.getText().toString().trim();
-        final String taskDate = task_date.getText().toString();
+        final String taskDate = task_date.getText().toString().trim();
         final String taskDriverName = driverSpinner.getSelectedItem().toString();
 
         //If Statements to validate these Inputs..Check validation

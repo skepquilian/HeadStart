@@ -25,7 +25,7 @@
             android:textColor="@android:color/white"
             android:textSize="50sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/progressBar"
+            app:layout_constraintBottom_toTopOf="@+id/dr_progressBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.473"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+            app:layout_constraintTop_toBottomOf="@+id/dr_progressBar" />
 
         <!-- Email EditText view for Login-->
         <EditText
@@ -122,7 +122,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:background="@color/white"
+            android:backgroundTint="@color/white"
+            android:padding="10dp"
             android:text="@string/login_button"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -191,7 +192,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/dr_progressBar"
             style="@style/viewParent.headerText"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"

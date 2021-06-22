@@ -9,18 +9,14 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.headstart.R;
 import com.example.headstart.Utility.PasswordUtils;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -28,7 +24,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private EditText editTextOrganizationName, editTextEmail,
             editTextPhone, editTextPassword, editTextPasswordConfirm;
-    private ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
 
@@ -58,7 +53,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         //register Button
         Button btnRegister = findViewById(R.id.registerButton);
         btnRegister.setOnClickListener(this);
-        progressBar = findViewById(R.id.progressBar);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -155,20 +149,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         .setValue(user);
 
                 //send email verification if user is registered successfully
-                mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        //check if user is registered successfully
-                        if (task.isSuccessful()) {
-                            //Redirect to Login Page if registration is successful
-                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                            Toast.makeText(RegisterActivity.this, "Account registered...VERIFY email Now", Toast.LENGTH_LONG).show();
-                        } else {
-                            Toast.makeText(RegisterActivity.this, "Registration Failed. TRY AGAIN", Toast.LENGTH_LONG).show();
-                        }
-                        //progressBar.setVisibility(View.GONE);
-                        alertDialog.dismiss();
+                mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(task1 -> {
+                    //check if user is registered successfully
+                    if (task1.isSuccessful()) {
+                        //Redirect to Login Page if registration is successful
+                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                        Toast.makeText(RegisterActivity.this, "Account registered...VERIFY email Now", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(RegisterActivity.this, "Registration Failed. TRY AGAIN", Toast.LENGTH_LONG).show();
                     }
+                    //progressBar.setVisibility(View.GONE);
+                    alertDialog.dismiss();
                 });
             } else {
                 Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();

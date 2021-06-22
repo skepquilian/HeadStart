@@ -23,7 +23,6 @@
                 android:id="@id/recyclerView"
                 layout="@layout/activity_recycler" />
 
-
             <ProgressBar
                 android:id="@+id/dr_progressBar"
                 style="@style/viewParent"

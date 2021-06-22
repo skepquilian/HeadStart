@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.headstart.R;
 
-public class Holder extends RecyclerView.ViewHolder {
+public class DriverHolder extends RecyclerView.ViewHolder {
 
     TextView firstName, lastName, email, phone, driverID, vehicleID;
-    ImageView profileImage, optionBar;
+    ImageView profileImage, editBar, deleteBar;
     CardView driverViewParent;
 
-    public Holder(@NonNull View itemView) {
+    public DriverHolder(@NonNull View itemView) {
         super(itemView);
 
         this.firstName = itemView.findViewById(R.id.d_FirstName);
@@ -26,7 +26,8 @@ public class Holder extends RecyclerView.ViewHolder {
         this.driverID = itemView.findViewById(R.id.driverID);
         this.vehicleID = itemView.findViewById(R.id.vehicleID);
         this.profileImage = itemView.findViewById(R.id.driver_img);
-        this.optionBar = itemView.findViewById(R.id.option_Bar);
+        this.editBar = itemView.findViewById(R.id.edit_Bar);
+        this.deleteBar = itemView.findViewById(R.id.delete_Bar);
         this.driverViewParent = itemView.findViewById(R.id.rows1);
 
     }

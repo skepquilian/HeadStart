@@ -32,7 +32,7 @@ public class ResetPassword extends AppCompatActivity implements View.OnClickList
         //EditText
         editTextEmailReset = findViewById(R.id.emailAddress);
 
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.dr_progressBar);
 
         mAuth = FirebaseAuth.getInstance();
     }

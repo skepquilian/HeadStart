@@ -2,7 +2,7 @@ package com.example.headstart.Drivers;
 
 public class Drivers {
 
-    public String firstName, lastName, phone, email, driverId, vehicleId;
+    public String firstName, lastName, phone, email, driverID, vehicleID;
 
 
     /**
@@ -14,13 +14,13 @@ public class Drivers {
     }
 
 
-    public Drivers(String firstName, String lastName, String phone, String email, String driverId, String vehicleId) {
+    public Drivers(String firstName, String lastName, String phone, String email, String driverID, String vehicleID) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
         this.email = email;
-        this.driverId = driverId;
-        this.vehicleId = vehicleId;
+        this.driverID = driverID;
+        this.vehicleID = vehicleID;
     }
 
 
@@ -56,19 +56,19 @@ public class Drivers {
         this.email = email;
     }
 
-    public String getDriverId() {
-        return driverId;
+    public String getDriverID() {
+        return driverID;
     }
 
-    public void setDriverId(String driverId) {
-        this.driverId = driverId;
+    public void setDriverID(String driverId) {
+        this.driverID = driverId;
     }
 
-    public String getVehicleId() {
-        return vehicleId;
+    public String getVehicleID() {
+        return vehicleID;
     }
 
-    public void setVehicleId(String vehicleId) {
-        this.vehicleId = vehicleId;
+    public void setVehicleID(String vehicleId) {
+        this.vehicleID = vehicleId;
     }
 }

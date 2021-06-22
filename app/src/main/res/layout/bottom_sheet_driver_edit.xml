@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/bottom_text_view1"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/accent_300"
+        android:gravity="center"
+        android:text="Update driver information" />
+
+    <TextView
+        android:id="@+id/edit_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bottom_text_view1"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="Firstname"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/edit_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_text1"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="Lastname"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/edit_text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_text2"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="Phone number"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/edit_text4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_text3"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="Email address"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/edit_text5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_text4"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="Driver ID number"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/edit_text6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_text5"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="Vehicle ID number"
+        android:textColor="@color/black" />
+
+
+    <EditText
+        android:id="@+id/edit_firstname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bottom_text_view1"
+        android:layout_margin="10dp"
+        android:layout_toEndOf="@id/edit_text1"
+        android:gravity="center"
+        android:hint="firstname"
+        android:imeOptions="actionNext"
+        android:padding="15dp"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/edit_lastname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_firstname"
+        android:layout_toEndOf="@id/edit_text2"
+        android:gravity="center"
+        android:hint="lastname"
+        android:imeOptions="actionNext"
+        android:padding="15dp"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/edit_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_lastname"
+        android:layout_margin="10dp"
+        android:layout_toEndOf="@id/edit_text3"
+        android:gravity="center"
+        android:hint="phone number"
+        android:imeOptions="actionNext"
+        android:padding="15dp"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/edit_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_phone"
+        android:layout_margin="10dp"
+        android:layout_toEndOf="@id/edit_text4"
+        android:gravity="center"
+        android:hint="email address"
+        android:imeOptions="actionNext"
+        android:padding="15dp"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/edit_driverID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_email"
+        android:layout_margin="10dp"
+        android:layout_toEndOf="@id/edit_text5"
+        android:gravity="center"
+        android:hint="driver id number"
+        android:imeOptions="actionNext"
+        android:padding="15dp"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/edit_vehicleID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_driverID"
+        android:layout_margin="10dp"
+        android:layout_toEndOf="@id/edit_text5"
+        android:gravity="center"
+        android:hint="vehicle id number"
+        android:padding="15dp"
+        android:singleLine="true"
+        android:nextFocusForward="@id/updateBTN"/>
+
+
+    <Button
+        android:id="@+id/updateBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_vehicleID"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="Update"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+</RelativeLayout>

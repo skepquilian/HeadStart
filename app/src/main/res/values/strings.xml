@@ -23,7 +23,7 @@
     <string name="drivers_menu">Drivers</string>
     <string name="settings_menu">Settings</string>
     <string name="home_nav">Home</string>
-    <string name="maintenance_nav">Schedule</string>
+    <string name="maintenance_nav">Maintain</string>
     <string name="enter_search">search for ?</string>
     <string name="map_nav">Map</string>
     <string name="drivers_nav">Drivers</string>
@@ -34,7 +34,7 @@
     <string name="float_bar_add_driver_page">This sends user to add driver page</string>
     <string name="submit_driver_details_to_list">Float bar to add driver to list</string>
     <string name="map_activity_fab_icon">Map Activity Fab icon</string>
-    <string name="fetching_data">Pull down to Fetch Data.....</string>
+    <string name="fetching_data">Data Loading.....</string>
     <string name="my_settings">Settings</string>
     <string name="profile_image">profile Image</string>
     <string name="night">Night</string>

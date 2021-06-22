@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.headstart.Drivers.DriversActivity;
@@ -20,6 +21,7 @@ import com.example.headstart.R;
 import com.example.headstart.Settings.SettingsActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -155,21 +157,37 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         //Tabs Link to viewPager
         TabLayout tabLayout = findViewById(R.id.tab);
         //tabLayout.setupWithViewPager(viewPager2, true);
-        new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> tab.setText("")
-        ).attach();
-
-        //An array containing icons from the drawable directory
-        final int[] ICONS = new int[]{
-                R.drawable.ic_action_truck,
-                R.string.app_name,
-                R.drawable.ic_notifications,
-        };
-
-
-        tabLayout.getTabAt(0).setIcon(ICONS[0]);
-        tabLayout.getTabAt(1).setText(ICONS[1]);
-        tabLayout.getTabAt(2).setIcon(ICONS[2]);
-
+        new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {
+            //An array containing icons from the drawable directory
+            final int[] ICONS = new int[]{
+                    R.drawable.ic_action_truck,
+                    R.string.app_name,
+                    R.drawable.ic_notify,
+            };
+            switch (position){
+                case 0:
+                    tab.setIcon(ICONS[0]);
+                    BadgeDrawable badgeDrawable = tab.getOrCreateBadge();
+                    badgeDrawable.setBackgroundColor(
+                            ContextCompat.getColor(getApplicationContext(), R.color.green)
+                    );
+                    badgeDrawable.setVisible(true);
+                    break;
+                case 1:
+                    tab.setText(ICONS[1]);
+                    break;
+                case 2:
+                    tab.setIcon(ICONS[2]);
+                    BadgeDrawable badgeDrawable2 = tab.getOrCreateBadge();
+                    badgeDrawable2.setBackgroundColor(
+                            ContextCompat.getColor(getApplicationContext(), R.color.green)
+                    );
+                    badgeDrawable2.setVisible(true);
+                    badgeDrawable2.setNumber(100);
+                    badgeDrawable2.setMaxCharacterCount(3);
+                    break;
+            }
+        }).attach();
 
         //set the home fragment to be current page when activity is loaded
         viewPager2.setCurrentItem(1);
@@ -182,6 +200,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(0);
         menuItem.setChecked(true);
+
 
         bottomNavigationView.setBackground(null);
         bottomNavigationView.getMenu().getItem(2).setEnabled(false);

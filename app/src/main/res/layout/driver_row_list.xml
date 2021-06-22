@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rows1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/rows1"
     android:layout_margin="5dp"
     app:cardCornerRadius="20dp">
 
@@ -116,16 +116,29 @@
 
         <!--Options Button -->
         <ImageView
-            android:id="@+id/option_Bar"
-            android:layout_width="20dp"
-            android:layout_height="15dp"
+            android:id="@+id/edit_Bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_edit" />
+
+
+        <ImageView
+            android:id="@+id/delete_Bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_Bar"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="8dp"
-            android:scaleType="fitXY"
             android:clickable="true"
-            android:src="@drawable/options"
-            android:focusable="true" />
-
+            android:focusable="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_delete" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

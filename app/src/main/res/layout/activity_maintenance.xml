@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/accent_300"
     tools:context=".MaintenanceSchedule.MaintenanceActivity">
 
 
@@ -12,24 +11,25 @@
         android:id="@+id/reminder"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="All Tasks"
-        android:background="@color/accent_200"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
+        android:background="@color/accent_200"
         android:gravity="center"
         android:padding="5dp"
+        android:text="All Tasks"
         app:drawableTopCompat="@drawable/ic_notify" />
 
 
-<!-- TODO add list of reminders here-->
+    <!-- TODO add list of reminders here-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/reminder"
         android:layout_marginBottom="50dp">
+
         <include
-            android:id="@id/recyclerView"
-            layout="@layout/activity_recycler" />
+            android:id="@id/schedule_recycler_view"
+            layout="@layout/schedule_recycler_view" />
     </RelativeLayout>
 
     <androidx.cardview.widget.CardView
@@ -37,20 +37,18 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="70dp"
-        app:cardCornerRadius="20dp"
-        android:layout_marginEnd="16dp">
+        app:cardCornerRadius="10dp">
 
-        <TextView
+        <Button
             android:id="@+id/task_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:padding="10dp"
-            android:shadowColor="@color/black"
             android:text="Tasks"
             android:textColor="@color/black"
-            android:textSize="22sp"
+            android:textSize="14sp"
             android:textStyle="normal" />
     </androidx.cardview.widget.CardView>
 
