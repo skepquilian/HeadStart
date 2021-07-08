@@ -31,12 +31,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
-public class TasksActivity extends AppCompatActivity implements View.OnClickListener,
+public class ScheduleActivity extends AppCompatActivity implements View.OnClickListener,
         DatePickerDialog.OnDateSetListener {
 
     private static final String TAG = "TasksActivity";
@@ -152,9 +150,9 @@ public class TasksActivity extends AppCompatActivity implements View.OnClickList
                     task_date.setText("");
                     driverSpinner.setSelection(0);
 
-                    Toast.makeText(TasksActivity.this, "Added successfully", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ScheduleActivity.this, "Added successfully", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(TasksActivity.this, "Error", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ScheduleActivity.this, "Error", Toast.LENGTH_LONG).show();
                 }
             });
         }
@@ -200,7 +198,7 @@ public class TasksActivity extends AppCompatActivity implements View.OnClickList
                 //Default value in dropdown
                 driverList.add(0, "Choose Driver");
                 driverSpinner.setSelection(0);
-                driverAdapter = new ArrayAdapter<>(TasksActivity.this, android.R.layout.simple_spinner_item, driverList);
+                driverAdapter = new ArrayAdapter<>(ScheduleActivity.this, android.R.layout.simple_spinner_item, driverList);
                 driverAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 driverAdapter.notifyDataSetChanged();
                 Log.i(TAG, "onDataChange: Adapter is ready");
@@ -220,7 +218,7 @@ public class TasksActivity extends AppCompatActivity implements View.OnClickList
         //Default value in dropdown
         offlineList.add(0, "You are Offline");
         offlineList.add(1, "Driver Data is unavailable");
-        driverAdapter = new ArrayAdapter<>(TasksActivity.this, android.R.layout.simple_spinner_item, offlineList);
+        driverAdapter = new ArrayAdapter<>(ScheduleActivity.this, android.R.layout.simple_spinner_item, offlineList);
         driverAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Log.i(TAG, "onDataChange: Adapter is ready");
         driverSpinner.setAdapter(driverAdapter);

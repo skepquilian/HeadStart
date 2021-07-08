@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Home.HomeActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--Top Navigation Tabs-->
+        <RelativeLayout
+            android:id="@+id/relative_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true">
+
+            <!--Tabs For Fragment-->
+            <include
+                android:id="@+id/appBar"
+                layout="@layout/top_tab_navigation_bar" />
+
+        </RelativeLayout>
+
+        <!-- Home activity area -->
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/bottom_nav_bar"
+            android:layout_below="@id/relative_top_bar"
+            android:fillViewport="true">
+
+            <!--ViewPager-->
+            <include
+                android:id="@+id/container"
+                layout="@layout/view_pager_layout" />
+
+        </ScrollView>
+
+
+        <!--Bottom Navigation Menu Bar-->
+        <include
+            android:id="@+id/bottom_nav_bar"
+            layout="@layout/activity_bottom_navigation_snippet" />
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+

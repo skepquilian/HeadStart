@@ -42,34 +42,4 @@ public class PagerAdapter extends FragmentStateAdapter {
         mFragmentList.add(fragment);
     }
 
-    // private final int mNumOfTabs;
-
-//    /**
-//     * store fragments in a List, this holds fragment
-//     */
-//    private final List<Fragment> mFragmentList = new ArrayList<Fragment>();
-//
-//    public PagerAdapter(@NonNull FragmentManager fm, int behavior ){
-//        super(fm, behavior);
-//       // this.mNumOfTabs = NumOfTabs; , int NumOfTabs)
-//    }
-//
-//
-//    @NonNull
-//    @Override
-//    public Fragment getItem(int position) {
-//        return mFragmentList.get(position);
-//    }
-//
-//    @Override
-//    public int getCount() {
-//        return mFragmentList.size();
-//    }
-//
-//    /**
-//     * @param fragment , method to add fragment to List
-//     */
-//    public void addFragment(Fragment fragment){
-//        mFragmentList.add(fragment);
-//    }
 }

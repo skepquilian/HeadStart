@@ -4,18 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/appBackground"
     android:fillViewport="true"
     tools:context=".AuthenticateActivities.LoginActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/appBackground">
+
 
         <!-- Application Name/Logo-->
         <TextView
             android:id="@+id/appName"
             style="@style/viewParent.headerText"
+            android:layout_gravity="center"
             android:layout_marginTop="72dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="sans-serif-smallcaps"
@@ -24,29 +28,20 @@
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="50sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/dr_progressBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.43" />
+            android:textStyle="bold" />
 
         <!-- Login TextView-->
         <TextView
             android:id="@+id/signUp"
             style="@style/viewParent.headerText"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
             android:fontFamily="sans-serif-condensed"
             android:text="@string/login"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/emailAddress"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.473"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dr_progressBar" />
+            android:textStyle="bold" />
 
         <!-- Email EditText view for Login-->
         <EditText
@@ -54,6 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/round_border"
@@ -69,12 +65,7 @@
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/black"
             android:textCursorDrawable="@android:color/black"
-            android:textSize="@dimen/textFormat"
-            app:layout_constraintBottom_toTopOf="@+id/textLayoutPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signUp" />
+            android:textSize="@dimen/textFormat" />
 
         <!-- TextInput Layout for Password-->
         <com.google.android.material.textfield.TextInputLayout
@@ -107,11 +98,7 @@
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black"
                 android:textCursorDrawable="@android:color/black"
-                android:textSize="@dimen/textFormat"
-                app:layout_constraintBottom_toTopOf="@+id/loginButton"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:textSize="@dimen/textFormat" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- LogIn Btn-->
@@ -119,7 +106,9 @@
             android:id="@+id/loginButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:backgroundTint="@color/white"
@@ -128,18 +117,14 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/forgetPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textLayoutPassword" />
+            android:textStyle="bold" />
 
         <!-- Forget Password TextView-->
         <TextView
             android:id="@+id/forgetPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:fontFamily="monospace"
@@ -147,36 +132,29 @@
             android:textAlignment="center"
             android:textColor="@color/accent_100"
             android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/textView10"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+            android:textStyle="bold" />
 
         <!-- OR TextView-->
         <TextView
             android:id="@+id/textView10"
             android:layout_width="18dp"
             android:layout_height="18dp"
+            android:layout_gravity="center"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="22dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="22dp"
             android:fontFamily="monospace"
             android:text="@string/or"
             android:textColor="@android:color/background_light"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/registerButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/forgetPassword" />
+            android:textSize="12sp" />
 
         <!-- Register TextView-->
         <TextView
             android:id="@+id/registerButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="32dp"
@@ -185,24 +163,9 @@
             android:textAlignment="center"
             android:textColor="@color/accent_100"
             android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            android:textStyle="bold" />
 
-        <ProgressBar
-            android:id="@+id/dr_progressBar"
-            style="@style/viewParent.headerText"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/signUp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appName" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 
 </ScrollView>

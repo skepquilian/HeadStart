@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<merge xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:theme="@style/AppThemeMenu">
 
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottomAppBar"
@@ -19,23 +21,28 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
                 android:background="@android:color/transparent"
-                app:itemIconSize="20dp"
-                app:itemTextColor="@color/black"
-                app:labelVisibilityMode="labeled"
+                android:layout_marginEnd="15dp"
+                app:itemIconSize="25dp"
+                app:labelVisibilityMode="unlabeled"
                 app:menu="@menu/bottom_menu_items" />
         </com.google.android.material.bottomappbar.BottomAppBar>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/map_floatBar"
-            style="@style/viewParent"
-            android:contentDescription="@string/map_activity_fab_icon"
-            android:src="@drawable/ic_action_map"
-            app:backgroundTint="@color/white"
-            app:layout_anchor="@id/bottom_nav_bar" />
-
-
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="visible"
+            app:layout_anchor="@+id/bottomAppBar"
+            app:layout_anchorGravity="top|center"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/map_logo"
+            app:lottie_speed="1" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </merge>
 

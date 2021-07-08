@@ -19,12 +19,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.headstart.Drivers.DriversActivity;
 import com.example.headstart.Home.HomeActivity;
 import com.example.headstart.Map.MapActivity;
 import com.example.headstart.R;
 import com.example.headstart.Settings.SettingsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -45,6 +47,8 @@ public class MaintenanceActivity extends AppCompatActivity implements BottomNavi
     private ScheduleAdapter scheduleAdapter;
     private ArrayList<Schedules> scheduleList;
     private DatabaseReference scheduleDatabaseRef;
+    private LottieAnimationView lottieAnimationView;
+    TextView loadingText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +61,10 @@ public class MaintenanceActivity extends AppCompatActivity implements BottomNavi
         bottomNavigationView.setBackground(null);
         bottomNavigationView.getMenu().getItem(2).setEnabled(false);
 
-        FloatingActionButton mapFloatBtn = findViewById(R.id.map_floatBar);
+        LottieAnimationView mapFloatBtn = findViewById(R.id.map_floatBar);
         mapFloatBtn.setOnClickListener(this);
+        lottieAnimationView = findViewById(R.id.animationView);
+        loadingText = findViewById(R.id.loading_textView);
 
         TextView taskTextViewBTN = findViewById(R.id.task_id);
         taskTextViewBTN.setOnClickListener(this);
@@ -69,6 +75,7 @@ public class MaintenanceActivity extends AppCompatActivity implements BottomNavi
         scheduleAdapter = new ScheduleAdapter(MaintenanceActivity.this, scheduleList);
         recyclerView = findViewById(R.id.schedule_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
@@ -91,6 +98,8 @@ public class MaintenanceActivity extends AppCompatActivity implements BottomNavi
                     scheduleList.add(schedules);
                 }
                 recyclerView.setAdapter(scheduleAdapter);
+                lottieAnimationView.setVisibility(View.GONE);
+                loadingText.setVisibility(View.GONE);
 
             }
             @Override
@@ -175,7 +184,7 @@ public class MaintenanceActivity extends AppCompatActivity implements BottomNavi
             startActivity(new Intent(this, MapActivity.class));
             //TODO call toast here
         } else if (item == R.id.task_id) {
-            startActivity(new Intent(this, TasksActivity.class));
+            startActivity(new Intent(this, ScheduleActivity.class));
         }
     }
 
@@ -204,6 +213,9 @@ public class MaintenanceActivity extends AppCompatActivity implements BottomNavi
             return true;
         } else if (itemId == R.id.nav_settings) {
             //settings activity
+//            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+//            bottomSheetDialog.setContentView(R.layout.activity_settings);
+//            bottomSheetDialog.show();
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }

@@ -7,7 +7,7 @@
     <color name="black">#FFFFFF</color>
     <color name="white">#000000</color>
     <!--    <color name="grey">#d0d0d0</color>-->
-    <color name="grey">#E6E6E6</color>
+    <color name="grey">#000000</color>
 
     <!--colors for light mode-->
     <color name="contentBodyColor">#000000</color>

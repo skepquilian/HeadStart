@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.headstart.Home.HomeActivity;
 import com.example.headstart.MaintenanceSchedule.MaintenanceActivity;
 import com.example.headstart.Map.MapActivity;
@@ -29,6 +30,7 @@ import com.example.headstart.Settings.SettingsActivity;
 import com.example.headstart.Utility.NetworkChangeListener;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -40,7 +42,6 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
     private static final String TAG = "DriversActivity";
     private BottomNavigationView bottomNavigationView;
     DriverAdapter driverAdapter;
-    private ProgressBar progressBar;
 
     RecyclerView recyclerView;
 
@@ -64,7 +65,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         FloatingActionButton addDriverFloatBtn = findViewById(R.id.addDriver_fab);
         addDriverFloatBtn.setOnClickListener(this);
 
-        FloatingActionButton mapFloatBtn = findViewById(R.id.map_floatBar);
+        LottieAnimationView mapFloatBtn = findViewById(R.id.map_floatBar);
         mapFloatBtn.setOnClickListener(this);
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -112,7 +113,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         driverAdapter.startListening();
 
         //When data is not fetched show progressBar with fetch data textView
-        progressBar = findViewById(R.id.dr_progressBar);
+        ProgressBar progressBar = findViewById(R.id.dr_progressBar);
         progressBar.setVisibility(View.GONE);
         TextView fetchDataTextView = findViewById(R.id.fetchData);
         fetchDataTextView.setVisibility(View.GONE);
@@ -198,6 +199,9 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
             return true;
         } else if (itemId == R.id.nav_settings) {
             //settings activity
+//            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+//            bottomSheetDialog.setContentView(R.layout.activity_settings);
+//            bottomSheetDialog.show();
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }

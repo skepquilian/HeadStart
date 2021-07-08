@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.headstart.Drivers.DriversActivity;
 import com.example.headstart.MaintenanceSchedule.MaintenanceActivity;
 import com.example.headstart.Map.MapActivity;
@@ -23,7 +24,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -32,9 +32,11 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
     private static final String TAG = "HomeActivity";
     private static final int ERROR_DIALOG_REQUEST = 9001;
+    private static final int SCROLL_STATE_DRAGGING = 1;
+    SettingsActivity settingsActivity;
 
     private BottomNavigationView bottomNavigationView;
-    private FloatingActionButton mapFloatButton;
+    private LottieAnimationView mapFloatButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,6 +134,13 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
             return true;
         } else if (itemId == R.id.nav_settings) {
             //settings activity
+//            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+//            bottomSheetDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//            bottomSheetDialog.getBehavior().setPeekHeight(900, true);
+//            bottomSheetDialog.setContentView(R.layout.activity_settings);
+//
+//
+//            bottomSheetDialog.show();
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
@@ -153,6 +162,18 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         ViewPager2 viewPager2 = findViewById(R.id.container);
         viewPager2.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         viewPager2.setAdapter(pagerAdapter);
+
+        //Prevent swipe between home tab and the other two tabs
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                super.onPageScrollStateChanged(state);
+                if (state == SCROLL_STATE_DRAGGING && viewPager2.getCurrentItem() == 0
+                        || viewPager2.getCurrentItem() == 1 || viewPager2.getCurrentItem() == 2) {
+                    viewPager2.setUserInputEnabled(false);
+                }
+            }
+        });
 
         //Tabs Link to viewPager
         TabLayout tabLayout = findViewById(R.id.tab);

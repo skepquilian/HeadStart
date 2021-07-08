@@ -19,6 +19,7 @@
             android:id="@+id/driver_card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#2A2E43"
             app:cardCornerRadius="20dp">
 
             <LinearLayout
@@ -176,7 +177,6 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="4dp"
-                android:backgroundTint="@color/white"
                 android:contentDescription="@string/submit_driver_details_to_list"
                 android:src="@drawable/ic_add_driver_cancel"
                 app:fabSize="normal" />
@@ -187,7 +187,6 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
-                android:backgroundTint="@color/white"
                 android:contentDescription="@string/submit_driver_details_to_list"
                 android:src="@drawable/ic_submit_btn"
                 app:fabSize="normal" />

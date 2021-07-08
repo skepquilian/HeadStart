@@ -14,7 +14,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.headstart.Home.HomeActivity;
 import com.example.headstart.MainEntryActivity;
 import com.example.headstart.R;
@@ -24,7 +26,6 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editTextEmail, editTextPassword;
-    private ProgressBar progressBar;
     private FirebaseAuth mAuth;
 
 
@@ -48,7 +49,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //Login Button
         Button btnLogin = findViewById(R.id.loginButton);
         btnLogin.setOnClickListener(this);
-        progressBar = findViewById(R.id.dr_progressBar);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -110,7 +110,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         alertDialog = alertDialogBuilder.create();
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         alertDialog.show();
-
+//        cardView_loading_holder.setVisibility(View.VISIBLE);
+//        lottieAnimationView.setVisibility(View.VISIBLE);
         mAuth.signInWithEmailAndPassword(emailAddress, userPassword).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 if (mAuth.getCurrentUser().isEmailVerified()) {
@@ -126,6 +127,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
             //progressBar.setVisibility(View.GONE);
             alertDialog.dismiss();
+//            cardView_loading_holder.setVisibility(View.GONE);
+//            lottieAnimationView.setVisibility(View.GONE);
 
         });
     }

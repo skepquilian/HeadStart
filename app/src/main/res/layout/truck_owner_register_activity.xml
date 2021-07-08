@@ -8,9 +8,10 @@
     android:fillViewport="true"
     tools:context=".AuthenticateActivities.RegisterActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <!-- Application Name/Logo-->
         <TextView
@@ -24,11 +25,7 @@
             android:textColor="@android:color/background_light"
             android:textSize="44sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/dr_progressBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.055" />
+            android:layout_gravity="center"/>
 
         <!-- Sign In TextView-->
         <TextView
@@ -37,16 +34,12 @@
             android:layout_marginTop="50dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="sans-serif-condensed"
-            android:text="@string/sign_up"
             android:textAlignment="center"
+            android:text="@string/sign_up"
             android:textColor="@android:color/background_light"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/organizationName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appName" />
+            android:layout_gravity="center"/>
 
         <!-- Organization Name -->
         <EditText
@@ -69,18 +62,13 @@
             android:inputType="textPersonName"
             android:padding="10dp"
             android:singleLine="false"
-            android:textAlignment="viewStart"
             android:textColor="@android:color/black"
             android:textColorHighlight="@android:color/black"
             android:textColorHint="@android:color/black"
             android:textCursorDrawable="@android:color/black"
             android:textSize="@dimen/textFormat"
             android:typeface="normal"
-            app:layout_constraintBottom_toTopOf="@+id/emailAddress"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signUp" />
+            android:layout_gravity="center"/>
 
         <!-- Email Address-->
         <EditText
@@ -101,16 +89,11 @@
             android:hint="@string/organisation_email"
             android:inputType="textEmailAddress"
             android:padding="10dp"
-            android:textAlignment="viewStart"
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/black"
             android:textCursorDrawable="@android:color/black"
             android:textSize="@dimen/textFormat"
-            app:layout_constraintBottom_toTopOf="@+id/phoneNumber"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/organizationName" />
+            android:layout_gravity="center"/>
 
         <!-- Phone Number-->
         <EditText
@@ -132,24 +115,17 @@
             android:inputType="phone"
             android:maxLength="14"
             android:padding="10dp"
-            android:textAlignment="viewStart"
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/black"
             android:textCursorDrawable="@android:color/black"
             android:textSize="@dimen/textFormat"
-            app:layout_constraintBottom_toTopOf="@+id/textLayoutPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailAddress" />
+            android:layout_gravity="center"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textLayoutPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:hintEnabled="false"
-            app:layout_constraintBottom_toBottomOf="@+id/phoneNumber"
-            app:layout_constraintTop_toTopOf="@+id/textLayoutPassword2"
             app:passwordToggleEnabled="true">
 
             <!-- Password -->
@@ -164,20 +140,18 @@
                 android:drawableStart="@drawable/ic_password"
                 android:drawablePadding="10dp"
                 android:ems="10"
+                android:layout_marginBottom="10dp"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:fontFamily="monospace"
                 android:hint="@string/add_password"
                 android:inputType="textPassword"
                 android:padding="10dp"
-                android:textAlignment="viewStart"
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black"
                 android:textCursorDrawable="@android:color/black"
                 android:textSize="@dimen/textFormat"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_gravity="center"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -185,11 +159,8 @@
             android:id="@+id/textLayoutPassword2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:hintEnabled="false"
-            app:layout_constraintBottom_toBottomOf="@+id/textLayoutPassword"
-            app:layout_constraintTop_toTopOf="@+id/registerButton"
             app:passwordToggleEnabled="true"
-            tools:layout_editor_absoluteX="0dp">
+            app:hintEnabled="false">
 
             <!-- Password Confirm-->
             <EditText
@@ -210,14 +181,11 @@
                 android:hint="@string/confirm_password"
                 android:inputType="textPassword"
                 android:padding="10dp"
-                android:textAlignment="viewStart"
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black"
                 android:textCursorDrawable="@android:color/black"
                 android:textSize="@dimen/textFormat"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_gravity="center"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -236,11 +204,7 @@
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/loginUser"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.484"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textLayoutPassword2" />
+            android:layout_gravity="center" />
 
         <!-- Already a User TextView-->
         <TextView
@@ -254,24 +218,8 @@
             android:text="@string/already_a_user_login"
             android:textColor="@color/accent_100"
             android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/registerButton" />
+            android:layout_gravity="center"/>
 
-        <ProgressBar
-            android:id="@+id/dr_progressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.201" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </ScrollView>

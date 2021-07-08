@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.headstart.Drivers.DriversActivity;
 import com.example.headstart.Home.HomeActivity;
 import com.example.headstart.MaintenanceSchedule.MaintenanceActivity;
@@ -23,6 +24,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MapActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
@@ -36,7 +38,7 @@ public class MapActivity extends AppCompatActivity implements BottomNavigationVi
     private GoogleMap mMap;
     private Boolean locationPermissions = false;
     private BottomNavigationView bottomNavigationView;
-    private FloatingActionButton floatingActionButton;
+    private LottieAnimationView mapFloatBtn;
 
 
     @Override
@@ -50,8 +52,8 @@ public class MapActivity extends AppCompatActivity implements BottomNavigationVi
         bottomNavigationView.setBackground(null);
         bottomNavigationView.getMenu().getItem(2).setEnabled(false);
 
-        floatingActionButton = findViewById(R.id.map_floatBar);
-        floatingActionButton.setOnClickListener(this);
+        mapFloatBtn = findViewById(R.id.map_floatBar);
+        mapFloatBtn.setOnClickListener(this);
 
         //To hide actionBar
         getSupportActionBar().hide();
@@ -79,7 +81,7 @@ public class MapActivity extends AppCompatActivity implements BottomNavigationVi
     public void onClick(View v) {
         int item = v.getId();
         if (item == R.id.map_floatBar) {
-            floatingActionButton.setBackgroundResource(R.color.accent_100);
+            mapFloatBtn.setBackgroundResource(R.color.accent_100);
         }
     }
 
@@ -165,6 +167,9 @@ public class MapActivity extends AppCompatActivity implements BottomNavigationVi
             return true;
         } else if (itemId == R.id.nav_settings) {
             //settings activity
+//            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+//            bottomSheetDialog.setContentView(R.layout.activity_settings);
+//            bottomSheetDialog.show();
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
