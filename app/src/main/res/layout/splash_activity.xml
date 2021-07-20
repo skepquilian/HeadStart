@@ -14,21 +14,19 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/image_progressBar"
-        android:layout_width="393dp"
-        android:layout_height="387dp"
+        android:layout_width="243dp"
+        android:layout_height="354dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="327dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginTop="343dp"
+        android:layout_marginBottom="16dp"
         android:scaleType="fitXY"
         android:visibility="visible"
         app:lottie_autoPlay="true"
-        app:lottie_loop="true"
+        app:lottie_loop="false"
         app:lottie_rawRes="@raw/location_find_splash"
-        app:lottie_speed="1" />
+        app:lottie_speed="5" />
 
 </RelativeLayout>

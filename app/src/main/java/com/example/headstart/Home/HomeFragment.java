@@ -2,6 +2,7 @@ package com.example.headstart.Home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -28,7 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnTouchListener {
 
     //DriverAdapter driverAdapter;
     DatabaseReference scheduleDatabaseRef;
@@ -54,11 +55,12 @@ public class HomeFragment extends Fragment {
 //                .build();
 
         textViewLoader = view.findViewById(R.id.text_progress);
-        imageViewLoader =  view.findViewById(R.id.image_progressBar);
+        imageViewLoader = view.findViewById(R.id.image_progressBar);
         scheduleList = new ArrayList<>();
         scheduleAdapter = new ScheduleAdapter(this.getContext(), scheduleList);
         recyclerView = view.findViewById(R.id.recyclerViewHome);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
         scheduleDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -72,6 +74,7 @@ public class HomeFragment extends Fragment {
                 textViewLoader.setVisibility(View.GONE);
 
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -82,24 +85,28 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        scheduleDatabaseRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                scheduleList.clear();
-//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-//                    Schedules schedules = dataSnapshot.getValue(Schedules.class);
-//                    scheduleList.add(schedules);
-//                }
-//                recyclerView.setAdapter(scheduleAdapter);
-//
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//    }
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+
+    @Override
+    public boolean onTouch(View v, MotionEvent ev) {
+        int action = ev.getAction();
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+                // Disallow ScrollView to intercept touch events.
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                break;
+
+            case MotionEvent.ACTION_UP:
+                // Allow ScrollView to intercept touch events.
+                v.getParent().requestDisallowInterceptTouchEvent(false);
+                break;
+        }
+
+        // Handle MapView's touch events.
+        return true;
+    }
 }

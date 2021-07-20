@@ -25,19 +25,18 @@
 
         <!-- Home activity area -->
 
-        <ScrollView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/bottom_nav_bar"
-            android:layout_below="@id/relative_top_bar"
-            android:fillViewport="true">
+            android:layout_below="@id/relative_top_bar">
 
             <!--ViewPager-->
             <include
                 android:id="@+id/container"
                 layout="@layout/view_pager_layout" />
 
-        </ScrollView>
+        </RelativeLayout>
 
 
         <!--Bottom Navigation Menu Bar-->
