@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.example.headstart.AuthenticateActivities.LoginActivity;
+import com.example.headstart.PhoneTracker.Tracker;
 
 public class MainEntryActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -21,24 +22,24 @@ public class MainEntryActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        supplierBnt = findViewById(R.id.supplierbtn);
+        supplierBnt = findViewById(R.id.trackingBtn);
         supplierBnt.setOnClickListener(this);
 
-        customerBtn = findViewById(R.id.customerbtn);
+        customerBtn = findViewById(R.id.customerBtn);
         customerBtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
 
-          //User clicks supplier btn redirect to Login Page
-        if (v.getId() == R.id.supplierbtn) {
+          //User clicks as Admin btn redirect to Admin Login Page
+        if (v.getId() == R.id.customerBtn) {
             startActivity(new Intent(this, LoginActivity.class));
         }
-        // Or if user is customer then redirect to customer page....
-        /*if (v.getId() == R.id.customerbtn){
-            startActivity(new Intent());
-        }*/
+        // Or if it's tracking option then redirect to tracking page....
+        if (v.getId() == R.id.trackingBtn){
+            startActivity(new Intent(this, Tracker.class));
+        }
     }
 
 

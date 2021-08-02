@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/home_fragment_rows"
+    android:layout_width="match_parent"
+    android:layout_height="240dp"
+    android:layout_margin="8dp"
+    android:background="@drawable/background_bottom_radius">
+
+    <ImageView
+        android:id="@+id/img_1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/green"
+        android:scaleType="fitXY"
+        android:src="@drawable/person" />
+
+    <TextView
+        android:id="@+id/find"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:text="find ?"
+        android:textColor="@color/green"
+        android:textSize="@dimen/textFormat" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/find_map"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/find"
+        android:layout_marginEnd="10dp"
+        app:lottie_rawRes="@raw/map_logo"
+        android:scaleType="fitXY"
+        android:visibility="visible"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_speed="0.5"/>
+
+    <TextView
+        android:id="@+id/driverName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_toEndOf="@id/img_1"
+        android:text="DriverName"
+        android:textColor="@color/white"
+        android:textSize="@dimen/headerTextSize"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/active_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_1"
+        android:layout_marginStart="20dp"
+        android:text="Active -- "
+        android:drawablePadding="20dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/headerTextSize"
+        app:drawableStartCompat="@drawable/ic_action_truck" />
+
+    <TextView
+        android:id="@+id/active_response"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/active_textView"
+        android:layout_below="@id/img_1"
+        android:text="response"
+        android:drawablePadding="20dp"
+        android:textColor="@color/green"
+        android:textSize="@dimen/headerTextSize"/>
+
+    <TextView
+        android:id="@+id/status_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/active_textView"
+        android:layout_margin="20dp"
+        android:text="Status --"
+        android:textColor="@color/white"
+        android:drawablePadding="10dp"
+        android:textSize="@dimen/headerTextSize"
+        app:drawableStartCompat="@drawable/ic_driver_status" />
+
+    <TextView
+        android:id="@+id/status_response"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/status_textView"
+        android:layout_below="@id/active_response"
+        android:text="response"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/green"
+        android:textSize="@dimen/headerTextSize"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="view more"
+        android:textColor="@color/green"
+        android:textSize="@dimen/textFormat"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        android:textStyle="bold" />
+</RelativeLayout>

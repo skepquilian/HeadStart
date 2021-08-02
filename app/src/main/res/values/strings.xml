@@ -13,8 +13,8 @@
     <string name="register_btn">Register</string>
     <string name="organisation_phone_number">Organisation Phone Number</string>
     <string name="already_a_user_login">Already a User? Login</string>
-    <string name="supplier">Supplier</string>
-    <string name="customer">Customer</string>
+    <string name="phone_tracker">As Tracker</string>
+    <string name="admin_dashboard">As Admin</string>
     <string name="logout">Logout</string>
     <string name="reset_password">Reset</string>
     <string name="home_menu">Home</string>

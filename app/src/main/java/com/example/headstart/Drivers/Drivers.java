@@ -3,7 +3,8 @@ package com.example.headstart.Drivers;
 public class Drivers {
 
     public String firstName, lastName, phone, email, driverID, vehicleID;
-
+    public String isActiveDriver;
+    public int driveStatus;
 
     /**
      * Here we create a driver object ...to be saved in firebase
@@ -14,6 +15,7 @@ public class Drivers {
     }
 
 
+    //for driver profile
     public Drivers(String firstName, String lastName, String phone, String email, String driverID, String vehicleID) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -21,6 +23,12 @@ public class Drivers {
         this.email = email;
         this.driverID = driverID;
         this.vehicleID = vehicleID;
+    }
+
+    //for driver trip information
+    public Drivers(String isActiveDriver, int driveStatus) {
+        this.isActiveDriver = isActiveDriver;
+        this.driveStatus = driveStatus;
     }
 
 
@@ -70,5 +78,21 @@ public class Drivers {
 
     public void setVehicleID(String vehicleId) {
         this.vehicleID = vehicleId;
+    }
+
+    public String getIsActiveDriver() {
+        return isActiveDriver;
+    }
+
+    public void setIsActiveDriver(String isActiveDriver) {
+        this.isActiveDriver = isActiveDriver;
+    }
+
+    public int getDriveStatus() {
+        return driveStatus;
+    }
+
+    public void setDriveStatus(int driveStatus) {
+        this.driveStatus = driveStatus;
     }
 }

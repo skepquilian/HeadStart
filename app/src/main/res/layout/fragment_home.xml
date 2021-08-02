@@ -9,16 +9,15 @@
     <RelativeLayout
         android:id="@+id/relative_map"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:verticalScrollbarPosition="defaultPosition"
-        android:background="@drawable/background_bottom_radius">
+        android:background="@color/miniTitle"
+        android:layout_height="300dp">
 
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="280dp"
+            android:layout_height="match_parent"
             android:layout_margin="2dp"
             android:focusableInTouchMode="true"
             tools:context=".MapsActivity" />
@@ -26,62 +25,65 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/linear_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/relative_map"
-        android:background="@color/grey"
-        android:gravity="center"
-        android:orientation="horizontal">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linear_layout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/relative_map"-->
+<!--        android:background="@color/grey"-->
+<!--        android:gravity="center"-->
+<!--        android:orientation="horizontal">-->
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="Drivers"
-            android:textColor="@color/black"
-            android:textSize="@dimen/textFormat" />
+<!--        <TextView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="3"-->
+<!--            android:gravity="center"-->
+<!--            android:padding="5dp"-->
+<!--            android:text="Drivers"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="@dimen/textFormat" />-->
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="Active"
-            android:textColor="@color/black"
-            android:textSize="@dimen/textFormat" />
+<!--        <TextView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="2"-->
+<!--            android:gravity="center"-->
+<!--            android:padding="5dp"-->
+<!--            android:text="Active"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="@dimen/textFormat" />-->
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="5dp"
-            android:gravity="center"
-            android:text="Status"
-            android:textColor="@color/black"
-            android:textSize="@dimen/textFormat" />
+<!--        <TextView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:padding="5dp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Status"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="@dimen/textFormat" />-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/linear_layout"
+        android:layout_below="@id/relative_map"
         android:layout_marginBottom="50dp"
         android:fillViewport="true">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewHome"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="5dp" />
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/white"
+                    android:orientation="horizontal" />
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/image_progressBar"

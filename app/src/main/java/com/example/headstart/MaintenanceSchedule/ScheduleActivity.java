@@ -160,7 +160,7 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
     }
 
     /**
-     *
+     *dismissing bottom dialog
      */
     private void dismissErrorDialog() {
         long secondsCount = 2000;
