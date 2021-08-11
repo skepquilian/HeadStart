@@ -1,7 +1,6 @@
 package com.example.headstart.Home;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +15,6 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.headstart.Drivers.Drivers;
-import com.example.headstart.MaintenanceSchedule.ScheduleAdapter;
-import com.example.headstart.MaintenanceSchedule.Schedules;
 import com.example.headstart.R;
 import com.example.headstart.Utility.SnapHelperOneByOne;
 import com.google.firebase.auth.FirebaseAuth;

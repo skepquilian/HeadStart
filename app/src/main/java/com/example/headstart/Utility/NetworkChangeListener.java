@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-
 import com.example.headstart.R;
 
 public class NetworkChangeListener extends BroadcastReceiver {

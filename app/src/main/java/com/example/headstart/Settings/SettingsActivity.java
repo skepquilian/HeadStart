@@ -6,23 +6,19 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.headstart.AuthenticateActivities.LoginActivity;
+import com.example.headstart.Home.HomeActivity;
+import com.example.headstart.R;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 
-import com.example.headstart.AuthenticateActivities.LoginActivity;
-import com.example.headstart.AuthenticateActivities.User;
-import com.example.headstart.Home.HomeActivity;
-import com.example.headstart.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener {
 

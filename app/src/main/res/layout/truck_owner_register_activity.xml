@@ -17,6 +17,7 @@
         <TextView
             android:id="@+id/appName"
             style="@style/viewParent.headerText"
+            android:layout_gravity="center"
             android:layout_marginTop="60dp"
             android:fontFamily="sans-serif-smallcaps"
             android:text="@string/app_name"
@@ -24,28 +25,28 @@
             android:textAllCaps="false"
             android:textColor="@android:color/background_light"
             android:textSize="44sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"/>
+            android:textStyle="bold" />
 
         <!-- Sign In TextView-->
         <TextView
             android:id="@+id/signUp"
             style="@style/viewParent.headerText"
+            android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="sans-serif-condensed"
-            android:textAlignment="center"
             android:text="@string/sign_up"
+            android:textAlignment="center"
             android:textColor="@android:color/background_light"
             android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"/>
+            android:textStyle="bold" />
 
         <!-- Organization Name -->
         <EditText
             android:id="@+id/organizationName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="10dp"
@@ -67,14 +68,14 @@
             android:textColorHint="@android:color/black"
             android:textCursorDrawable="@android:color/black"
             android:textSize="@dimen/textFormat"
-            android:typeface="normal"
-            android:layout_gravity="center"/>
+            android:typeface="normal" />
 
         <!-- Email Address-->
         <EditText
             android:id="@+id/emailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="10dp"
@@ -92,14 +93,14 @@
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/black"
             android:textCursorDrawable="@android:color/black"
-            android:textSize="@dimen/textFormat"
-            android:layout_gravity="center"/>
+            android:textSize="@dimen/textFormat" />
 
         <!-- Phone Number-->
         <EditText
             android:id="@+id/phoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="10dp"
@@ -118,8 +119,7 @@
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/black"
             android:textCursorDrawable="@android:color/black"
-            android:textSize="@dimen/textFormat"
-            android:layout_gravity="center"/>
+            android:textSize="@dimen/textFormat" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textLayoutPassword"
@@ -133,14 +133,15 @@
                 android:id="@+id/userPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="10dp"
                 android:autofillHints=""
                 android:background="@drawable/round_border"
                 android:drawableStart="@drawable/ic_password"
                 android:drawablePadding="10dp"
                 android:ems="10"
-                android:layout_marginBottom="10dp"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:fontFamily="monospace"
@@ -150,8 +151,7 @@
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black"
                 android:textCursorDrawable="@android:color/black"
-                android:textSize="@dimen/textFormat"
-                android:layout_gravity="center"/>
+                android:textSize="@dimen/textFormat" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -159,14 +159,15 @@
             android:id="@+id/textLayoutPassword2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true"
-            app:hintEnabled="false">
+            app:hintEnabled="false"
+            app:passwordToggleEnabled="true">
 
             <!-- Password Confirm-->
             <EditText
                 android:id="@+id/passwordConfirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="10dp"
@@ -184,8 +185,7 @@
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black"
                 android:textCursorDrawable="@android:color/black"
-                android:textSize="@dimen/textFormat"
-                android:layout_gravity="center"/>
+                android:textSize="@dimen/textFormat" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -194,6 +194,7 @@
             android:id="@+id/registerButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="30dp"
@@ -203,22 +204,21 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_gravity="center" />
+            android:textStyle="bold" />
 
         <!-- Already a User TextView-->
         <TextView
             android:id="@+id/loginUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="monospace"
             android:text="@string/already_a_user_login"
             android:textColor="@color/accent_100"
-            android:textSize="14sp"
-            android:layout_gravity="center"/>
+            android:textSize="14sp" />
 
     </LinearLayout>
 

@@ -8,19 +8,17 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.example.headstart.Home.HomeActivity;
-import com.example.headstart.MainEntryActivity;
 import com.example.headstart.R;
 import com.example.headstart.Utility.PasswordUtils;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -33,6 +31,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.truck_owner_login_activity);
+        FirebaseApp.initializeApp(this);
 
         //TextView
         //forget password
@@ -135,8 +134,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(LoginActivity.this, MainEntryActivity.class));
-        finish();
+        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this)
+                .setTitle("Quit Application")
+                .setCancelable(false)
+                .setMessage("Are your sure to exit?")
+                .setPositiveButton("Yes", (dialog, which) -> ActivityCompat.finishAffinity(LoginActivity.this))
+                .setNegativeButton("No", (dialogInterface, i) -> {
+
+                });
+
+        builder.show();
     }
 }

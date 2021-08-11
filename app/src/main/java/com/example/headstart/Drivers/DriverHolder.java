@@ -3,12 +3,10 @@ package com.example.headstart.Drivers;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.example.headstart.R;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.headstart.R;
 
 public class DriverHolder extends RecyclerView.ViewHolder {
 

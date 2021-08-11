@@ -151,9 +151,9 @@
         android:layout_toEndOf="@id/edit_text5"
         android:gravity="center"
         android:hint="vehicle id number"
+        android:nextFocusForward="@id/updateBTN"
         android:padding="15dp"
-        android:singleLine="true"
-        android:nextFocusForward="@id/updateBTN"/>
+        android:singleLine="true" />
 
 
     <Button

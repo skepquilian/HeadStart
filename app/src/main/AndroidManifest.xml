@@ -16,12 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PhoneTracker.Tracker"></activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-        <!--              The API key for Google Maps-based APIs. -->
+            android:value="@integer/google_play_services_version" /> <!-- The API key for Google Maps-based APIs. -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" /> <!-- Entry Logo display Launcher -->
@@ -63,7 +61,7 @@
             android:label="Tasks"
             android:parentActivityName=".MaintenanceSchedule.MaintenanceActivity"
             android:theme="@style/AppTheme." /> <!-- MainEntry of App -->
-        <activity android:name=".MainEntryActivity" /> <!-- Home -->
+        <!-- Home -->
         <activity android:name=".Home.HomeActivity">
 
             <!--
@@ -81,7 +79,6 @@
             android:theme="@style/AppTheme." /> <!-- Login -->
         <activity
             android:name=".AuthenticateActivities.LoginActivity"
-            android:parentActivityName=".MainEntryActivity"
             android:theme="@style/AppTheme." /> <!-- Reset Password -->
         <activity
             android:name=".AuthenticateActivities.ResetPassword"

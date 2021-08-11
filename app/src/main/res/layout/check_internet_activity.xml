@@ -1,41 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/AppTheme."
     android:background="@color/appBackground"
+    android:gravity="center"
     android:orientation="vertical"
     android:padding="20dp"
-    android:gravity="center">
+    android:theme="@style/AppTheme.">
 
     <ImageButton
         android:id="@+id/dataOff_img"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:background="@android:color/transparent"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_signal_wifi"
-        android:background="@android:color/transparent"/>
+        android:src="@drawable/ic_signal_wifi" />
 
     <TextView
         android:id="@+id/dataOff_text_view"
         style="@style/viewParent.headerText"
         android:text="No Internet"
         android:textColor="@color/white"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/dataOff_text_view2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
         android:text="Please check Internet connection"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
     <Button
         android:id="@+id/retryBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Retry"
         android:layout_marginTop="8dp"
-        android:background="@drawable/round_border"/>
+        android:background="@drawable/round_border"
+        android:text="Retry" />
 
 </LinearLayout>
