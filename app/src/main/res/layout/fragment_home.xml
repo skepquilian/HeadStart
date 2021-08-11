@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/relative_map"
         android:layout_width="match_parent"
-        android:background="@color/miniTitle"
-        android:layout_height="300dp">
+        android:layout_height="300dp"
+        android:background="@color/miniTitle">
 
 
         <androidx.fragment.app.FragmentContainerView
@@ -25,46 +24,46 @@
 
     </RelativeLayout>
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/linear_layout"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@id/relative_map"-->
-<!--        android:background="@color/grey"-->
-<!--        android:gravity="center"-->
-<!--        android:orientation="horizontal">-->
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/linear_layout"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_below="@id/relative_map"-->
+    <!--        android:background="@color/grey"-->
+    <!--        android:gravity="center"-->
+    <!--        android:orientation="horizontal">-->
 
-<!--        <TextView-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="3"-->
-<!--            android:gravity="center"-->
-<!--            android:padding="5dp"-->
-<!--            android:text="Drivers"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="@dimen/textFormat" />-->
+    <!--        <TextView-->
+    <!--            android:layout_width="0dp"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_weight="3"-->
+    <!--            android:gravity="center"-->
+    <!--            android:padding="5dp"-->
+    <!--            android:text="Drivers"-->
+    <!--            android:textColor="@color/black"-->
+    <!--            android:textSize="@dimen/textFormat" />-->
 
-<!--        <TextView-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="2"-->
-<!--            android:gravity="center"-->
-<!--            android:padding="5dp"-->
-<!--            android:text="Active"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="@dimen/textFormat" />-->
+    <!--        <TextView-->
+    <!--            android:layout_width="0dp"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_weight="2"-->
+    <!--            android:gravity="center"-->
+    <!--            android:padding="5dp"-->
+    <!--            android:text="Active"-->
+    <!--            android:textColor="@color/black"-->
+    <!--            android:textSize="@dimen/textFormat" />-->
 
-<!--        <TextView-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="1"-->
-<!--            android:padding="5dp"-->
-<!--            android:gravity="center"-->
-<!--            android:text="Status"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="@dimen/textFormat" />-->
+    <!--        <TextView-->
+    <!--            android:layout_width="0dp"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_weight="1"-->
+    <!--            android:padding="5dp"-->
+    <!--            android:gravity="center"-->
+    <!--            android:text="Status"-->
+    <!--            android:textColor="@color/black"-->
+    <!--            android:textSize="@dimen/textFormat" />-->
 
-<!--    </LinearLayout>-->
+    <!--    </LinearLayout>-->
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -73,42 +72,45 @@
         android:layout_marginBottom="50dp"
         android:fillViewport="true">
 
-            <RelativeLayout
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewHome"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white"
+                android:orientation="horizontal" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewHome"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/white"
-                    android:orientation="horizontal" />
+            <include
+                layout="@layout/home_fragment_rows"/>
 
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/image_progressBar"
-                    android:layout_width="100dp"
-                    android:layout_height="150dp"
-                    android:layout_centerInParent="true"
-                    app:lottie_rawRes="@raw/loading"
-                    app:lottie_autoPlay="true"
-                    app:lottie_loop="true"
-                    app:lottie_speed="1.5"
-                    android:visibility="visible"/>
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/image_progressBar"
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:layout_centerInParent="true"
+                android:visibility="visible"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/loading"
+                app:lottie_speed="1.5" />
 
-                <TextView
-                    android:id="@+id/text_progress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/image_progressBar"
-                    android:layout_alignBottom="@+id/image_progressBar"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="100dp"
-                    android:layout_marginBottom="24dp"
-                    android:text="Loading..."
-                    android:textColor="@color/black"
-                    android:visibility="visible" />
-            </RelativeLayout>
+            <TextView
+                android:id="@+id/text_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/image_progressBar"
+                android:layout_alignBottom="@+id/image_progressBar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="24dp"
+                android:text="Loading..."
+                android:textColor="@color/black"
+                android:visibility="visible" />
+        </RelativeLayout>
 
     </androidx.core.widget.NestedScrollView>
 

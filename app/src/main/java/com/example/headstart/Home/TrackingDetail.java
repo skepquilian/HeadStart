@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -22,7 +21,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.headstart.MaintenanceSchedule.Schedules;
 import com.example.headstart.PhoneTracker.TrackerObject;
 import com.example.headstart.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;

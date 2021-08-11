@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.example.headstart.AuthenticateActivities.LoginActivity;
-import com.example.headstart.PhoneTracker.Tracker;
 
 public class MainEntryActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -37,9 +36,9 @@ public class MainEntryActivity extends AppCompatActivity implements View.OnClick
             startActivity(new Intent(this, LoginActivity.class));
         }
         // Or if it's tracking option then redirect to tracking page....
-        if (v.getId() == R.id.trackingBtn){
-            startActivity(new Intent(this, Tracker.class));
-        }
+//        if (v.getId() == R.id.trackingBtn){
+//            startActivity(new Intent(this, Tracker.class));
+//        }
     }
 
 

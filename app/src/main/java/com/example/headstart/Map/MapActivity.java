@@ -9,23 +9,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.headstart.Drivers.DriversActivity;
+import com.example.headstart.Home.HomeActivity;
+import com.example.headstart.MaintenanceSchedule.MaintenanceActivity;
+import com.example.headstart.R;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.example.headstart.Drivers.DriversActivity;
-import com.example.headstart.Home.HomeActivity;
-import com.example.headstart.MaintenanceSchedule.MaintenanceActivity;
-import com.example.headstart.R;
 import com.example.headstart.Settings.SettingsActivity;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MapActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
         View.OnClickListener, OnMapReadyCallback {

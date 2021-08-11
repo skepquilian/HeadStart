@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/schedule_row"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:layout_marginTop="5dp">
+    android:layout_marginTop="5dp"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/schedule_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         android:layout_alignParentEnd="true"
+        android:padding="10dp"
         android:text="Scheduled date"
         android:textColor="@color/black" />
 
@@ -26,11 +25,11 @@
             android:id="@+id/schedule_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:padding="10dp"
             android:text="schedule"
+            android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="italic" />
@@ -65,8 +64,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/schedule_drv_name"
                 android:layout_margin="10dp"
-                android:textColor="@color/black"
-                android:text="edit" />
+                android:text="edit"
+                android:textColor="@color/black" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -74,8 +73,8 @@
                 android:layout_below="@id/schedule_drv_name"
                 android:layout_margin="10dp"
                 android:layout_toEndOf="@id/edit_task_BTN"
-                android:textColor="@color/black"
-                android:text="complete" />
+                android:text="complete"
+                android:textColor="@color/black" />
 
         </RelativeLayout>
 

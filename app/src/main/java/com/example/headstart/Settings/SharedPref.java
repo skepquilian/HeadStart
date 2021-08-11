@@ -3,10 +3,6 @@ package com.example.headstart.Settings;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import androidx.appcompat.app.AppCompatDelegate;
-
-import com.example.headstart.R;
-
 public class SharedPref {
     SharedPreferences sharedPref;
     public SharedPref(Context context) {

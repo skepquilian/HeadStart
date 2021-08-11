@@ -14,20 +14,18 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.headstart.Drivers.DriversActivity;
+import com.example.headstart.Home.HomeActivity;
+import com.example.headstart.Map.MapActivity;
+import com.example.headstart.R;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.example.headstart.Drivers.DriversActivity;
-import com.example.headstart.Home.HomeActivity;
-import com.example.headstart.Map.MapActivity;
-import com.example.headstart.R;
 import com.example.headstart.Settings.SettingsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

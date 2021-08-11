@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@drawable/rounded_box"
-        android:text="add tracker"/>
+        android:text="add tracker" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,16 +21,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My List of trackers"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
-            android:textColor="@color/green"/>
+            android:text="My List of trackers"
+            android:textColor="@color/green" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tracker_gridView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:numColumns="3"/>
+            android:numColumns="3" />
     </LinearLayout>
 
 
