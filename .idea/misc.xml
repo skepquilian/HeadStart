@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/activity_bottom_navigation_snippet.xml" value="0.14977168949771688" />
         <entry key="app/src/main/res/layout/activity_tracker_home_page.xml" value="0.14931506849315068" />
       </map>
     </option>

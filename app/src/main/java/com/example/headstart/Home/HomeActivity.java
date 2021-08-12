@@ -24,11 +24,12 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 
-public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class HomeActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
 
     private static final String TAG = "HomeActivity";
     private static final int ERROR_DIALOG_REQUEST = 9001;
@@ -36,7 +37,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     SettingsActivity settingsActivity;
 
     private BottomNavigationView bottomNavigationView;
-    private LottieAnimationView mapFloatButton;
+    private LottieAnimationView mapFloatButton;  
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_home);
 
         bottomNavigationView = findViewById(R.id.bottom_nav_bar);
-        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        bottomNavigationView.setOnItemSelectedListener(this);
 
         mapFloatButton = findViewById(R.id.map_floatBar);
 

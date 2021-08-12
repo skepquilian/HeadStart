@@ -32,11 +32,12 @@ import com.example.headstart.Utility.NetworkChangeListener;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class DriversActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
+public class DriversActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener,
         View.OnClickListener {
 
     private static final String TAG = "DriversActivity";
@@ -57,7 +58,7 @@ public class DriversActivity extends AppCompatActivity implements BottomNavigati
         setContentView(R.layout.activity_drivers);
 
         bottomNavigationView = findViewById(R.id.bottom_nav_bar);
-        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        bottomNavigationView.setOnItemSelectedListener(this);
 
         bottomNavigationView.setBackground(null);
         bottomNavigationView.getMenu().getItem(2).setEnabled(false);

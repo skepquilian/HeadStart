@@ -24,8 +24,9 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
-public class MapActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
+public class MapActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener,
         View.OnClickListener, OnMapReadyCallback {
 
     private static final String TAG = "MapActivity";
@@ -45,7 +46,7 @@ public class MapActivity extends AppCompatActivity implements BottomNavigationVi
         setContentView(R.layout.activity_map);
 
         bottomNavigationView = findViewById(R.id.bottom_nav_bar);
-        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        bottomNavigationView.setOnItemSelectedListener(this);
 
         bottomNavigationView.setBackground(null);
         bottomNavigationView.getMenu().getItem(2).setEnabled(false);

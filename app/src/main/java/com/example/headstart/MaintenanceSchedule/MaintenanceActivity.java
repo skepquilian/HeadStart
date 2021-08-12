@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.headstart.Settings.SettingsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,7 +37,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class MaintenanceActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
+public class MaintenanceActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener,
         View.OnClickListener {
 
     private static final String TAG = "MaintenanceActivity";
@@ -54,7 +55,7 @@ public class MaintenanceActivity extends AppCompatActivity implements BottomNavi
         setContentView(R.layout.activity_maintenance);
 
         bottomNavigationView = findViewById(R.id.bottom_nav_bar);
-        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        bottomNavigationView.setOnItemSelectedListener(this);
 
         bottomNavigationView.setBackground(null);
         bottomNavigationView.getMenu().getItem(2).setEnabled(false);
